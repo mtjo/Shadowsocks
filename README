@@ -1,0 +1,8 @@
+===README===
+
+1. unzip this zip and put the dir into 'sdk_package/'
+
+2. cd sdk_package/user_sample/; make
+
+3. you will get sdk_package/user_sample/app.1.0.0.mpk
+

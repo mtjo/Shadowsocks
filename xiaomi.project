@@ -1,0 +1,60 @@
+#请输入插件ID。
+plugin_id= "2882303761517844579";
+
+#请输入插件名称。
+name= "Shadowsocks";
+
+#请输入插件介绍。
+introduction= "A secure socks5 proxy,designed to protect your Internet traffic.";
+
+#请输入插件简介。
+summary= "A secure socks5 proxy,designed to protect your Internet traffic.";
+
+#已安装插件图标URL。
+installed_icon= "http://file.market.xiaomi.com/download/AppStore/0704d475a6c438406f9e20d813abf5c8898427524";
+
+#插件详情图标URL。
+detail_image= "http://file.market.xiaomi.com/download/AppStore/08755d415e4c648ec3330551bd56ab856a60ef8b0";
+
+#可安装插件图标URL。
+market_icon="http://file.market.xiaomi.com/download/AppStore/0649a49a74d91521054528db84265881df843f9ed";
+
+#开发者名称。
+developer= "MTJO";
+
+#请输入插件版本号(格式：xx.xx.xx)。
+version= "1.0.0";
+
+#请输入插件控制页面url。
+control_url= "https://mtjo.net/ss/index.html";
+
+#请输入打包目录(如果插件没有可执行文件，可不用填写)。
+zip_path= "./build/";
+
+#请输入开发者证书文件路径。
+pem_path= "./key/159737223.pem";
+
+#请输入私钥文件路径。
+key_path= "./key/client.key";
+
+#请输入sdk level。
+sdk_level= "5";
+
+#是否支持R1D
+supported_rom= "miwifi_rom";
+
+#是否需要访问公共存储目录
+access_userdata= "true";
+
+access_proc = "true";
+
+#是否需要支持"下载"功能，此项为true才能够使用下载相关的sdk
+support_download= "false";
+
+support_vpn_operation= "false";
+
+#是否需要支持"已连接的设备信息"，此项为true才能够使用链接设备信息相关的sdk
+support_connected_device_info= "false"
+
+#是否需要支持"访问U盘"，此项为true才能够使用访问U盘相关的sdk
+support_usb_disk_mount= "false"

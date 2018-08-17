@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="false">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="60cf32fe-e846-4a41-b53a-9f10a189cdf7" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="993646354">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="7" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.7" value="3" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="12" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="Makefile" value="4" />
+          <entry key="README" value="2" />
+          <entry key="c" value="1" />
+          <entry key="cpp" value="12" />
+          <entry key="css" value="25" />
+          <entry key="h" value="17" />
+          <entry key="html" value="6" />
+          <entry key="ini" value="3" />
+          <entry key="js" value="5" />
+          <entry key="project" value="4" />
+          <entry key="sh" value="9" />
+          <entry key="start_script" value="8" />
+          <entry key="vue" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Bash" value="7" />
+          <entry key="CSS" value="25" />
+          <entry key="HTML" value="6" />
+          <entry key="JavaScript" value="5" />
+          <entry key="ObjectiveC" value="30" />
+          <entry key="PLAIN_TEXT" value="24" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="Makefile" value="117" />
+          <entry key="cpp" value="3671" />
+          <entry key="css" value="361" />
+          <entry key="h" value="174" />
+          <entry key="html" value="8081" />
+          <entry key="js" value="2" />
+          <entry key="project" value="22" />
+          <entry key="sh" value="113" />
+          <entry key="start_script" value="119" />
+          <entry key="vue" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Bash" value="97" />
+          <entry key="CSS" value="361" />
+          <entry key="HTML" value="8081" />
+          <entry key="JavaScript" value="2" />
+          <entry key="ObjectiveC" value="3845" />
+          <entry key="PLAIN_TEXT" value="276" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-869351524">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="c" value="1" />
+          <entry key="h" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="ObjectiveC" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="Makefile" value="15" />
+          <entry key="cpp" value="2" />
+          <entry key="project" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="ObjectiveC" value="2" />
+          <entry key="PLAIN_TEXT" value="17" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Makefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Shadowsocks.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xiaomi.project">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/start_script">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autorun.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/view/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="520" column="19" lean-forward="true" selection-start-line="520" selection-start-column="19" selection-end-line="520" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>bind</find>
+      <find>reset.css</find>
+      <find>jq</find>
+      <find>span</find>
+      <find>once</find>
+      <find>js</find>
+      <find>tab_delete</find>
+      <find>container</find>
+      <find>data-index</find>
+      <find>delitem</find>
+      <find>dataset</find>
+      <find>frpc_status</find>
+      <find>version</find>
+      <find>savebase</find>
+      <find>saveConfig</find>
+      <find>log_file</find>
+      <find>runFrpc</find>
+      <find>run_status</find>
+      <find>log_on</find>
+      <find>resCode</find>
+      <find>saveconfig</find>
+      <find>toast</find>
+      <find>删除</find>
+      <find>错误</find>
+      <find>alert</find>
+      <find>frpc_config</find>
+      <find>frpc_config错误</find>
+      <find>Frp::</find>
+      <find>Frpc</find>
+      <find>Frp</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>frpc</replace>
+      <replace>Shadowsocks::</replace>
+      <replace>Shadowsocks</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Frpc.h" />
+        <option value="$PROJECT_DIR$/Frpc.cpp" />
+        <option value="$PROJECT_DIR$/INIParser.h" />
+        <option value="$PROJECT_DIR$/INIParser.cpp" />
+        <option value="$PROJECT_DIR$/view/js/index.html" />
+        <option value="$PROJECT_DIR$/TaskWatcher.cpp" />
+        <option value="$PROJECT_DIR$/SaveConfig.cpp" />
+        <option value="$PROJECT_DIR$/build/autorun.sh" />
+        <option value="$PROJECT_DIR$/autorun.sh" />
+        <option value="$PROJECT_DIR$/frpc.sh" />
+        <option value="$PROJECT_DIR$/JSON.h" />
+        <option value="$PROJECT_DIR$/Frp.h" />
+        <option value="$PROJECT_DIR$/view/js/router_app.js" />
+        <option value="$PROJECT_DIR$/view/js/toast.vue" />
+        <option value="$PROJECT_DIR$/view/js/index.js" />
+        <option value="$PROJECT_DIR$/view/css/my-app.css" />
+        <option value="$PROJECT_DIR$/Frp.cpp" />
+        <option value="$PROJECT_DIR$/Shadowsocks.h" />
+        <option value="$PROJECT_DIR$/Shadowsocks.cpp" />
+        <option value="$PROJECT_DIR$/Makefile" />
+        <option value="$PROJECT_DIR$/start_script" />
+        <option value="$PROJECT_DIR$/view/index.html" />
+        <option value="$PROJECT_DIR$/xiaomi.project" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1" />
+    <option name="y" value="23" />
+    <option name="width" value="1701" />
+    <option name="height" value="977" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Shadowsocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shadowsocks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shadowsocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shadowsocks" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs.protractor.protractor_package" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/view/js" />
+      <recent name="$PROJECT_DIR$/view/img" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/view" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="60cf32fe-e846-4a41-b53a-9f10a189cdf7" name="Default Changelist" comment="" />
+      <created>1533699290690</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1533699290690</updated>
+      <workItem from="1533699296836" duration="11450000" />
+      <workItem from="1533719466577" duration="2864000" />
+      <workItem from="1533787965905" duration="15000" />
+      <workItem from="1533788028009" duration="12521000" />
+      <workItem from="1533956887437" duration="1271000" />
+      <workItem from="1533961957840" duration="15340000" />
+      <workItem from="1533995719922" duration="220000" />
+      <workItem from="1534044051459" duration="3953000" />
+      <workItem from="1534122121745" duration="29389000" />
+      <workItem from="1534174626099" duration="3041000" />
+      <workItem from="1534256453876" duration="5481000" />
+      <workItem from="1534341838960" duration="7450000" />
+      <workItem from="1534433418065" duration="998000" />
+      <workItem from="1534516597017" duration="2596000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="210430000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1" y="23" width="1701" height="977" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23749247" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32946634" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.34570765" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.32714617" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/INIReader.h" />
+    <entry file="file://$PROJECT_DIR$/view/index.html-backup" />
+    <entry file="file://$PROJECT_DIR$/README">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/INIParser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2820">
+          <caret line="188" column="11" selection-start-line="188" selection-start-column="11" selection-end-line="188" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/INIParser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/start_script">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/inifile0.2.0/main.c" />
+    <entry file="file://$PROJECT_DIR$/SaveConfig.cpp" />
+    <entry file="file://$PROJECT_DIR$/SaveConfig.h" />
+    <entry file="file://$PROJECT_DIR$/view/js/angular.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="197" column="99" selection-start-line="197" selection-start-column="99" selection-end-line="197" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/frp/frpc_full.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/frp/frpc.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TaskWatcher.h" />
+    <entry file="file://$PROJECT_DIR$/SystemState.h" />
+    <entry file="file://$PROJECT_DIR$/JSON.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/autorun.sh" />
+    <entry file="file://$PROJECT_DIR$/inifile.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TaskWatcher.cpp" />
+    <entry file="file://$PROJECT_DIR$/view/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4892" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/mui-switch.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-209" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/upscroller.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/framework7.ios.colors.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-729" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/framework7.ios.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/framework7.ios.colors.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="37811" selection-start-line="14" selection-start-column="37811" selection-end-line="14" selection-end-column="37811" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frpc.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JSON.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemState.cpp" />
+    <entry file="file://$PROJECT_DIR$/view/css/reset.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/js/router_app.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/js/my-app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-860">
+          <caret line="60" column="15" selection-start-line="60" selection-start-column="15" selection-end-line="60" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/framework7.ios.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="14" column="49650" selection-start-line="14" selection-start-column="49650" selection-end-line="14" selection-end-column="49987" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/js/toast.vue" />
+    <entry file="file://$PROJECT_DIR$/view/js/index.js" />
+    <entry file="file://$PROJECT_DIR$/autorun.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/framework7.material.colors.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="14" column="14697" selection-start-line="14" selection-start-column="14697" selection-end-line="14" selection-end-column="14697" />
+          <folding>
+            <element signature="e#5822#6147#2" expanded="true" />
+            <element signature="e#6209#6535#2" expanded="true" />
+            <element signature="e#6597#6885#2" expanded="true" />
+            <element signature="e#6953#7234#2" expanded="true" />
+            <element signature="e#7296#7557#2" expanded="true" />
+            <element signature="e#8673#8948#2" expanded="true" />
+            <element signature="e#13303#13561#2" expanded="true" />
+            <element signature="e#13745#14003#2" expanded="true" />
+            <element signature="e#16376#16701#2" expanded="true" />
+            <element signature="e#16765#17091#2" expanded="true" />
+            <element signature="e#17155#17443#2" expanded="true" />
+            <element signature="e#17513#17794#2" expanded="true" />
+            <element signature="e#17858#18119#2" expanded="true" />
+            <element signature="e#19256#19531#2" expanded="true" />
+            <element signature="e#23940#24198#2" expanded="true" />
+            <element signature="e#24386#24644#2" expanded="true" />
+            <element signature="e#27097#27422#2" expanded="true" />
+            <element signature="e#27490#27816#2" expanded="true" />
+            <element signature="e#27884#28172#2" expanded="true" />
+            <element signature="e#28246#28527#2" expanded="true" />
+            <element signature="e#28595#28856#2" expanded="true" />
+            <element signature="e#30036#30311#2" expanded="true" />
+            <element signature="e#34828#35086#2" expanded="true" />
+            <element signature="e#35282#35540#2" expanded="true" />
+            <element signature="e#38154#38479#2" expanded="true" />
+            <element signature="e#38555#38881#2" expanded="true" />
+            <element signature="e#38957#39245#2" expanded="true" />
+            <element signature="e#39327#39608#2" expanded="true" />
+            <element signature="e#39684#39945#2" expanded="true" />
+            <element signature="e#41209#41484#2" expanded="true" />
+            <element signature="e#46217#46475#2" expanded="true" />
+            <element signature="e#46687#46945#2" expanded="true" />
+            <element signature="e#49543#49868#2" expanded="true" />
+            <element signature="e#49936#50262#2" expanded="true" />
+            <element signature="e#50330#50618#2" expanded="true" />
+            <element signature="e#50692#50973#2" expanded="true" />
+            <element signature="e#51041#51302#2" expanded="true" />
+            <element signature="e#52481#52756#2" expanded="true" />
+            <element signature="e#57273#57531#2" expanded="true" />
+            <element signature="e#57727#57985#2" expanded="true" />
+            <element signature="e#60430#60755#2" expanded="true" />
+            <element signature="e#60819#61145#2" expanded="true" />
+            <element signature="e#61209#61497#2" expanded="true" />
+            <element signature="e#61567#61848#2" expanded="true" />
+            <element signature="e#61912#62173#2" expanded="true" />
+            <element signature="e#63311#63586#2" expanded="true" />
+            <element signature="e#67995#68253#2" expanded="true" />
+            <element signature="e#68441#68699#2" expanded="true" />
+            <element signature="e#71237#71562#2" expanded="true" />
+            <element signature="e#71636#71962#2" expanded="true" />
+            <element signature="e#72036#72324#2" expanded="true" />
+            <element signature="e#72404#72685#2" expanded="true" />
+            <element signature="e#72759#73020#2" expanded="true" />
+            <element signature="e#74262#74537#2" expanded="true" />
+            <element signature="e#79216#79474#2" expanded="true" />
+            <element signature="e#79682#79940#2" expanded="true" />
+            <element signature="e#82457#82782#2" expanded="true" />
+            <element signature="e#82846#83172#2" expanded="true" />
+            <element signature="e#83236#83524#2" expanded="true" />
+            <element signature="e#83594#83875#2" expanded="true" />
+            <element signature="e#83939#84200#2" expanded="true" />
+            <element signature="e#85337#85612#2" expanded="true" />
+            <element signature="e#90021#90279#2" expanded="true" />
+            <element signature="e#90467#90725#2" expanded="true" />
+            <element signature="e#93122#93447#2" expanded="true" />
+            <element signature="e#93511#93837#2" expanded="true" />
+            <element signature="e#93901#94189#2" expanded="true" />
+            <element signature="e#94259#94540#2" expanded="true" />
+            <element signature="e#94604#94865#2" expanded="true" />
+            <element signature="e#96002#96277#2" expanded="true" />
+            <element signature="e#100686#100944#2" expanded="true" />
+            <element signature="e#101132#101390#2" expanded="true" />
+            <element signature="e#103815#104140#2" expanded="true" />
+            <element signature="e#104206#104532#2" expanded="true" />
+            <element signature="e#104598#104886#2" expanded="true" />
+            <element signature="e#104958#105239#2" expanded="true" />
+            <element signature="e#105305#105566#2" expanded="true" />
+            <element signature="e#106724#106999#2" expanded="true" />
+            <element signature="e#111462#111720#2" expanded="true" />
+            <element signature="e#111912#112170#2" expanded="true" />
+            <element signature="e#114759#115084#2" expanded="true" />
+            <element signature="e#115160#115486#2" expanded="true" />
+            <element signature="e#115562#115850#2" expanded="true" />
+            <element signature="e#115932#116213#2" expanded="true" />
+            <element signature="e#116289#116550#2" expanded="true" />
+            <element signature="e#117814#118089#2" expanded="true" />
+            <element signature="e#122822#123080#2" expanded="true" />
+            <element signature="e#123292#123550#2" expanded="true" />
+            <element signature="e#126092#126417#2" expanded="true" />
+            <element signature="e#126481#126807#2" expanded="true" />
+            <element signature="e#126871#127159#2" expanded="true" />
+            <element signature="e#127229#127510#2" expanded="true" />
+            <element signature="e#127574#127835#2" expanded="true" />
+            <element signature="e#128973#129248#2" expanded="true" />
+            <element signature="e#133657#133915#2" expanded="true" />
+            <element signature="e#134103#134361#2" expanded="true" />
+            <element signature="e#136815#137140#2" expanded="true" />
+            <element signature="e#137208#137534#2" expanded="true" />
+            <element signature="e#137602#137890#2" expanded="true" />
+            <element signature="e#137964#138245#2" expanded="true" />
+            <element signature="e#138313#138574#2" expanded="true" />
+            <element signature="e#139754#140029#2" expanded="true" />
+            <element signature="e#144546#144804#2" expanded="true" />
+            <element signature="e#145000#145258#2" expanded="true" />
+            <element signature="e#147732#148057#2" expanded="true" />
+            <element signature="e#148123#148449#2" expanded="true" />
+            <element signature="e#148515#148803#2" expanded="true" />
+            <element signature="e#148875#149156#2" expanded="true" />
+            <element signature="e#149222#149483#2" expanded="true" />
+            <element signature="e#150641#150916#2" expanded="true" />
+            <element signature="e#155379#155637#2" expanded="true" />
+            <element signature="e#155829#156087#2" expanded="true" />
+            <element signature="e#158564#158889#2" expanded="true" />
+            <element signature="e#158957#159283#2" expanded="true" />
+            <element signature="e#159351#159639#2" expanded="true" />
+            <element signature="e#159713#159994#2" expanded="true" />
+            <element signature="e#160062#160323#2" expanded="true" />
+            <element signature="e#161502#161777#2" expanded="true" />
+            <element signature="e#166294#166552#2" expanded="true" />
+            <element signature="e#166748#167006#2" expanded="true" />
+            <element signature="e#169619#169944#2" expanded="true" />
+            <element signature="e#170020#170346#2" expanded="true" />
+            <element signature="e#170422#170710#2" expanded="true" />
+            <element signature="e#170792#171073#2" expanded="true" />
+            <element signature="e#171149#171410#2" expanded="true" />
+            <element signature="e#172673#172948#2" expanded="true" />
+            <element signature="e#177681#177939#2" expanded="true" />
+            <element signature="e#178151#178409#2" expanded="true" />
+            <element signature="e#180978#181303#2" expanded="true" />
+            <element signature="e#181369#181695#2" expanded="true" />
+            <element signature="e#181761#182049#2" expanded="true" />
+            <element signature="e#182121#182402#2" expanded="true" />
+            <element signature="e#182468#182729#2" expanded="true" />
+            <element signature="e#183887#184162#2" expanded="true" />
+            <element signature="e#188625#188883#2" expanded="true" />
+            <element signature="e#189075#189333#2" expanded="true" />
+            <element signature="e#191754#192079#2" expanded="true" />
+            <element signature="e#192143#192469#2" expanded="true" />
+            <element signature="e#192533#192821#2" expanded="true" />
+            <element signature="e#192891#193172#2" expanded="true" />
+            <element signature="e#193236#193497#2" expanded="true" />
+            <element signature="e#194636#194911#2" expanded="true" />
+            <element signature="e#199320#199578#2" expanded="true" />
+            <element signature="e#199766#200024#2" expanded="true" />
+            <element signature="e#202535#202860#2" expanded="true" />
+            <element signature="e#202932#203258#2" expanded="true" />
+            <element signature="e#203330#203618#2" expanded="true" />
+            <element signature="e#203696#203977#2" expanded="true" />
+            <element signature="e#204049#204310#2" expanded="true" />
+            <element signature="e#205532#205807#2" expanded="true" />
+            <element signature="e#210432#210690#2" expanded="true" />
+            <element signature="e#210894#211152#2" expanded="true" />
+            <element signature="e#213664#213989#2" expanded="true" />
+            <element signature="e#214055#214381#2" expanded="true" />
+            <element signature="e#214447#214735#2" expanded="true" />
+            <element signature="e#214807#215088#2" expanded="true" />
+            <element signature="e#215154#215415#2" expanded="true" />
+            <element signature="e#216557#216832#2" expanded="true" />
+            <element signature="e#221259#221517#2" expanded="true" />
+            <element signature="e#221709#221967#2" expanded="true" />
+            <element signature="e#224383#224708#2" expanded="true" />
+            <element signature="e#224774#225100#2" expanded="true" />
+            <element signature="e#225166#225454#2" expanded="true" />
+            <element signature="e#225526#225807#2" expanded="true" />
+            <element signature="e#225873#226134#2" expanded="true" />
+            <element signature="e#227270#227545#2" expanded="true" />
+            <element signature="e#231972#232230#2" expanded="true" />
+            <element signature="e#232422#232680#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/framework7.material.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1095">
+          <caret line="14" column="60497" selection-start-line="14" selection-start-column="60491" selection-end-line="14" selection-end-column="60497" />
+          <folding>
+            <element signature="e#28418#29001#2" expanded="true" />
+            <element signature="e#29453#29862#2" expanded="true" />
+            <element signature="e#33232#33520#2" expanded="true" />
+            <element signature="e#33581#33862#2" expanded="true" />
+            <element signature="e#33920#34181#2" expanded="true" />
+            <element signature="e#34241#34753#2" expanded="true" />
+            <element signature="e#35974#36299#2" expanded="true" />
+            <element signature="e#36334#36660#2" expanded="true" />
+            <element signature="e#36718#37022#2" expanded="true" />
+            <element signature="e#44265#44520#2" expanded="true" />
+            <element signature="e#48107#48362#2" expanded="true" />
+            <element signature="e#49989#50266#2" expanded="true" />
+            <element signature="e#61912#62187#2" expanded="true" />
+            <element signature="e#67439#67694#2" expanded="true" />
+            <element signature="e#69058#69365#2" expanded="true" />
+            <element signature="e#101357#101610#2" expanded="true" />
+            <element signature="e#105175#105433#2" expanded="true" />
+            <element signature="e#105534#105792#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/my-app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5010">
+          <caret line="334" column="24" selection-start-line="334" selection-start-column="24" selection-end-line="334" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shadowsocks.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start_script">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiaomi.project">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="520" column="19" lean-forward="true" selection-start-line="520" selection-start-column="19" selection-end-line="520" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,346 @@
+.imgsc {
+    margin-top: 6px;
+}
+
+.text_left {
+    text-align: left;
+}
+
+.text_right {
+    text-align: right;
+}
+
+.navbar {
+    margin: 0;
+    background-color: #353c50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: left;
+    font-family: Lato;
+    color: #fff;
+}
+
+.active {
+}
+
+.page-content {
+    background: #FFFFFF;
+}
+
+.nav:after,
+.nav:before {
+    content: "";
+    display: table;
+}
+
+.nav:after {
+    clear: both;
+    overflow: hidden;
+}
+
+.nav {
+    zoom: 1;
+    margin-left: 20px;
+}
+
+.nav li {
+    list-style: none outside none;
+    float: left;
+    position: relative; /*这个很重要*/
+}
+
+.nav .active {
+    z-index: 3; /*当前项在最顶端*/
+}
+
+.nav li:before,
+.nav li:after,
+.nav a:before,
+.nav a:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+
+}
+
+.nav li:before,
+.nav li:after {
+    background: rgb(10, 41, 30);
+    width: 10px;
+    height: 10px;
+}
+
+.nav li:before {
+    left: -10px;
+}
+
+.nav li:after {
+    right: -10px;
+}
+
+.nav a {
+    float: left;
+    padding: 10px 30px;
+    text-decoration: none;
+    color: rgb(220, 225, 233);
+    background: rgb(10, 41, 30);
+    border-radius: 10px 10px 0 0;
+}
+
+.nav .active a {
+    background: rgb(220, 225, 233);
+    color: rgb(10, 41, 30);
+}
+
+.nav a:before,
+.nav a:after {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: rgb(10, 41, 30);
+    z-index: 2; /*圆形在矩形上面*/
+}
+
+.nav .active a:before,
+.nav .active a:after {
+    background: rgb(10, 41, 30);
+}
+
+.nav a:before {
+    left: -20px;
+}
+
+.nav a:after {
+    right: -20px;
+}
+
+/*当前项的:after和:before的z-index值为1*/
+.nav .active:before,
+.nav .active:after {
+    z-index: 1; /*当前项的矩形在圆形下面*/
+    background: rgb(220, 225, 233);
+}
+
+/*第一个选项卡的:before和最后一个选项卡的:after背景色不一样*/
+.nav li:first-child a:before,
+.nav li:last-child a:after {
+    background-color: #fff;
+}
+
+.tab-content {
+    background: rgb(220, 225, 233);
+
+    background: -ms-linear-gradient(top, rgb(220, 225, 233), #ffffff); /* IE 10 */
+
+    background: -moz-linear-gradient(top, rgb(220, 225, 233), #ffffff); /*火狐*/
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(220, 225, 233)), to(#ffffff)); /*谷歌*/
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(220, 225, 233)), to(#ffffff)); /* Safari 4-5, Chrome 1-9*/
+
+    background: -webkit-linear-gradient(top, rgb(220, 225, 233), #ffffff); /*Safari5.1 Chrome 10+*/
+
+    background: -o-linear-gradient(top, rgb(220, 225, 233), #ffffff); /*Opera 11.10+*/
+
+    color: rgb(10, 41, 30);
+    min-height: 600px;
+    padding: 20px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.list-block {
+    margin-top: 0px;
+}
+
+.help {
+    background: #ffffff;
+    padding: 10px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 17px;
+    padding: 10px 15px;
+    position: relative;
+}
+
+.page-title:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid #ccc;
+    color: #ccc;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    z-index: 2;
+}
+
+.list-item {
+    position: relative;
+
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+
+    box-sizing: border-box;
+    padding-left: 15px;
+    min-height: 44px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center
+
+}
+
+.list-item[data-type="0"] {
+    transform: translate3d(0, 0, 0);
+}
+
+.list-item[data-type="1"] {
+    transform: translate3d(-5rem, 0, 0);
+}
+
+.list-item:after {
+    content: " ";
+    position: absolute;
+    left: 0.2rem;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid #ccc;
+    color: #ccc;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    z-index: 2;
+}
+
+.list-box {
+    padding: 0.2rem;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    justify-content: flex-end;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-size: 0;
+}
+
+.list-item .list-img {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+}
+
+.list-item .list-content {
+    padding: 0.1rem 0 0.1rem 0.2rem;
+    position: relative;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.list-item .title {
+    display: block;
+    color: #333;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-item .tips {
+    display: block;
+    overflow: hidden;
+    font-size: 12px;
+    color: #999;
+    line-height: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-item .time {
+    display: block;
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    top: 0.1rem;
+    color: #666;
+}
+
+.list-item .delete {
+    width: 2rem;
+    height: 1.6rem;
+    background: #ff4949;
+    font-size: 17px;
+    color: #fff;
+    text-align: center;
+    line-height: 1.6rem;
+    position: absolute;
+    top: 0;
+    right: -2rem;
+}
+
+
+
+
+.toast-wrap{
+    opacity: 0;
+    position: fixed;
+    bottom: 10%;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+.toast-msg{
+    background-color: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+.toastAnimate{
+    animation: toastKF 5s;
+}
+@keyframes toastKF{
+    0% {opacity: 0;}
+    25% {opacity: 1; z-index: 9999}
+    50% {opacity: 1; z-index: 9999}
+    75% {opacity: 1; z-index: 9999}
+    100% {opacity: 0; z-index: 0}
+}
