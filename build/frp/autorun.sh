@@ -1,2 +1,0 @@
-#!/bin/ash
-echo "off"

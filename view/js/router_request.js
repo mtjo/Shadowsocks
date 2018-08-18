@@ -1,7 +1,7 @@
 function RouterRequest() {
     "use strict";
-    var authorizeUrl_ = "http://account.xiaomi.com/oauth2/authorize";
-    var requestUrl_ = "https://www.gorouter.info";
+    var authorizeUrl_ = "//account.xiaomi.com/oauth2/authorize";
+    var requestUrl_ = "//www.gorouter.info";
     var accessToken_ = "";
     var scope_ = 1000;
     var localUrl_ = "";

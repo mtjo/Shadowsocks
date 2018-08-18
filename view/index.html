@@ -24,7 +24,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
 
 
-    <title>frp客户端配置</title>
+    <title>Shadowsocks</title>
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <link href="css/reset.css" rel="stylesheet" type="text/css">
@@ -39,7 +39,7 @@
             <div class="navbar-inner">
                 <table width="100%">
                     <tr>
-                        <td><font colour="#FFFFFF">插件状态</font>&nbsp;<font size="2px" color="#d3d3d3">frpc版本:{{version}}&nbsp;&nbsp;
+                        <td><font colour="#FFFFFF">插件状态</font>&nbsp;<font size="2px" color="#d3d3d3">版本:{{version}}&nbsp;&nbsp;
                             <font color="red">进程:{{status}}</font></font></td>
                         <td align="right"><input width="150" v-model="run_status"
                                                  @click="runFrpc(run_status)"
@@ -51,8 +51,7 @@
         </div>
 
         <a href="javascript:"
-           v-show="nowIndex!==2"
-           @click="saveConfig()"
+           v-show="nowIndex===0&&nodeList.length>0"  @click="saveNodeList()"
            class="floating-button color-red"><i
                 class="icon">保存</i></a>
 
@@ -68,72 +67,34 @@
                 <div class="tabs tab-content" v-show="nowIndex===0">
                     <div class="tab-pane active">
                         <div class="list-block">
-                            基本配置
+                            工作状态
                             <hr/>
-                            <form id="common">
+                            <form>
                                 <table align="center" style="width: 90%">
                                     <tr style="width: 30%">
-                                        <td class="text_right">服务器：</td>
-                                        <td><input v-model="common.server_addr" type="text" placeholder="127.0.0.1">
+                                        <td class="text_right">插件版本：</td>
+                                        <td><input v-model="plugin_status.version" type="text" disabled="disabled"
+                                                   placeholder="---">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="text_right">端口：</td>
-                                        <td><input v-model="common.server_port" type="text" placeholder="7000"
+                                        <td class="text_right">进程状态：</td>
+                                        <td><input v-model="plugin_status.pid" type="text" disabled="disabled"
+                                                   placeholder="7000"
                                                    name="port">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="text_right">token：</td>
-                                        <td><input v-model="common.token" type="text" placeholder="token"></td>
+                                        <td class="text_right">SS节点：</td>
+                                        <td><input v-model="plugin_status.node" type="text" disabled="disabled"
+                                                   placeholder="node"></td>
                                     </tr>
                                     <tr>
-                                        <td class="text_right">日志记录：</td>
-                                        <td><input v-model="common.log_file" placeholder="./frpc.log"
+                                        <td class="text_right">DNS状态：</td>
+                                        <td><input v-model="plugin_status.dns" disabled="disabled" placeholder="dns"
                                                    type="text"></td>
                                     </tr>
-                                    <!-- trace, debug, info, warn, error -->
-                                    <tr class="text_right">
-                                        <td>日志级别：</td>
-                                        <td>
-                                            <select v-model="common.log_level" name="log_level">
-                                                <option value="trace">trace</option>
-                                                <option value="debug">debug</option>
-                                                <option value="info">info</option>
-                                                <option value="warn">warn</option>
-                                                <option value="error">error</option>
-                                            </select></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text_right">日志天数：</td>
-                                        <td><input v-model="common.log_days" type="number" name="log_days"
-                                                   placeholder="3">
-                                        </td>
-                                    </tr>
 
-
-                                    <tr class="text_right">
-                                        <td>tcp_mux：</td>
-                                        <td class="text_left">
-                                            <input v-model="common.tcp_mux" class="mui-switch mui-switch-anim"
-                                                   type="checkbox"/>
-                                        </td>
-                                    </tr>
-
-                                    <tr class="text_right">
-                                        <td>协议：</td>
-                                        <td>
-                                            <select v-model="common.protocol">
-                                                <option value="tcp">tcp</option>
-                                                <option value="kcp">kcp</option>
-                                            </select></td>
-                                    </tr>
-                                    <tr class="text_right">
-                                        <td>login_fail_exit：</td>
-                                        <td class="text_left">
-                                            <input v-model="common.login_fail_exit" class="mui-switch mui-switch-anim"
-                                                   type="checkbox"/>
-                                    </tr>
 
                                 </table>
                                 <br/>
@@ -141,69 +102,126 @@
 
                             </form>
                             <br/>
-                            代理列表
 
-
+                            节点列表
                             <div style="width: 100%; overflow: hidden">
 
                                 <ul>
-                                    <li class=" item-content list-item " v-for="(value,index) in configList "
+                                    <li class=" item-content list-item " v-for="(node,index) in nodeList "
                                         data-type="0">
 
                                         <div class="item-inner" @touchstart.capture="touchStart"
                                              @touchend.capture="touchEnd" @click="skip">
-                                            <table>
-                                                <tr>
-                                                    <td>名称:</td>
-                                                    <td><input v-model="value.name" type="text" placeholder="名称"/>
-                                                    </td>
-                                                    <td>协议:</td>
-                                                    <td><select v-model="value.type">
-                                                        <option value="tcp">tcp</option>
-                                                        <option value="udp">udp</option>
-                                                        <option value="stcp">stcp</option>
-                                                        <option value="http">http</option>
-                                                        <option value="https">https</option>
-                                                    </select></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>IP:</td>
-                                                    <td><input v-model="value.local_ip" type="text"
-                                                               placeholder="内网地址">
-                                                    </td>
-                                                    <td>端口1</td>
-                                                    <td><input v-model="value.local_port" type="text"
-                                                               placeholder="内网端口">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>端口2</td>
-                                                    <td><input v-model="value.remote_port" type="text"
-                                                               placeholder="远程端口">
-                                                    </td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>子域名</td>
-                                                    <td><input v-model="value.subdomain" type="text"
-                                                               placeholder="subdomain"></td>
-                                                    <td>域名</td>
-                                                    <td><input v-model="value.custom_domains" type="text"
-                                                               placeholder="custom_domains"/></td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="60">压缩</td>
-                                                    <td><input width="150" v-model="value.use_encryption"
-                                                               class="mui-switch mui-switch-anim" type="checkbox">
-                                                    </td>
-                                                    <td width="60">加密</td>
-                                                    <td><input width="150" v-model="value.use_compression"
-                                                               class="mui-switch mui-switch-anim" type="checkbox">
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                            <div style="width: 100%;">
+                                                <table>
+                                                    <tr>
+                                                        <td>名称:</td>
+                                                        <td><input v-model="node.name" type="text" placeholder="名称"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table>
 
+                                                    <tr>
+                                                        <td width="45">地址:</td>
+                                                        <td><input v-model="node.server" type="text"
+                                                                   placeholder="127.0.0.1">
+                                                        </td>
+                                                        <td width="45">端口:</td>
+                                                        <td width="60"><input v-model="node.port" type="text"
+                                                                   placeholder="8989"></td>
+
+                                                    </tr>
+                                                </table>
+                                                <table>
+                                                    <tr>
+                                                        <td> 密码:</td>
+
+                                                        <td>
+                                                            <input v-model="node.password" type="text"
+                                                                   placeholder="密码"></td>
+                                                    </tr>
+                                                </table>
+                                                <table>
+                                                    <tr>
+                                                        <td> 工作模式:</td>
+
+                                                        <td>
+                                                            <select v-model="node.model">
+                                                                <option value="1">gfwlist模式</option>
+                                                                <option value="2">大陆白名单模式</option>
+                                                                <option value="3">游戏模式</option>
+                                                                <option value="5">全局代理模式</option>
+                                                                <option value="6">回国模式</option>
+                                                            </select></td>
+                                                    </tr>
+                                                </table>
+
+                                                <table>
+                                                    <tr>
+                                                        <td> 加密方式:</td>
+
+                                                        <td>
+                                                            <select v-model="node.method">
+                                                                <option value="none">none</option>
+                                                                <option value="rc4">rc4</option>
+                                                                <option value="rc4-md5">rc4-md5</option>
+                                                                <option value="rc4-md5-6">rc4-md5-6</option>
+                                                                <option value="aes-128-gcm">AEAD_AES_128_GCM</option>
+                                                                <option value="aes-192-gcm">AEAD_AES_192_GCM</option>
+                                                                <option value="aes-256-gcm">AEAD_AES_256_GCM</option>
+                                                                <option value="aes-128-cfb">aes-128-cfb</option>
+                                                                <option value="aes-192-cfb">aes-192-cfb</option>
+                                                                <option value="aes-256-cfb" selected="">aes-256-cfb</option>
+                                                                <option value="aes-128-ctr">aes-128-ctr</option>
+                                                                <option value="aes-192-ctr">aes-192-ctr</option>
+                                                                <option value="aes-256-ctr">aes-256-ctr</option>
+                                                                <option value="camellia-128-cfb">camellia-128-cfb</option>
+                                                                <option value="camellia-192-cfb">camellia-192-cfb</option>
+                                                                <option value="camellia-256-cfb">camellia-256-cfb</option>
+                                                                <option value="bf-cfb">bf-cfb</option>
+                                                                <option value="cast5-cfb">cast5-cfb</option>
+                                                                <option value="idea-cfb">idea-cfb</option>
+                                                                <option value="rc2-cfb">rc2-cfb</option>
+                                                                <option value="seed-cfb">seed-cfb</option>
+                                                                <option value="salsa20">salsa20</option>
+                                                                <option value="chacha20">chacha20</option>
+                                                                <option value="chacha20-ietf">chacha20-ietf</option>
+                                                                <option value="chacha20-ietf-poly1305">chacha20-ietf-poly1305
+                                                                </option>
+                                                                <option value="xchacha20-ietf-poly1305">xchacha20-ietf-poly1305
+                                                                </option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                                <table>
+                                                    <tr>
+                                                        <td> 本地代理端口:</td>
+
+                                                        <td>
+                                                            <input width="150" v-model="node.local_port"
+                                                                   type="text" placeholder="1080">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                                <table>
+                                                    <tr>
+                                                        <td> 混淆 (obfs):</td>
+
+                                                        <td>
+                                                            <input width="150" v-model="node.use_encryption"
+                                                                   class="mui-switch mui-switch-anim" type="checkbox">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+
+
+
+                                            </div>
                                         </div>
 
                                         <div class="swipeout-actions-right" @click="deleteItem(index)"
@@ -214,7 +232,7 @@
 
                             </div>
 
-                            <div @click.stop="addItem()" style="margin-top: 10px" class="button button-fill"
+                            <div @click="addItem()" style="margin-top: 10px" class="button button-fill"
                                  style="width: 100%;"><font size="150">+</font>
                             </div>
                             <hr/>
@@ -272,16 +290,15 @@
 </div>
 
 <script>
-    var commonConfig = {};
-    var configList = [];
+    var nodeList = [];
     var router_app = new Vue({
         el: '#router_app',
         data: {
-            tabsParam: ['基本配置', '自定义配置', "?"],//（这个也可以用对象key，value来实现）
+            tabsParam: ['基本配置', '局域网控制', "?"],//（这个也可以用对象key，value来实现）
             nowIndex: 0,//默认激活状态
             user_config: "",
-            common: {},
-            configList: [],
+            plugin_status: {},
+            nodeList: [],
             version: "----",
             status: "----",
             run_status: false,
@@ -293,107 +310,46 @@
                 this.nowIndex = index;
             },
             addItem: function () {
-                router_app.$data.configList.push({
-                    type: "http",
-                    local_ip: "",
-                    local_port: "",
-                    remote_port: "",
-                    use_encryption: false,
-                    use_compression: false,
-                    use_compression: false,
-                    subdomain: "",
-                    custom_domains: ""
+                router_app.$data.nodeList.push({
+
+                    "server": "my_server_ip",
+                    "server_port": 8388,
+                    "local_port": 1080,
+                    "password": "barfoo!",
+                    "timeout": 600,
+                    "method": "chacha20-ietf-poly1305"
                 })
             },
-            saveConfig: function () {
+            saveNodeList: function () {
 
-                configData = {common: router_app.$data.common};
-                $.each(router_app.$data.configList, function (index, item) {
-                    key_name = item.name;
-                    configData[key_name] = {}
-                    $.each(item, function (key, val) {
-                        if (key != "name") {
-                            configData[key_name][key] = val;
-                        }
-                    });
-                });
-
-
-                datesend = {
-                    method: "saveConfig",
-                    data: router_app.$data.nowIndex == "1" ? router_app.$data.user_config : configData,
-                    type: router_app.$data.nowIndex == "1" ? "user" : "base"
-                };
-                //alert(JSON.stringify(datesend));
-                configData = encodeURIComponent(JSON.stringify(configData));
-
+                configData = encodeURIComponent(JSON.stringify(router_app.$data.nodeList));
+                alert(configData);
                 //详细列表设置
                 routerRequest.request({
                     path: "/api-third-party/service/datacenter/set_config",
                     type: "GET",
                     data: {
                         appId: appId,
-                        key: "frpc_config",
+                        key: "nodeList",
                         value: configData
                     },
                     success: function (data) {
                         var response = jQuery.parseJSON(data);
                         if (response.code != 0) {
                             console.log(data);
-                            alert("保存配置错误：" + response.msg);
+                            toast("保存配置错误：" + response.msg);
                             return;
                         }
+
+                        alert("保存配置成功！");
+                        toast("保存配置成功！");
+
                     },
                     error: function (data) {
                         console.log("set_config:", data);
                         alert("网络失败");
                     }
                 });
-
-                routerRequest.request({
-                    path: "/api-third-party/service/datacenter/plugin_control",
-                    type: "GET",
-                    data: {
-                        appId: appId,
-                        info: JSON.stringify(datesend)
-                    },
-                    success: function (data) {
-                        var response = jQuery.parseJSON(data);
-                        if (response.code != 0) {
-                            console.log(data);
-                            alert("Frpc配置保存错误：" + response.msg);
-                            return;
-                        }
-                        //alert("配置保存成功");
-                        toast('配置保存成功!')
-                        if (router_app.$data.run_status ){
-                            router_app.$data.status = "重启中..."
-                            routerRequest.request({
-                                path: "/api-third-party/service/datacenter/plugin_control",
-                                type: "GET",
-                                data: {
-                                    appId: appId,
-                                    info: JSON.stringify({method:"restartFrpc"})
-                                },
-                                success:function (res) {
-                                    toast('Frpc进程重启成功!')
-                                },
-                                error:function (res) {
-
-                                }
-                            });
-                        }
-
-
-                        loadconfig();
-
-                    },
-                    error: function (data) {
-                        alert("saveconfig:" + data);
-                    }
-                });
-
-                return;
             },
             runFrpc: function (item) {
                 method = "";
@@ -462,7 +418,7 @@
                 if (this.checkSlide()) {
                     this.restSlide();
                 } else {
-                    alert('You click the slide!')
+                    //alert('You click the slide!')
                 }
             },
             //滑动开始
@@ -512,7 +468,7 @@
                 // 复位
                 this.restSlide();
                 // 删除
-                router_app.$data.configList.splice(index, 1);
+                router_app.$data.nodeList.splice(index, 1);
             }
 
         }
@@ -532,111 +488,34 @@
     });
 
     function loadconfig() {
-        //类型
+        //设置
         routerRequest.request({
             path: "/api-third-party/service/datacenter/config_info",
             type: "GET",
             data: {
                 appId: appId,
-                key: "configType"
+                key: "nodeList"
             },
             success: function (data) {
+                alert(data)
                 var response = jQuery.parseJSON(data);
                 if (response.code != 0) {
                     console.log(data);
-                    toast("configType错误：" + response.msg);
+                    toast("节点列表错误：" + response.msg);
                     return;
                 }
-                //alert(data)
-                nowIndex = response.value == "base" ? 0 : 1;
-                router_app.$data.nowIndex = nowIndex;
-            },
-            error: function (data) {
-            }
-        });
+                alert(data);
 
-        //代理设置
-        routerRequest.request({
-            path: "/api-third-party/service/datacenter/config_info",
-            type: "GET",
-            data: {
-                appId: appId,
-                key: "frpc_config"
-            },
-            success: function (data) {
-                var response = jQuery.parseJSON(data);
-                if (response.code != 0) {
-                    console.log(data);
-                    toast("frpc_config错误：" + response.msg);
-                    return;
+                nodeListStr = decodeURIComponent(response.value);
+                alert(nodeListStr);
+                if (nodeListStr != "") {
+                    nodeList = jQuery.parseJSON(nodeListStr);
+                    router_app.$data.nodeList = nodeList;
                 }
-                //alert(data);
-
-                frpc_config = decodeURIComponent(response.value);
-                //alert(frpc_config);
-                if (frpc_config == "") {
-                    commonConfig = {
-                        server_addr: "",
-                        server_port: "",
-                        token: "",
-                        log_file: "./frpc.log",
-                        log_days: 3,
-                        log_level: "info",
-                        tcp_mux: true,
-                        protocol: "tcp",
-                        tcp_mux: false,
-                        login_fail_exit: false
-                    };
-
-                    configList = [];
-
-                } else {
-                    jsonobj = jQuery.parseJSON(frpc_config);
-
-                    //alert(jsonobj)
-                    i = 0
-                    $.each(jsonobj, function (index, item) {
-                        if (index == "common") {
-                            commonConfig = item;
-                        } else {
-                            item['name'] = index;
-                            configList[i++] = item;
-                        }
-
-                    });
-                    //alert(JSON.stringify(commonConfig));
-                    //alert(JSON.stringify(configList));
-                }
-                router_app.$data.common = commonConfig;
-                router_app.$data.configList = configList;
-
             },
             error: function (data) {
                 console.log("error:", data);
                 alert("网络失败");
-            }
-        });
-
-        //自定义配置
-        routerRequest.request({
-            path: "/api-third-party/service/datacenter/plugin_control",
-            type: "GET",
-            data: {
-                appId: appId,
-                info: JSON.stringify({method: "getConfig", type: "user"})
-            },
-            success: function (data) {
-                var response = jQuery.parseJSON(data);
-                if (response.code != 0) {
-                    console.log(data);
-                    toast("method: \"getConfig\"\n错误：" + response.msg);
-                    return;
-                }
-                //alert(response.data);
-                router_app.$data.user_config = response.data;
-
-            },
-            error: function (data) {
             }
         });
 
@@ -676,15 +555,16 @@
         });
 
     }
-    function toast(msg){
-        setTimeout(function(){
-            document.getElementsByClassName('toast-wrap')[0].getElementsByClassName('toast-msg')[0].innerHTML=msg;
+
+    function toast(msg) {
+        setTimeout(function () {
+            document.getElementsByClassName('toast-wrap')[0].getElementsByClassName('toast-msg')[0].innerHTML = msg;
             var toastTag = document.getElementsByClassName('toast-wrap')[0];
-            toastTag.className = toastTag.className.replace('toastAnimate','');
-            setTimeout(function(){
+            toastTag.className = toastTag.className.replace('toastAnimate', '');
+            setTimeout(function () {
                 toastTag.className = toastTag.className + ' toastAnimate';
             }, 100);
-        },500);
+        }, 500);
     }
 </script>
 

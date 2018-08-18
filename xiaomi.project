@@ -26,7 +26,7 @@ developer= "MTJO";
 version= "1.0.0";
 
 #请输入插件控制页面url。
-control_url= "https://mtjo.net/ss/index.html";
+control_url= "http://mtjo.net/ss/index.html";
 
 #请输入打包目录(如果插件没有可执行文件，可不用填写)。
 zip_path= "./build/";
@@ -47,6 +47,8 @@ supported_rom= "miwifi_rom";
 access_userdata= "true";
 
 access_proc = "true";
+
+access_dev = "true";
 
 #是否需要支持"下载"功能，此项为true才能够使用下载相关的sdk
 support_download= "false";
