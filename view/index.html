@@ -323,7 +323,7 @@
             saveNodeList: function () {
 
                 configData = encodeURIComponent(JSON.stringify(router_app.$data.nodeList));
-                alert(configData);
+                //alert(configData);
                 //详细列表设置
                 routerRequest.request({
                     path: "/api-third-party/service/datacenter/set_config",
@@ -334,6 +334,7 @@
                         value: configData
                     },
                     success: function (data) {
+                        toast(data);
                         var response = jQuery.parseJSON(data);
                         if (response.code != 0) {
                             console.log(data);
@@ -341,7 +342,7 @@
                             return;
                         }
 
-                        alert("保存配置成功！");
+                        //alert("保存配置成功！");
                         toast("保存配置成功！");
 
                     },
@@ -497,17 +498,17 @@
                 key: "nodeList"
             },
             success: function (data) {
-                alert(data)
+                //alert(data)
                 var response = jQuery.parseJSON(data);
                 if (response.code != 0) {
                     console.log(data);
                     toast("节点列表错误：" + response.msg);
                     return;
                 }
-                alert(data);
+                //alert(data);
 
                 nodeListStr = decodeURIComponent(response.value);
-                alert(nodeListStr);
+                //alert(nodeListStr);
                 if (nodeListStr != "") {
                     nodeList = jQuery.parseJSON(nodeListStr);
                     router_app.$data.nodeList = nodeList;
@@ -564,7 +565,7 @@
             setTimeout(function () {
                 toastTag.className = toastTag.className + ' toastAnimate';
             }, 100);
-        }, 500);
+        }, 5000);
     }
 </script>
 

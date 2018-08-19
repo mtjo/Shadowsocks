@@ -31,7 +31,7 @@ using router::DataTransfer;
 Shadowsocks::Shadowsocks() {
 }
 void startShadowsocks(){
-    system("./bin/autorun.sh");
+    system("./ss/autorun.sh");
 }
 void
 Shadowsocks::onLaunched(const std::vector <std::string> &parameters) {
@@ -100,10 +100,10 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         }
         return JSONObject::success(config);
     } else if (method == "getStatus") {
-        std::string version = exec("bin/Shadowsocks -v");
+        std::string version = exec("cat /proc/xiaoqiang/model");
 
-        std::string status = exec("ps |grep 'bin/Shadowsocks'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
-        exec("ps |grep 'bin/Shadowsocks'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'>pid");
+        std::string status = exec("ps |grep 'Shadowsocks'|grep -v 'grep'|grep -v '/ss/sh -c'|awk '{print $1}'");
+        exec("ps |grep 'Shadowsocks'|grep -v 'grep'|grep -v '/ss/sh -c'|awk '{print $1}'>pid");
         data.put("version", version);
         data.put("status", status);
 
@@ -196,31 +196,31 @@ void Shadowsocks::runShadowsocks() {
     router::DataTransfer::getData("configType", configType);
 
     FILE *fp = NULL;
-    fp = fopen("/bin/autorun.sh", "w+");
-    fputs("#!/bin/ash\n", fp);
+    fp = fopen("/ss/autorun.sh", "w+");
+    fputs("#!/ss/ash\n", fp);
     if(configType=="base"){
-        fputs("/bin/Shadowsocks -c /etc/Shadowsocks_config.ini &>/dev/null\n", fp);
+        fputs("/ss/Shadowsocks -c /etc/Shadowsocks_config.ini &>/dev/null\n", fp);
     }else{
-        fputs("/bin/Shadowsocks -c /etc/Shadowsocks_user_config.ini &>/dev/null\n", fp);
+        fputs("/ss/Shadowsocks -c /etc/Shadowsocks_user_config.ini &>/dev/null\n", fp);
     }
     fputs("echo \"on\"\n", fp);
     fclose(fp);
 
     if (run_status == "1") {
-        //system("./bin/autorun.sh");
+        //system("./ss/autorun.sh");
         std::thread subthread(startShadowsocks);
         subthread.detach();
     }
 }
 
 void Shadowsocks::stopShadowsocks() {
-    system("killall bin/Shadowsocks");
-    system("killall bin/autorun.sh");
+    system("killall ss/Shadowsocks");
+    system("killall ss/autorun.sh");
 
     FILE *fp = NULL;
 
-    fp = fopen("/bin/autorun.sh", "w+");
-    fputs("#!/bin/ash\n", fp);
+    fp = fopen("/ss/autorun.sh", "w+");
+    fputs("#!/ss/ash\n", fp);
     fputs("echo \"off\"\n", fp);
     fputs("exit\n", fp);
 
