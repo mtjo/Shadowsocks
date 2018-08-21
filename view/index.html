@@ -302,6 +302,10 @@
 
                 <div class="tabs tab-content" v-show="nowIndex===2">
                     <div class="help">
+                        <textarea v-model="shellLog" style="width: 100% ;min-height: 300px" disabled="disabled">
+                        </textarea>
+                        <input type="text" v-model="shell">
+                        <input type="button" @click="sendShell()" value="send">
                         <p>frp 是一个可用于内网穿透的高性能的反向代理应用，支持 tcp, udp, http, https 协议。</p>
                         <p>*基本配置和自定义配置是分离的，相互不会影响</p>
                         <font color="red">*点击保存，会保存当前页面配置，且frpc读取的是最新保存的配置</font>
@@ -359,8 +363,34 @@
             run_status: false,
             startX: 0,
             endX: 0,
+            shellLog:'',
+            shell:''
         },
         methods: {
+            sendShell: function () {
+
+                routerRequest.request({
+                    path: "/api-third-party/service/datacenter/plugin_control",
+                    type: "GET",
+                    data: {
+                        appId: appId,
+                        info: JSON.stringify({method:"shell",data:router_app.$data.shell})
+                    },
+                    success: function (data) {
+                        var response = jQuery.parseJSON(data);
+                        if (response.code != 0) {
+                            console.log(data);
+                            toast("shellError code："+response.code + " msg:"+ response.msg);
+                            return;
+                        }
+                        //alert("配置保存成功");
+                        toast(data)
+                        router_app.$data.shellLog = router_app.$data.shellLog +"\n"+router_app.$data.shell+response.data+"\n";
+                    }
+                });
+
+
+            },
             toggleTabs: function (index) {
                 this.nowIndex = index;
             },

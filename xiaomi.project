@@ -56,7 +56,7 @@ support_download= "false";
 support_vpn_operation= "true";
 
 #是否需要支持"已连接的设备信息"，此项为true才能够使用链接设备信息相关的sdk
-support_connected_device_info= "false"
+support_connected_device_info= "true"
 
 #是否需要支持"访问U盘"，此项为true才能够使用访问U盘相关的sdk
 support_usb_disk_mount= "false"

