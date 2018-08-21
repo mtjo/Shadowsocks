@@ -13,4 +13,4 @@ supported_rom = "miwifi_rom";
 small_icon = "http://file.market.xiaomi.com/download/AppStore/0649a49a74d91521054528db84265881df843f9ed";
 large_icon = "http://file.market.xiaomi.com/download/AppStore/0704d475a6c438406f9e20d813abf5c8898427524";
 manifest_version = "1";
-capability_list = [ "access_userdata", "access_proc", "access_dev" ];
+capability_list = [ "access_userdata", "access_proc", "access_dev", "support_vpn_operation" ];

@@ -11,6 +11,7 @@
 
 using std::string;
 using std::thread;
+
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -21,18 +22,23 @@ using std::thread;
 #include "JSON.h"
 #include "inifile.h"
 #include "DataTransfer.h"
+#include "PluginTools.h"
+#include "VpnControllor.h"
 //#include "boost/thread.hpp"
 
 using router::DataTransfer;
+using router::PluginTools;
 
 
 #define BUF_SIZE 256
 
 Shadowsocks::Shadowsocks() {
 }
-void startShadowsocks(){
-    system("./ss/autorun.sh");
+
+void startShadowsocks() {
+    system("./ss/bin/autorun.sh");
 }
+
 void
 Shadowsocks::onLaunched(const std::vector <std::string> &parameters) {
     std::thread subthread(startShadowsocks);
@@ -67,7 +73,7 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
     if (method == "") {
         return JSONObject::error(999, "method can not be null");
     } else if (method == "saveConfig") {
-        std::string type = getDataByKey(params,"type");
+        std::string type = getDataByKey(params, "type");
         router::DataTransfer::saveData("configType", type);
         if (type == "user") {
             std::string jsondata = getData(params);
@@ -78,20 +84,15 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
             fclose(fp);
             return JSONObject::success();
 
-        } else if(type == "base") {
-            const char *ch = params.data();
-            struct json_object *jsonObject = NULL;
-            jsonObject = json_tokener_parse(ch);
-            if ((long) jsonObject > 0) {/**Json格式无错误**/
-                jsonObject = json_object_object_get(jsonObject, "data");
-                saveConfig(jsonObject);
-            }
-            json_object_put(jsonObject);
+        } else if (type == "base") {
+
+            std::string configData = getData(params);
+            saveConfig(configData);
             return JSONObject::success();
         }
         return JSONObject::error(1, "save's type missing");
     } else if (method == "getConfig") {
-        std::string type = getDataByKey(params,"type");
+        std::string type = getDataByKey(params, "type");
         string config = "";
         if (type == "base") {
             config = exec("cat /etc/Shadowsocks_config.ini");
@@ -101,27 +102,30 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         return JSONObject::success(config);
     } else if (method == "getStatus") {
         std::string version = exec("cat /proc/xiaoqiang/model");
-
-        std::string status = exec("ps |grep 'Shadowsocks'|grep -v 'grep'|grep -v '/ss/sh -c'|awk '{print $1}'");
-        exec("ps |grep 'Shadowsocks'|grep -v 'grep'|grep -v '/ss/sh -c'|awk '{print $1}'>pid");
+        std::string status = exec("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
+        //exec("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'>pid");
         data.put("version", version);
         data.put("status", status);
 
         return JSONObject::success(data);
 
 
-    } else if (method == "runShadowsocks") {
+    } else if (method == "runSS") {
         router::DataTransfer::saveData("run_status", "1");
+        //std::string res= exec("/ss/bin/ss-local -c /ss/config/shadowsocks.json");
+        std::string res;
+        router::PluginTools::sCallSystem("iptables -L",res);
+        std::string rt_res;
+
+        router::VpnControllor::registRtTable("SHADOWSOCKS", rt_res);
+
         runShadowsocks();
-        return JSONObject::success();
-    } else if (method == "stopShadowsocks") {
+        return JSONObject::success(res);
+    } else if (method == "stopSS") {
         router::DataTransfer::saveData("run_status", "0");
-        std::string run_status;
-        router::DataTransfer::getData("run_status", run_status);
-        data.put("run_status", run_status);
         stopShadowsocks();
-        return JSONObject::success(data);
-    }else if (method == "restartShadowsocks") {
+        return JSONObject::success();
+    } else if (method == "restartShadowsocks") {
         stopShadowsocks();
         runShadowsocks();
         return JSONObject::success(data);
@@ -162,7 +166,7 @@ Shadowsocks::getData(const std::string &params) {
 }
 
 std::string
-Shadowsocks::getDataByKey(const std::string &params,std::string key) {
+Shadowsocks::getDataByKey(const std::string &params, std::string key) {
     const char *ch = params.data();
     struct json_object *jsonObject = NULL;
     jsonObject = json_tokener_parse(ch);
@@ -177,16 +181,11 @@ Shadowsocks::getDataByKey(const std::string &params,std::string key) {
 
 
 void
-Shadowsocks::saveConfig(struct json_object *configData) {
-    exec("rm -f etc/Shadowsocks_config.ini");
-    const char *file = "etc/Shadowsocks_config.ini";
-    json_object_object_foreach(configData, section, val)
-    {
-        json_object_object_foreach(val, key, value)
-        {
-            write_profile_string(section, key, json_object_get_string(value), file);
-        }
-    }
+Shadowsocks::saveConfig(const std::string config) {
+    FILE *fp = NULL;
+    fp = fopen("/ss/config/shadowsocks.json", "w+");
+    fputs(config.data(), fp);
+    fclose(fp);
 }
 
 void Shadowsocks::runShadowsocks() {
@@ -196,31 +195,26 @@ void Shadowsocks::runShadowsocks() {
     router::DataTransfer::getData("configType", configType);
 
     FILE *fp = NULL;
-    fp = fopen("/ss/autorun.sh", "w+");
-    fputs("#!/ss/ash\n", fp);
-    if(configType=="base"){
-        fputs("/ss/Shadowsocks -c /etc/Shadowsocks_config.ini &>/dev/null\n", fp);
-    }else{
-        fputs("/ss/Shadowsocks -c /etc/Shadowsocks_user_config.ini &>/dev/null\n", fp);
-    }
+    fp = fopen("/ss/bin/autorun.sh", "w+");
+    fputs("#!/bin/ash\n", fp);
+    fputs("/ss/bin/ss-local -c /ss/config/shadowsocks.json -f /ss_local_pid\n", fp);
     fputs("echo \"on\"\n", fp);
     fclose(fp);
 
     if (run_status == "1") {
-        //system("./ss/autorun.sh");
+        //system("./ss/bin/autorun.sh");
         std::thread subthread(startShadowsocks);
         subthread.detach();
     }
 }
 
 void Shadowsocks::stopShadowsocks() {
-    system("killall ss/Shadowsocks");
-    system("killall ss/autorun.sh");
+    system("killall ss/bin/ss-local");
+    system("killall ss/bin/autorun.sh");
 
     FILE *fp = NULL;
-
-    fp = fopen("/ss/autorun.sh", "w+");
-    fputs("#!/ss/ash\n", fp);
+    fp = fopen("/ss/bin/autorun.sh", "w+");
+    fputs("#!/bin/ash\n", fp);
     fputs("echo \"off\"\n", fp);
     fputs("exit\n", fp);
 

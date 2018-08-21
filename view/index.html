@@ -42,7 +42,7 @@
                         <td><font colour="#FFFFFF">插件状态</font>&nbsp;<font size="2px" color="#d3d3d3">版本:{{version}}&nbsp;&nbsp;
                             <font color="red">进程:{{status}}</font></font></td>
                         <td align="right"><input width="150" v-model="run_status"
-                                                 @click="runFrpc(run_status)"
+                                                 @click="runSS(run_status)"
                                                  class="mui-switch mui-switch-anim" type="checkbox"></td>
                     </tr>
                 </table>
@@ -51,7 +51,7 @@
         </div>
 
         <a href="javascript:"
-           v-show="nowIndex===0&&nodeList.length>0"  @click="saveNodeList()"
+           v-show="nowIndex===0&&nodeList.length>0" @click="saveNodeList()"
            class="floating-button color-red"><i
                 class="icon">保存</i></a>
 
@@ -81,7 +81,7 @@
                                         <td class="text_right">进程状态：</td>
                                         <td><input v-model="plugin_status.pid" type="text" disabled="disabled"
                                                    placeholder="7000"
-                                                   name="port">
+                                                  >
                                         </td>
                                     </tr>
                                     <tr>
@@ -104,6 +104,8 @@
                             <br/>
 
                             节点列表
+
+
                             <div style="width: 100%; overflow: hidden">
 
                                 <ul>
@@ -128,8 +130,8 @@
                                                                    placeholder="127.0.0.1">
                                                         </td>
                                                         <td width="45">端口:</td>
-                                                        <td width="60"><input v-model="node.port" type="text"
-                                                                   placeholder="8989"></td>
+                                                        <td width="60"><input v-model="node.server_port" type="text"
+                                                                              placeholder="8989"></td>
 
                                                     </tr>
                                                 </table>
@@ -172,13 +174,17 @@
                                                                 <option value="aes-256-gcm">AEAD_AES_256_GCM</option>
                                                                 <option value="aes-128-cfb">aes-128-cfb</option>
                                                                 <option value="aes-192-cfb">aes-192-cfb</option>
-                                                                <option value="aes-256-cfb" selected="">aes-256-cfb</option>
+                                                                <option value="aes-256-cfb" selected="">aes-256-cfb
+                                                                </option>
                                                                 <option value="aes-128-ctr">aes-128-ctr</option>
                                                                 <option value="aes-192-ctr">aes-192-ctr</option>
                                                                 <option value="aes-256-ctr">aes-256-ctr</option>
-                                                                <option value="camellia-128-cfb">camellia-128-cfb</option>
-                                                                <option value="camellia-192-cfb">camellia-192-cfb</option>
-                                                                <option value="camellia-256-cfb">camellia-256-cfb</option>
+                                                                <option value="camellia-128-cfb">camellia-128-cfb
+                                                                </option>
+                                                                <option value="camellia-192-cfb">camellia-192-cfb
+                                                                </option>
+                                                                <option value="camellia-256-cfb">camellia-256-cfb
+                                                                </option>
                                                                 <option value="bf-cfb">bf-cfb</option>
                                                                 <option value="cast5-cfb">cast5-cfb</option>
                                                                 <option value="idea-cfb">idea-cfb</option>
@@ -187,9 +193,11 @@
                                                                 <option value="salsa20">salsa20</option>
                                                                 <option value="chacha20">chacha20</option>
                                                                 <option value="chacha20-ietf">chacha20-ietf</option>
-                                                                <option value="chacha20-ietf-poly1305">chacha20-ietf-poly1305
+                                                                <option value="chacha20-ietf-poly1305">
+                                                                    chacha20-ietf-poly1305
                                                                 </option>
-                                                                <option value="xchacha20-ietf-poly1305">xchacha20-ietf-poly1305
+                                                                <option value="xchacha20-ietf-poly1305">
+                                                                    xchacha20-ietf-poly1305
                                                                 </option>
                                                             </select>
                                                         </td>
@@ -219,8 +227,6 @@
                                                 </table>
 
 
-
-
                                             </div>
                                         </div>
 
@@ -242,9 +248,57 @@
                     </div>
                 </div>
                 <div class="tabs tab-content" v-show="nowIndex===1">
-                    <textarea id="user_config" v-model="user_config"
-                              style="width: 100%; min-height: 500px;height: auto;"
-                              placeholder="# frpc.ini"></textarea></div>
+
+                    <div class="tab-pane active">
+                        <div class="list-block">
+
+                            <br/>
+                            局域网控制
+
+                            <div style="width: 100%; overflow: hidden">
+
+                                <ul>
+                                    <li class=" item-content list-item " v-for="(item,index) in lanList "
+                                        data-type="0">
+
+                                        <div class="item-inner" @touchstart.capture="touchStart"
+                                             @touchend.capture="touchEnd" @click="skip">
+                                            <div style="width: 100%;">
+
+                                                <table width="100%">
+
+                                                    <tr>
+                                                        <th><select v-model="item.type">
+                                                            <option value="0">请选择</option>
+                                                            <option value="1">主机名:</option>
+                                                            <option value="2">IP:</option>
+                                                            <option value="3">MAC:</option>
+                                                        </select></th>
+                                                        <td><input type="text" v-model="item.value"></td>
+                                                        <td class="text_right"><input width="150" v-model="item.use_ss"
+                                                                   class="mui-switch mui-switch-anim" type="checkbox">
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="swipeout-actions-right" @click="deleteLanItem(index)"
+                                             :data-index="index">
+                                            <a class="swipeout-delete">删除</a></div>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                            <div @click="addLanItem()" style="margin-top: 10px" class="button button-fill"
+                                 style="width: 100%;"><font size="150">+</font>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
 
                 <div class="tabs tab-content" v-show="nowIndex===2">
                     <div class="help">
@@ -299,6 +353,7 @@
             user_config: "",
             plugin_status: {},
             nodeList: [],
+            lanList: [],
             version: "----",
             status: "----",
             run_status: false,
@@ -311,13 +366,21 @@
             },
             addItem: function () {
                 router_app.$data.nodeList.push({
-
-                    "server": "my_server_ip",
-                    "server_port": 8388,
-                    "local_port": 1080,
-                    "password": "barfoo!",
+                    "server": "",
+                    "server_port": '',
+                    "local_port": '1081',
+                    "local_address": "127.0.0.1",
+                    "password": "",
                     "timeout": 600,
-                    "method": "chacha20-ietf-poly1305"
+                    "method": ""
+                })
+            },
+            addLanItem: function () {
+                router_app.$data.lanList.push({
+
+                    "type": 0,
+                    "value": "",
+                    "use_ss": true
                 })
             },
             saveNodeList: function () {
@@ -351,16 +414,42 @@
                         alert("网络失败");
                     }
                 });
+
+                tmp =router_app.$data.nodeList[0];
+
+                delete tmp.name;
+                delete tmp.model;
+
+                routerRequest.request({
+                    path: "/api-third-party/service/datacenter/plugin_control",
+                    type: "GET",
+                    data: {
+                        appId: appId,
+                        info: JSON.stringify({method:"saveConfig",data:tmp,type:"base"})
+                    },
+                    success: function (data) {
+                        var response = jQuery.parseJSON(data);
+                        if (response.code != 0) {
+                            console.log(data);
+                            alert("Frpc配置保存错误：" + response.msg);
+                            return;
+                        }
+                        //alert("配置保存成功");
+                        toast('配置保存成功!')
+                    }
+                });
+
+
             },
-            runFrpc: function (item) {
+            runSS: function (item) {
                 method = "";
                 if (item) {
-                    method = "runFrpc";
+                    method = "runSS";
                 } else {
-                    method = "stopFrpc";
+                    method = "stopSS";
                 }
                 router_app.$data.status = "执行中...";
-                //alert(method);
+                alert(method);
                 routerRequest.request({
                     path: "/api-third-party/service/datacenter/plugin_control",
                     type: "GET",
@@ -375,7 +464,7 @@
                         //     alert("错误：" + response.msg);
                         //     return;
                         // }
-                        //alert(data);
+                        alert(data);
                         routerRequest.request({
                             path: "/api-third-party/service/datacenter/plugin_control",
                             type: "GET",
@@ -470,6 +559,13 @@
                 this.restSlide();
                 // 删除
                 router_app.$data.nodeList.splice(index, 1);
+            },
+            //删除lan
+            deleteLanItem(index) {
+                // 复位
+                this.restSlide();
+                // 删除
+                router_app.$data.lanList.splice(index, 1);
             }
 
         }
