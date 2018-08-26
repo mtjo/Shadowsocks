@@ -1,0 +1,14 @@
+#!/bin/sh
+#copyright by monlor
+
+appid=2882303761517844579
+
+while true
+do
+IS_ON=`cat /userdisk/appdata/$appid/ss/bin`
+if [ "$IS_ON" == "on" ] then
+
+fi
+
+sleep 3
+done

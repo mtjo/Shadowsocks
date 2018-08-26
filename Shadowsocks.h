@@ -13,7 +13,8 @@ public:
     void runShadowsocks();
     void stopShadowsocks();
 
-    void saveConfig(const std::string configData);
+    void saveSSConfig(const std::string configData);
+    void saveDnsConfig(const std::string configData);
     std::string getMethod(const std::string &params);
     std::string getData(const std::string &params);
     std::string getDataByKey(const std::string &params,std::string key);

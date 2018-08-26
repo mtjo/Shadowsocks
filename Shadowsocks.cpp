@@ -72,25 +72,35 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
     JSONObject data;
     if (method == "") {
         return JSONObject::error(999, "method can not be null");
-    } else if (method == "saveConfig") {
-        std::string type = getDataByKey(params, "type");
-        router::DataTransfer::saveData("configType", type);
-        if (type == "user") {
-            std::string jsondata = getData(params);
+    } else if (method == "nodeConnect") {
 
-            FILE *fp = NULL;
-            fp = fopen("/etc/Shadowsocks_user_config.ini", "w+");
-            fputs(jsondata.data(), fp);
-            fclose(fp);
-            return JSONObject::success();
+        //save ss_model
+        std::string ss_mode = getDataByKey(params, "ss_mode");
 
-        } else if (type == "base") {
+        std::string exec1 = "echo '"+ss_mode+"'>/ss/config/ss_mode";
 
-            std::string configData = getData(params);
-            saveConfig(configData);
-            return JSONObject::success();
-        }
-        return JSONObject::error(1, "save's type missing");
+        system(exec1.data());
+
+        //save dns_mode
+        std::string dns_mode = "pdnsd";
+//        router::DataTransfer::saveData("dns_mode", "pdnsd");
+//        router::DataTransfer::getData("dns_mode", dns_mode);
+
+        std::string exec2 = "echo '"+dns_mode+"'>/ss/config/dns_mode";
+
+        system(exec2.data());
+
+        //save ss config
+
+        std::string SSConfig = getDataByKey(params, "SSConfig");
+
+        saveSSConfig(SSConfig);
+
+        //save Dns config
+        std::string DnsConfig = getDataByKey(params, "DnsConfig");
+        saveDnsConfig(DnsConfig);
+
+        return JSONObject::success();
     } else if (method == "getConfig") {
         std::string type = getDataByKey(params, "type");
         string config = "";
@@ -99,41 +109,48 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         } else if (type == "user") {
             config = exec("cat /etc/Shadowsocks_user_config.ini");
         }
-        return JSONObject::success(config);
+        return
+                JSONObject::success(config);
     } else if (method == "getStatus") {
         std::string version = exec("cat /proc/xiaoqiang/model");
         std::string status = exec("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
-        //exec("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'>pid");
+//exec("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'>pid");
         data.put("version", version);
         data.put("status", status);
+        std::string local = exec("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
+        std::string redir = exec("ps |grep 'ss/bin/ss-redir'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
+        data.put("local",local);
+        data.put("redir",redir);
+
 
         return JSONObject::success(data);
 
 
     } else if (method == "runSS") {
         router::DataTransfer::saveData("run_status", "1");
-        //std::string res= exec("/ss/bin/ss-local -c /ss/config/shadowsocks.json");
-        std::string res;
-        router::PluginTools::sCallSystem("iptables -L",res);
-        std::string rt_res;
-
-        router::VpnControllor::registRtTable("SHADOWSOCKS", rt_res);
-
         runShadowsocks();
-        return JSONObject::success(res);
+        return JSONObject::success();
     } else if (method == "stopSS") {
         router::DataTransfer::saveData("run_status", "0");
+
         stopShadowsocks();
-        return JSONObject::success();
+
+        return
+
+                JSONObject::success();
     } else if (method == "restartShadowsocks") {
         stopShadowsocks();
+
         runShadowsocks();
-        return JSONObject::success(data);
-    }else if (method == "shell") {
+
+        return
+                JSONObject::success(data);
+    } else if (method == "shell") {
         std::string shell = getData(params);
         std::string shellLog = exec(shell.data());
 
-        return JSONObject::success(shellLog);
+        return
+                JSONObject::success(shellLog);
     }
 
 
@@ -187,12 +204,22 @@ Shadowsocks::getDataByKey(const std::string &params, std::string key) {
 
 
 void
-Shadowsocks::saveConfig(const std::string config) {
+Shadowsocks::saveSSConfig(const std::string config) {
     FILE *fp = NULL;
     fp = fopen("/ss/config/shadowsocks.json", "w+");
     fputs(config.data(), fp);
     fclose(fp);
+
 }
+
+void
+Shadowsocks::saveDnsConfig(const std::string config) {
+    FILE *fp = NULL;
+    fp = fopen("/ss/config/dns2socks.conf", "w+");
+    fputs(config.data(), fp);
+    fclose(fp);
+}
+
 
 void Shadowsocks::runShadowsocks() {
     std::string run_status;
@@ -203,7 +230,8 @@ void Shadowsocks::runShadowsocks() {
     FILE *fp = NULL;
     fp = fopen("/ss/bin/autorun.sh", "w+");
     fputs("#!/bin/ash\n", fp);
-    fputs("/ss/bin/ss-local -c /ss/config/shadowsocks.json -f /ss_local_pid\n", fp);
+    fputs("/ss/bin/ss-redir -c /ss/config/shadowsocks.json -f /ss_redir_pid\n", fp);
+    fputs("/ss/bin/ss-local -c /ss/config/dns2socks.conf -f /ss_local_pid\n", fp);
     fputs("echo \"on\"\n", fp);
     fclose(fp);
 
@@ -216,6 +244,9 @@ void Shadowsocks::runShadowsocks() {
 
 void Shadowsocks::stopShadowsocks() {
     system("killall ss/bin/ss-local");
+    system("killall ss/bin/ssr-local");
+    system("killall ss/bin/ss-redir");
+    system("killall ss/bin/ssr-redir");
     system("killall ss/bin/autorun.sh");
 
     FILE *fp = NULL;

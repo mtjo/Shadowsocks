@@ -79,9 +79,8 @@
                                     </tr>
                                     <tr>
                                         <td class="text_right">进程状态：</td>
-                                        <td><input v-model="plugin_status.pid" type="text" disabled="disabled"
-                                                   placeholder="7000"
-                                                  >
+                                        <td>ss-local:{{local}}<br/>
+                                            ss-redir:{{redir}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -115,11 +114,12 @@
                                         <div class="item-inner" @touchstart.capture="touchStart"
                                              @touchend.capture="touchEnd" @click="skip">
                                             <div style="width: 100%;">
-                                                <table>
+                                                <table width="100%">
                                                     <tr>
                                                         <td>名称:</td>
                                                         <td><input v-model="node.name" type="text" placeholder="名称"/>
                                                         </td>
+                                                        <td width="30"><input type="button" @click="nodeConnect(index)" value="链接" class="button bg-green button-fill button-fill"></td>
                                                     </tr>
                                                 </table>
                                                 <table>
@@ -149,11 +149,11 @@
                                                         <td> 工作模式:</td>
 
                                                         <td>
-                                                            <select v-model="node.model">
-                                                                <option value="1">gfwlist模式</option>
-                                                                <option value="2">大陆白名单模式</option>
-                                                                <option value="3">游戏模式</option>
-                                                                <option value="5">全局代理模式</option>
+                                                            <select v-model="node.mode">
+                                                                <option value="gfwlist">gfwlist模式</option>
+                                                                <option value="whitelist">大陆白名单模式</option>
+                                                                <option value="gamemode">游戏模式</option>
+                                                                <option value="wholemode">全局代理模式</option>
                                                                 <option value="6">回国模式</option>
                                                             </select></td>
                                                     </tr>
@@ -209,7 +209,7 @@
                                                         <td> 本地代理端口:</td>
 
                                                         <td>
-                                                            <input width="150" v-model="node.local_port"
+                                                            <input width="150" disabled="disabled" v-model="node.local_port"
                                                                    type="text" placeholder="1080">
                                                         </td>
                                                     </tr>
@@ -276,7 +276,8 @@
                                                         </select></th>
                                                         <td><input type="text" v-model="item.value"></td>
                                                         <td class="text_right"><input width="150" v-model="item.use_ss"
-                                                                   class="mui-switch mui-switch-anim" type="checkbox">
+                                                                                      class="mui-switch mui-switch-anim"
+                                                                                      type="checkbox">
                                                         </td>
                                                     </tr>
 
@@ -360,11 +361,13 @@
             lanList: [],
             version: "----",
             status: "----",
+            redir: "----",
+            local: "----",
             run_status: false,
             startX: 0,
             endX: 0,
-            shellLog:'',
-            shell:''
+            shellLog: '',
+            shell: ''
         },
         methods: {
             sendShell: function () {
@@ -374,18 +377,18 @@
                     type: "GET",
                     data: {
                         appId: appId,
-                        info: JSON.stringify({method:"shell",data:router_app.$data.shell})
+                        info: JSON.stringify({method: "shell", data: router_app.$data.shell})
                     },
                     success: function (data) {
                         var response = jQuery.parseJSON(data);
                         if (response.code != 0) {
                             console.log(data);
-                            toast("shellError code："+response.code + " msg:"+ response.msg);
+                            toast("shellError code：" + response.code + " msg:" + response.msg);
                             return;
                         }
                         //alert("配置保存成功");
                         toast(data)
-                        router_app.$data.shellLog = router_app.$data.shellLog +"\n"+router_app.$data.shell+response.data+"\n";
+                        router_app.$data.shellLog = router_app.$data.shellLog + "\n" + router_app.$data.shell + response.data + "\n";
                     }
                 });
 
@@ -401,6 +404,7 @@
                     "local_port": '1081',
                     "local_address": "127.0.0.1",
                     "password": "",
+                    "mode":"gfwlist",
                     "timeout": 600,
                     "method": ""
                 })
@@ -444,33 +448,42 @@
                         alert("网络失败");
                     }
                 });
+            },
+            nodeConnect: function (index) {
+                _node = router_app.$data.nodeList[index];
+                _node = JSON.parse(JSON.stringify(_node));
+                _mode = _node.mode;
 
-                tmp =router_app.$data.nodeList[0];
+                delete _node.name;
+                delete _node.mode;
 
-                delete tmp.name;
-                delete tmp.model;
-
+                SSConfig =JSON.parse(JSON.stringify(_node));
+                DnsConfig = JSON.parse(JSON.stringify(_node));;
+                DnsConfig.local_port = 1082;
+                // alert(JSON.stringify(SSConfig));
+                 alert(JSON.stringify(DnsConfig));
                 routerRequest.request({
                     path: "/api-third-party/service/datacenter/plugin_control",
                     type: "GET",
                     data: {
                         appId: appId,
-                        info: JSON.stringify({method:"saveConfig",data:tmp,type:"base"})
+                        info: JSON.stringify({method: "nodeConnect", SSConfig: SSConfig,DnsConfig: DnsConfig,ss_mode:_model,type: "base"})
                     },
                     success: function (data) {
                         var response = jQuery.parseJSON(data);
                         if (response.code != 0) {
                             console.log(data);
-                            alert("Frpc配置保存错误：" + response.msg);
+                            alert("节点链接错误：" + response.msg);
                             return;
                         }
-                        //alert("配置保存成功");
-                        toast('配置保存成功!')
+                        alert("节点链接成功");
+                        toast('节点链接成功!')
                     }
                 });
 
 
             },
+
             runSS: function (item) {
                 method = "";
                 if (item) {
@@ -479,7 +492,7 @@
                     method = "stopSS";
                 }
                 router_app.$data.status = "执行中...";
-                alert(method);
+                //alert(method);
                 routerRequest.request({
                     path: "/api-third-party/service/datacenter/plugin_control",
                     type: "GET",
@@ -515,10 +528,14 @@
                                 if (response.data.status != "") {
                                     router_app.$data.run_status = true;
                                     router_app.$data.status = response.data.status;
+                                    router_app.$data.redir = response.data.redir;
+                                    router_app.$data.local = response.data.local;
 
                                 } else {
                                     router_app.$data.run_status = false;
                                     router_app.$data.status = "未运行";
+                                    router_app.$data.redir = "未运行";
+                                    router_app.$data.local = "未运行";
                                 }
                                 router_app.$data.version = response.data.version;
 

@@ -1,0 +1,53 @@
+#!/bin/sh /etc/rc.common
+
+appid=2882303761517844579
+ROOTPATH=/userdisk/appdata/$appid
+
+START=65
+. /etc/misstar/scripts/MTbase
+DAEMON=$ROOTPATH/ss/bin/pdnsd
+PID_FILE=/var/run/$NAME.pid
+CACHEDIR=/var/pdnsd
+CONFIGPATH=$ROOTPATH/ss/config/pdnsd.conf
+TMPCONFIG=/tmp/pdnsd.conf
+CACHE=$CACHEDIR/pdnsd.cache
+
+USER=root
+GROUP=root
+
+start() {
+       echo "Starting pdnsd service..."
+       gen_cache
+       rm -rf $TMPCONFIG
+       dns_server="8.8.8.8"
+       dns_port=53
+       cp -rf $CONFIGPATH $TMPCONFIG
+       echo -e 'server {\nlabel="Misstar Dns";\nip='$dns_server';\nport='$dns_port';\nuptest= none;\n}' > /tmp/pdnsd.tmp
+       sed -i '/Misstar-pdnsd/r /tmp/pdnsd.tmp' $TMPCONFIG
+       $DAEMON --daemon -p $PID_FILE -c $TMPCONFIG
+       echo "Done!"
+}
+
+stop() {
+       echo "Stopping pdnsd service..."
+       killall pdnsd
+       rm -rf $PID_FILE
+       echo "Done!"
+}
+
+restart() {
+       echo "Restarting pdnsd service "
+       stop
+       sleep 2
+       start
+}
+
+gen_cache()
+{
+       if ! test -f "$CACHE"; then
+               mkdir -p `dirname $CACHE`
+               dd if=/dev/zero of="$CACHE" bs=1 count=4 2> /dev/null
+               chown -R $USER.$GROUP $CACHEDIR
+       fi
+}
+                                                
