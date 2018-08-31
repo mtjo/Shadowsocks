@@ -93,6 +93,12 @@
                                         <td><input v-model="plugin_status.dns" disabled="disabled" placeholder="dns"
                                                    type="text"></td>
                                     </tr>
+                                    <tr>
+                                        <td class="text_right">dns_red_enable：</td><td>
+                                            <input width="150" v-model="dns_red_enable" @change="dns_red_change()"
+                                                   class="mui-switch mui-switch-anim" type="checkbox">
+                                        </td>
+                                    </tr>
 
 
                                 </table>
@@ -363,6 +369,7 @@
             status: "----",
             redir: "----",
             local: "----",
+            dns_red_enable: false,
             run_status: false,
             startX: 0,
             endX: 0,
@@ -370,12 +377,42 @@
             shell: ''
         },
         methods: {
+            dns_red_change:function(){
+                routerRequest.request({
+                    path: "/api-third-party/service/datacenter/set_config",
+                    type: "GET",
+                    data: {
+                        appId: appId,
+                        key: "dns_red_enable",
+                        value: router_app.$data.dns_red_enable
+                    },
+                    success: function (data) {
+                        //toast(data);
+                        var response = jQuery.parseJSON(data);
+                        if (response.code != 0) {
+                            console.log(data);
+                            toast("保存dns_red_enable错误：" + response.msg);
+                            return;
+                        }
+
+                        //alert("保存配置成功！");
+                        toast("保存成功,要使配置生效请重新连节点！");
+
+                    },
+                    error: function (data) {
+                        console.log("set_config:", data);
+                        alert("网络失败");
+                    }
+                });
+
+            },
             sendShell: function () {
 
                 routerRequest.request({
                     path: "/api-third-party/service/datacenter/plugin_control",
                     type: "GET",
                     data: {
+
                         appId: appId,
                         info: JSON.stringify({method: "shell", data: router_app.$data.shell})
                     },
@@ -383,7 +420,7 @@
                         var response = jQuery.parseJSON(data);
                         if (response.code != 0) {
                             console.log(data);
-                            toast("shellError code：" + response.code + " msg:" + response.msg);
+                             toast("shellError code：" + response.code + " msg:" + response.msg);
                             return;
                         }
                         //alert("配置保存成功");
@@ -467,7 +504,7 @@
                     type: "GET",
                     data: {
                         appId: appId,
-                        info: JSON.stringify({method: "nodeConnect", SSConfig: SSConfig,DnsConfig: DnsConfig,ss_mode:_model,type: "base"})
+                        info: JSON.stringify({method: "nodeConnect", SSConfig: SSConfig,DnsConfig: DnsConfig,ss_mode:_mode,type: "base"})
                     },
                     success: function (data) {
                         var response = jQuery.parseJSON(data);
@@ -632,6 +669,31 @@
     });
 
     function loadconfig() {
+
+
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/config_info",
+            type: "GET",
+            data: {
+                appId: appId,
+                key: "dns_red_enable",
+            },
+            success: function (data) {
+                toast(data);
+                var response = jQuery.parseJSON(data);
+                router_app.$data.dns_red_enable = response.value
+                alert(data);
+
+            },
+            error: function (data) {
+                console.log("set_config:", data);
+                alert("网络失败");
+            }
+        });
+
+
+
+
         //设置
         routerRequest.request({
             path: "/api-third-party/service/datacenter/config_info",

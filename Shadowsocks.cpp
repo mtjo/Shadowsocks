@@ -36,7 +36,7 @@ Shadowsocks::Shadowsocks() {
 }
 
 void startShadowsocks() {
-    system("./ss/bin/autorun.sh");
+    system("/ss/bin/autorun.sh");
 }
 
 void
@@ -76,29 +76,35 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
 
         //save ss_model
         std::string ss_mode = getDataByKey(params, "ss_mode");
-
-        std::string exec1 = "echo '"+ss_mode+"'>/ss/config/ss_mode";
-
+        std::string exec1 = "echo '" + ss_mode + "'>/ss/config/ss_mode";
         system(exec1.data());
 
         //save dns_mode
         std::string dns_mode = "pdnsd";
-//        router::DataTransfer::saveData("dns_mode", "pdnsd");
-//        router::DataTransfer::getData("dns_mode", dns_mode);
-
-        std::string exec2 = "echo '"+dns_mode+"'>/ss/config/dns_mode";
-
+        std::string exec2 = "echo '" + dns_mode + "'>/ss/config/dns_mode";
         system(exec2.data());
 
+
         //save ss config
-
         std::string SSConfig = getDataByKey(params, "SSConfig");
-
         saveSSConfig(SSConfig);
 
         //save Dns config
         std::string DnsConfig = getDataByKey(params, "DnsConfig");
         saveDnsConfig(DnsConfig);
+
+        //save server ip
+        std::string serverIp = getDataByKey(DnsConfig, "server");
+        std::string exec3 = "echo '" + serverIp + "'>/ss/config/server_ip";
+        system(exec3.data());
+
+        //save ss_acl_default_mode
+        std::string ss_acl_default_mode ="1";
+        std::string exec4 = "echo '" + ss_acl_default_mode + "'>/ss/config/ss_acl_default_mode";
+        system(exec4.data());
+
+
+
 
         return JSONObject::success();
     } else if (method == "getConfig") {
@@ -119,8 +125,8 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         data.put("status", status);
         std::string local = exec("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
         std::string redir = exec("ps |grep 'ss/bin/ss-redir'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
-        data.put("local",local);
-        data.put("redir",redir);
+        data.put("local", local);
+        data.put("redir", redir);
 
 
         return JSONObject::success(data);

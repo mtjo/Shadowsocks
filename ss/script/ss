@@ -128,7 +128,7 @@ get_action_chain() {
 
 start()
 {
-
+    ss_server_ip=`cat $ROOTPATH/ss/config/server_ip`
 	insmod ipt_REDIRECT 2>/dev/null
 	chmod +x $ROOTPATH/ss/bin/ss-redir	
 	chmod +x $ROOTPATH/ss/bin/ss-local
@@ -157,8 +157,8 @@ start()
 	
 	
 	# default acl mode
-	ss_acl_default_mode=$(uci get misstar.ss.ss_acl_default_mode)
-	[ -z "$ss_acl_default_mode" ] && ( ss_acl_default_mode=1;uci set misstar.ss.ss_acl_default_mode=1;uci commit misstar)
+	ss_acl_default_mode=`cat $ROOTPATH/ss/config/ss_acl_default_mode`
+	[ -z "$ss_acl_default_mode" ] && ( ss_acl_default_mode==1)
 	iptables -t nat -A SHADOWSOCKS -p tcp -j $(get_action_chain $ss_acl_default_mode)
 	
 
@@ -330,7 +330,6 @@ status()
 {
 	status=`ps | grep -E "ss-redir|ssr-redir" | grep -v 'grep'  | grep -v script | grep -v '{' | wc -l`
 	if [ "$status" == "1" ];then   #进程存在，已运行
-		id=$(uci get misstar.ss.id)
 		DNS_PORT=1082
 		http_status=`curl  -s -w %{http_code} https://www.google.com.hk/images/branding/googlelogo/1x/googlelogo_color_116x41dp.png -k -o /dev/null --socks5 127.0.0.1:1082`
 		if [ "$http_status" == "200" ];then
