@@ -125,7 +125,7 @@
                                                         <td>名称:</td>
                                                         <td><input v-model="node.name" type="text" placeholder="名称"/>
                                                         </td>
-                                                        <td width="30"><input type="button" @click="nodeConnect(index)" value="链接" class="button bg-green button-fill button-fill"></td>
+                                                        <td width="30"><input type="button" @click="nodeConnect(index)" :value="nodeConnectText" class="button bg-green button-fill button-fill"></td>
                                                     </tr>
                                                 </table>
                                                 <table>
@@ -374,7 +374,9 @@
             startX: 0,
             endX: 0,
             shellLog: '',
-            shell: ''
+            shell: '',
+            nodeConnectText:'连接',
+            dns_red_ip:"lanip"
         },
         methods: {
             dns_red_change:function(){
@@ -487,6 +489,7 @@
                 });
             },
             nodeConnect: function (index) {
+                router_app.$data.nodeConnectText="连接中..."
                 _node = router_app.$data.nodeList[index];
                 _node = JSON.parse(JSON.stringify(_node));
                 _mode = _node.mode;
@@ -498,7 +501,7 @@
                 DnsConfig = JSON.parse(JSON.stringify(_node));;
                 DnsConfig.local_port = 1082;
                 // alert(JSON.stringify(SSConfig));
-                 alert(JSON.stringify(DnsConfig));
+                // alert(JSON.stringify(DnsConfig));
                 routerRequest.request({
                     path: "/api-third-party/service/datacenter/plugin_control",
                     type: "GET",
@@ -513,8 +516,10 @@
                             alert("节点链接错误：" + response.msg);
                             return;
                         }
-                        alert("节点链接成功");
+                        //alert("节点链接成功");
                         toast('节点链接成功!')
+                        router_app.$data.nodeConnectText="断开"
+
                     }
                 });
 
@@ -669,8 +674,6 @@
     });
 
     function loadconfig() {
-
-
         routerRequest.request({
             path: "/api-third-party/service/datacenter/config_info",
             type: "GET",
@@ -682,7 +685,7 @@
                 toast(data);
                 var response = jQuery.parseJSON(data);
                 router_app.$data.dns_red_enable = response.value
-                alert(data);
+                //alert(data);
 
             },
             error: function (data) {
@@ -690,9 +693,6 @@
                 alert("网络失败");
             }
         });
-
-
-
 
         //设置
         routerRequest.request({
@@ -769,8 +769,8 @@
             toastTag.className = toastTag.className.replace('toastAnimate', '');
             setTimeout(function () {
                 toastTag.className = toastTag.className + ' toastAnimate';
-            }, 100);
-        }, 5000);
+            }, 200);
+        }, 10000);
     }
 </script>
 

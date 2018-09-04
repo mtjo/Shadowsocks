@@ -1,6 +1,5 @@
 #!/bin/sh /etc/rc.common
 
-
 appid=2882303761517844579
 ROOTPATH=/userdisk/appdata/$appid
 
@@ -8,8 +7,6 @@ START=95
 SERVICE_USE_PID=1
 SERVICE_WRITE_PID=1
 SERVICE_DAEMONIZE=1
-
-. /etc/misstar/scripts/MTbase
 
 EXTRA_COMMANDS=" status  version dnsstatus dnsconfig"
 EXTRA_HELP="        status  Get shadowsocks status
@@ -67,7 +64,7 @@ ss_getconfig() {
 dnsconfig(){
 	killall $DNSPATH
 	killall pdnsd
-	iptables -t nat -D PREROUTING -s $lanip/24 -p udp --dport 53 -j DNAT --to $redip -m comment --comment "misstar-dnsred" &> /dev/null
+	iptables -t nat -D PREROUTING -s $lanip/24 -p udp --dport 53 -j DNAT --to $redip -m comment --comment "shadowsock-dnsred" &> /dev/null
 	echo "Start DNS Process..."
 	dns_mode=`cat $ROOTPATH/ss/config/dns_mode`
 	if [ "$dns_mode" = 'pdnsd' ];then
@@ -93,13 +90,13 @@ dnsconfig(){
 		exit	
 	fi
 	
-	Dnsred=$(uci get $appname.ss.dns_red_enable)
-	if [ "$Dnsred" == '1' ];then
-		Dnsredid=$(uci get $appname.ss.dns_red_ip)
+	Dnsred=`cat $ROOTPATH/ss/config/dns_red_enable`
+	if [ "$Dnsred" == 'true' ];then
+		Dnsredid=`cat $ROOTPATH/ss/config/dns_red_ip`
 		if [ "$Dnsredid" != 'lanip' ];then
 			redip=$Dnsredid
 		fi
-		iptables -t nat -I PREROUTING -s $lanip/24 -p udp --dport 53 -j DNAT --to $redip -m comment --comment "misstar-dnsred" &> /dev/null
+		iptables -t nat -I PREROUTING -s $lanip/24 -p udp --dport 53 -j DNAT --to $redip -m comment --comment "shadowsock-dnsred" &> /dev/null
 	fi
 }
 
@@ -315,7 +312,7 @@ stop_ss_rules()
 	iptables -t nat -X SHADOWSOCKS &> /dev/null
 	ipset destroy nogfwnet &> /dev/null
 	ipset destroy gfwlist &> /dev/null
-	iptables -t nat -D PREROUTING -s $lanip/24 -p udp --dport 53 -j DNAT --to $redip -m comment --comment "misstar-dnsred" &> /dev/null
+	iptables -t nat -D PREROUTING -s $lanip/24 -p udp --dport 53 -j DNAT --to $redip -m comment --comment "shadowsock-dnsred" &> /dev/null
 	echo "Done!"
 	echo "Remove Cache files..."
 	rm -rf /tmp/etc/dnsmasq.d/pac_customize.conf

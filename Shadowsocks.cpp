@@ -103,6 +103,19 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         std::string exec4 = "echo '" + ss_acl_default_mode + "'>/ss/config/ss_acl_default_mode";
         system(exec4.data());
 
+        //save dns_red_enable
+        std::string dns_red_enable;
+        router::DataTransfer::getData("dns_red_enable", dns_red_enable);
+        std::string exec5 = "echo '" + dns_red_enable + "'>/ss/config/dns_red_enable";
+        system(exec5.data());
+
+
+        //save dns_red_ip
+        std::string dns_red_ip;
+        router::DataTransfer::getData("dns_red_ip", dns_red_ip);
+        dns_red_ip="lanip";
+        std::string exec6 = "echo '" + dns_red_ip + "'>/ss/config/dns_red_ip";
+        system(exec6.data());
 
 
 

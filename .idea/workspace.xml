@@ -10,8 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60cf32fe-e846-4a41-b53a-9f10a189cdf7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ss/config/LanCon.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shadowsocks.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Shadowsocks.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.1.0.0.mpk" beforeDir="false" afterPath="$PROJECT_DIR$/app.1.0.0.mpk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ss/script/ss" beforeDir="false" afterPath="$PROJECT_DIR$/ss/script/ss" afterDir="false" />
@@ -98,6 +96,7 @@
         <counts>
           <entry key="project.closed" value="11" />
           <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="1" />
@@ -108,7 +107,7 @@
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -126,14 +125,14 @@
           <entry key="pdnsd" value="2" />
           <entry key="project" value="4" />
           <entry key="sh" value="7" />
-          <entry key="ss" value="2" />
+          <entry key="ss" value="3" />
           <entry key="start_script" value="4" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="6" />
+          <entry key="Bash" value="7" />
           <entry key="HTML" value="7" />
           <entry key="JavaScript" value="3" />
           <entry key="ObjectiveC" value="10" />
@@ -143,22 +142,22 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Makefile" value="33" />
-          <entry key="cpp" value="1043" />
+          <entry key="cpp" value="1057" />
           <entry key="gitignore" value="14" />
           <entry key="h" value="23" />
-          <entry key="html" value="2050" />
+          <entry key="html" value="2109" />
           <entry key="pdnsd" value="7" />
           <entry key="project" value="24" />
           <entry key="sh" value="249" />
-          <entry key="ss" value="57" />
+          <entry key="ss" value="79" />
           <entry key="start_script" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="25" />
-          <entry key="HTML" value="2050" />
-          <entry key="ObjectiveC" value="1066" />
+          <entry key="Bash" value="47" />
+          <entry key="HTML" value="2109" />
+          <entry key="ObjectiveC" value="1080" />
           <entry key="PLAIN_TEXT" value="377" />
         </counts>
       </usages-collector>
@@ -169,17 +168,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="210" selection-start-line="210" selection-end-line="210" />
+            <state relative-caret-position="365">
+              <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ss/script/ss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="95" column="47" selection-start-line="95" selection-start-column="33" selection-end-line="95" selection-end-column="47" />
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -239,19 +238,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="416" column="93" lean-forward="true" selection-start-line="416" selection-start-column="93" selection-end-line="416" selection-end-column="93" />
+            <state relative-caret-position="125">
+              <caret line="388" column="62" selection-start-line="388" selection-start-column="48" selection-end-line="388" selection-end-column="62" />
               <folding>
                 <element signature="e#1603#1609#1" expanded="true" />
                 <element signature="e#1656#1662#0" expanded="true" />
                 <element signature="e#1662#1668#0" expanded="true" />
                 <element signature="e#2999#3017#0" expanded="true" />
                 <element signature="e#3059#3077#0" expanded="true" />
-                <element signature="e#4821#14116#0" />
-                <element signature="e#17541#17579#0" expanded="true" />
+                <element signature="e#23756#24698#0" />
+                <element signature="e#24084#24515#0" />
+                <element signature="e#26145#29148#0" />
               </folding>
             </state>
           </provider>
@@ -261,10 +261,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dns_mode</find>
-      <find>router</find>
-      <find>Start DNS Process</find>
-      <find>/etc/misstar/applications</find>
       <find>Misstar Dns</find>
       <find>MTlog \d</find>
       <find>Misstar-pdnsd</find>
@@ -291,6 +287,10 @@
       <find>dns_red_enable</find>
       <find>change</find>
       <find>dns_red_change</find>
+      <find>tool</find>
+      <find>alert</find>
+      <find>router</find>
+      <find>misstar-dnsred</find>
     </findStrings>
     <replaceStrings>
       <replace>frpc</replace>
@@ -338,9 +338,9 @@
         <option value="$PROJECT_DIR$/ss/bin/start.sh" />
         <option value="$PROJECT_DIR$/ss/script/pdnsd" />
         <option value="$PROJECT_DIR$/ss/bin/startInitIptable.sh" />
+        <option value="$PROJECT_DIR$/view/index.html" />
         <option value="$PROJECT_DIR$/Shadowsocks.cpp" />
         <option value="$PROJECT_DIR$/ss/script/ss" />
-        <option value="$PROJECT_DIR$/view/index.html" />
       </list>
     </option>
   </component>
@@ -511,17 +511,18 @@
       <workItem from="1535529848988" duration="478000" />
       <workItem from="1535591833859" duration="5817000" />
       <workItem from="1535697632673" duration="8732000" />
+      <workItem from="1536049234697" duration="3581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285973000" />
+    <option name="totallyTimeSpent" value="289554000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="128" y="23" width="1701" height="977" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28209764" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28511152" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -536,10 +537,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.34918794" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.34918794" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info active="true" anchor="bottom" id="CMake" order="11" visible="true" weight="0.32714617" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.32714617" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -731,6 +732,9 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ss/config/LanCon.conf">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/ss/config/pac.conf">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -769,36 +773,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ss/config/LanCon.conf">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ss/script/ss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="95" column="47" selection-start-line="95" selection-start-column="33" selection-end-line="95" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="210" selection-start-line="210" selection-end-line="210" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="416" column="93" lean-forward="true" selection-start-line="416" selection-start-column="93" selection-end-line="416" selection-end-column="93" />
+        <state relative-caret-position="125">
+          <caret line="388" column="62" selection-start-line="388" selection-start-column="48" selection-end-line="388" selection-end-column="62" />
           <folding>
             <element signature="e#1603#1609#1" expanded="true" />
             <element signature="e#1656#1662#0" expanded="true" />
             <element signature="e#1662#1668#0" expanded="true" />
             <element signature="e#2999#3017#0" expanded="true" />
             <element signature="e#3059#3077#0" expanded="true" />
-            <element signature="e#4821#14116#0" />
-            <element signature="e#17541#17579#0" expanded="true" />
+            <element signature="e#23756#24698#0" />
+            <element signature="e#24084#24515#0" />
+            <element signature="e#26145#29148#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ss/script/ss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
