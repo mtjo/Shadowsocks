@@ -146,7 +146,7 @@
                                                         <td> 密码:</td>
 
                                                         <td>
-                                                            <input v-model="node.password" type="text"
+                                                            <input v-model="node.password" type="password"
                                                                    placeholder="密码"></td>
                                                     </tr>
                                                 </table>
@@ -747,9 +747,13 @@
                 if (response.data.status != "") {
                     router_app.$data.run_status = true;
                     router_app.$data.status = response.data.status;
+                    router_app.$data.redir = response.data.redir;
+                    router_app.$data.local = response.data.local;
                 } else {
                     router_app.$data.status = "未运行";
                     router_app.$data.run_status = false;
+                    router_app.$data.redir = "未运行";
+                    router_app.$data.local = "未运行";
                 }
                 router_app.$data.version = response.data.version;
 

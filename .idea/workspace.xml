@@ -10,8 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60cf32fe-e846-4a41-b53a-9f10a189cdf7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shadowsocks.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Shadowsocks.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.1.0.0.mpk" beforeDir="false" afterPath="$PROJECT_DIR$/app.1.0.0.mpk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ss/script/pdnsd" beforeDir="false" afterPath="$PROJECT_DIR$/ss/script/pdnsd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ss/script/ss" beforeDir="false" afterPath="$PROJECT_DIR$/ss/script/ss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/index.html" afterDir="false" />
     </list>
@@ -94,20 +96,24 @@
     <session id="-869351524">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.12" value="2" />
+          <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.18" value="1" />
+          <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.2" value="3" />
+          <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.27" value="1" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -120,11 +126,11 @@
           <entry key="cpp" value="2" />
           <entry key="gitignore" value="1" />
           <entry key="h" value="7" />
-          <entry key="html" value="7" />
+          <entry key="html" value="10" />
           <entry key="js" value="3" />
-          <entry key="pdnsd" value="2" />
+          <entry key="pdnsd" value="5" />
           <entry key="project" value="4" />
-          <entry key="sh" value="7" />
+          <entry key="sh" value="8" />
           <entry key="ss" value="3" />
           <entry key="start_script" value="4" />
           <entry key="txt" value="1" />
@@ -132,8 +138,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="7" />
-          <entry key="HTML" value="7" />
+          <entry key="Bash" value="11" />
+          <entry key="HTML" value="10" />
           <entry key="JavaScript" value="3" />
           <entry key="ObjectiveC" value="10" />
           <entry key="PLAIN_TEXT" value="24" />
@@ -142,22 +148,22 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Makefile" value="33" />
-          <entry key="cpp" value="1057" />
+          <entry key="cpp" value="1058" />
           <entry key="gitignore" value="14" />
           <entry key="h" value="23" />
-          <entry key="html" value="2109" />
+          <entry key="html" value="2125" />
           <entry key="pdnsd" value="7" />
           <entry key="project" value="24" />
           <entry key="sh" value="249" />
-          <entry key="ss" value="79" />
+          <entry key="ss" value="106" />
           <entry key="start_script" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="47" />
-          <entry key="HTML" value="2109" />
-          <entry key="ObjectiveC" value="1080" />
+          <entry key="Bash" value="74" />
+          <entry key="HTML" value="2125" />
+          <entry key="ObjectiveC" value="1081" />
           <entry key="PLAIN_TEXT" value="377" />
         </counts>
       </usages-collector>
@@ -165,20 +171,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="27" />
+            <state relative-caret-position="351">
+              <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ss/script/ss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="231">
+              <caret line="219" column="19" lean-forward="true" selection-start-line="219" selection-start-column="19" selection-end-line="219" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -223,17 +229,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ss/bin/startInitIptable.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ss/script/pdnsd">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+            <state relative-caret-position="375">
+              <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -241,17 +238,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="388" column="62" selection-start-line="388" selection-start-column="48" selection-end-line="388" selection-end-column="62" />
+            <state relative-caret-position="7500">
+              <caret line="500" column="63" selection-start-line="500" selection-start-column="63" selection-end-line="500" selection-end-column="63" />
               <folding>
                 <element signature="e#1603#1609#1" expanded="true" />
                 <element signature="e#1656#1662#0" expanded="true" />
                 <element signature="e#1662#1668#0" expanded="true" />
                 <element signature="e#2999#3017#0" expanded="true" />
                 <element signature="e#3059#3077#0" expanded="true" />
-                <element signature="e#23756#24698#0" />
-                <element signature="e#24084#24515#0" />
-                <element signature="e#26145#29148#0" />
               </folding>
             </state>
           </provider>
@@ -261,11 +255,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Misstar Dns</find>
-      <find>MTlog \d</find>
-      <find>Misstar-pdnsd</find>
-      <find>model</find>
-      <find>dnsconfig</find>
       <find>Add iptables rules...</find>
       <find>-j</find>
       <find>get_action_chain</find>
@@ -291,6 +280,11 @@
       <find>alert</find>
       <find>router</find>
       <find>misstar-dnsred</find>
+      <find>getstatus</find>
+      <find>local</find>
+      <find>redir</find>
+      <find>yntax error</find>
+      <find>expr</find>
     </findStrings>
     <replaceStrings>
       <replace>frpc</replace>
@@ -336,10 +330,10 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Shadowsocks.h" />
         <option value="$PROJECT_DIR$/ss/bin/start.sh" />
-        <option value="$PROJECT_DIR$/ss/script/pdnsd" />
         <option value="$PROJECT_DIR$/ss/bin/startInitIptable.sh" />
-        <option value="$PROJECT_DIR$/view/index.html" />
         <option value="$PROJECT_DIR$/Shadowsocks.cpp" />
+        <option value="$PROJECT_DIR$/view/index.html" />
+        <option value="$PROJECT_DIR$/ss/script/pdnsd" />
         <option value="$PROJECT_DIR$/ss/script/ss" />
       </list>
     </option>
@@ -511,18 +505,23 @@
       <workItem from="1535529848988" duration="478000" />
       <workItem from="1535591833859" duration="5817000" />
       <workItem from="1535697632673" duration="8732000" />
-      <workItem from="1536049234697" duration="3581000" />
+      <workItem from="1536049234697" duration="5466000" />
+      <workItem from="1536218680238" duration="150000" />
+      <workItem from="1536219004078" duration="1185000" />
+      <workItem from="1536235030906" duration="736000" />
+      <workItem from="1536282685970" duration="3092000" />
+      <workItem from="1536300291142" duration="1641000" />
+      <workItem from="1536998196531" duration="3308000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289554000" />
+    <option name="totallyTimeSpent" value="301551000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="128" y="23" width="1701" height="977" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28511152" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20012055" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -759,48 +758,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ss/bin/startInitIptable.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ss/script/pdnsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="388" column="62" selection-start-line="388" selection-start-column="48" selection-end-line="388" selection-end-column="62" />
+        <state relative-caret-position="7500">
+          <caret line="500" column="63" selection-start-line="500" selection-start-column="63" selection-end-line="500" selection-end-column="63" />
           <folding>
             <element signature="e#1603#1609#1" expanded="true" />
             <element signature="e#1656#1662#0" expanded="true" />
             <element signature="e#1662#1668#0" expanded="true" />
             <element signature="e#2999#3017#0" expanded="true" />
             <element signature="e#3059#3077#0" expanded="true" />
-            <element signature="e#23756#24698#0" />
-            <element signature="e#24084#24515#0" />
-            <element signature="e#26145#29148#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
+    <entry file="file://$PROJECT_DIR$/ss/script/pdnsd">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="27" />
+        <state relative-caret-position="197">
+          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ss/bin/startInitIptable.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ss/script/ss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="231">
+          <caret line="219" column="19" lean-forward="true" selection-start-line="219" selection-start-column="19" selection-end-line="219" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
         </state>
       </provider>
     </entry>

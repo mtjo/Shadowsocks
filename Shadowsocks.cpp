@@ -132,12 +132,12 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
                 JSONObject::success(config);
     } else if (method == "getStatus") {
         std::string version = exec("cat /proc/xiaoqiang/model");
-        std::string status = exec("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
+        std::string status = exec("ps |grep 'ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
 //exec("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'>pid");
         data.put("version", version);
         data.put("status", status);
-        std::string local = exec("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
-        std::string redir = exec("ps |grep 'ss/bin/ss-redir'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
+        std::string local = exec("ps |grep 'ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
+        std::string redir = exec("ps |grep 'ss-redir'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
         data.put("local", local);
         data.put("redir", redir);
 

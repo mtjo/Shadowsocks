@@ -4,7 +4,6 @@ appid=2882303761517844579
 ROOTPATH=/userdisk/appdata/$appid
 
 START=65
-. /etc/misstar/scripts/MTbase
 DAEMON=$ROOTPATH/ss/bin/pdnsd
 PID_FILE=/var/run/$NAME.pid
 CACHEDIR=/var/pdnsd

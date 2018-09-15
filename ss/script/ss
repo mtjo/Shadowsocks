@@ -212,7 +212,9 @@ start()
 	ss_mode=`cat $ROOTPATH/ss/config/ss_mode`
 
 	iptablenu=$(iptables -t nat -L PREROUTING | awk '/KOOLPROXY/{print NR}')
-	if [ '$iptablenu' != '' ];then
+	if [ "$iptablenu" != '' ];then
+		echo "iptablenu"
+		echo $iptablenu
 		iptablenu=`expr $iptablenu - 2`
 	else
 		iptablenu=2
