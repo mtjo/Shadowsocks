@@ -7,10 +7,26 @@ do
 
 ON=`cat $PLUGINROOT/ss/config/enableSS`
 echo $ON
+    localpid=$(pidof ss-local)
+    redirpid=$(pidof ss-redir)
+
+
+
+
 if [ "$ON" == "ON" ]; then
-$PLUGINROOT/ss/script/ss start
+    if [ -n "$localpid" -a -n "$redirpid" ]; then
+            echo $localpid >$PLUGINROOT/ss_local_pid
+            echo $redirpid >$PLUGINROOT/ss_redir_pid
+            echo "SS is runing"
+    else
+        echo "starting SS"
+        $PLUGINROOT/ss/script/ss start
+    fi
 else
-$PLUGINROOT/ss/script/ss start
+    if [ -n "$localpid" -a -n "$redirpid" ]; then
+        $PLUGINROOT/ss/script/ss start
+        echo "stopping SS"
+    fi
 fi
 sleep 3
 

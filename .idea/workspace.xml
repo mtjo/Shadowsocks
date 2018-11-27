@@ -10,15 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60cf32fe-e846-4a41-b53a-9f10a189cdf7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Tools.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tools.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shadowsocks.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Shadowsocks.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shadowsocks.h" beforeDir="false" afterPath="$PROJECT_DIR$/Shadowsocks.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.1.0.0.mpk" beforeDir="false" afterPath="$PROJECT_DIR$/app.1.0.0.mpk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ss/script/ss" beforeDir="false" afterPath="$PROJECT_DIR$/ss/script/ss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ss/script/SSSupervisor" beforeDir="false" afterPath="$PROJECT_DIR$/ss/script/SSSupervisor" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -153,7 +145,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Makefile" value="34" />
-          <entry key="SSSupervisor" value="135" />
+          <entry key="SSSupervisor" value="203" />
           <entry key="cpp" value="1226" />
           <entry key="enableSS" value="3" />
           <entry key="gitignore" value="14" />
@@ -171,7 +163,7 @@
           <entry key="Bash" value="74" />
           <entry key="HTML" value="2154" />
           <entry key="ObjectiveC" value="1249" />
-          <entry key="PLAIN_TEXT" value="518" />
+          <entry key="PLAIN_TEXT" value="586" />
         </counts>
       </usages-collector>
     </session>
@@ -261,8 +253,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ss/script/SSSupervisor">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+            <state relative-caret-position="461">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -388,7 +380,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="46" />
     <option name="y" value="40" />
     <option name="width" value="1701" />
@@ -564,13 +556,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311073000" />
+    <option name="totallyTimeSpent" value="311790000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="46" y="40" width="1701" height="977" extended-state="0" />
-    <editor active="true" />
+    <frame x="46" y="40" width="1701" height="977" extended-state="1" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27305606" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27305606" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -585,7 +576,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.34918794" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.34918794" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32714617" />
@@ -878,8 +869,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ss/script/SSSupervisor">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        <state relative-caret-position="461">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
