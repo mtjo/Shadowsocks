@@ -321,8 +321,8 @@ stop_ss_rules()
 	/etc/init.d/dnsmasq restart
 	echo "Done!"
 	chmod +x /opt/filetunnel/stunserver
-	rm -rf $CONFIG
-	rm -rf $DNSCONF
+	#rm -rf $CONFIG
+	#rm -rf $DNSCONF
 }
 
 status()

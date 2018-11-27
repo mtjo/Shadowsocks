@@ -15,9 +15,6 @@ public:
 
     void saveSSConfig(const std::string configData);
     void saveDnsConfig(const std::string configData);
-    std::string getMethod(const std::string &params);
-    std::string getData(const std::string &params);
-    std::string getDataByKey(const std::string &params,std::string key);
     virtual void onLaunched(const std::vector<std::string> &parameters);
     virtual std::string onParameterRecieved(const std::string &params);
 };

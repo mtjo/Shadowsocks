@@ -41,8 +41,8 @@
                     <tr>
                         <td><font colour="#FFFFFF">插件状态</font>&nbsp;<font size="2px" color="#d3d3d3">版本:{{version}}&nbsp;&nbsp;
                             <font color="red">进程:{{status}}</font></font></td>
-                        <td align="right"><input width="150" v-model="run_status"
-                                                 @click="runSS(run_status)"
+                        <td align="right"><input width="150" v-model="runStatus"
+                                                 @click="enableSS(runStatus)"
                                                  class="mui-switch mui-switch-anim" type="checkbox"></td>
                     </tr>
                 </table>
@@ -370,7 +370,7 @@
             redir: "----",
             local: "----",
             dns_red_enable: false,
-            run_status: false,
+            runStatus: false,
             startX: 0,
             endX: 0,
             shellLog: '',
@@ -526,12 +526,12 @@
 
             },
 
-            runSS: function (item) {
+            enableSS: function (item) {
                 method = "";
                 if (item) {
-                    method = "runSS";
+                    method = "enableSS";
                 } else {
-                    method = "stopSS";
+                    method = "disableSS";
                 }
                 router_app.$data.status = "执行中...";
                 //alert(method);
@@ -544,37 +544,37 @@
                     },
                     success: function (data) {
                         var response = jQuery.parseJSON(data);
-                        // if (response.code != 0) {
-                        //     console.log(data);
-                        //     alert("错误：" + response.msg);
-                        //     return;
-                        // }
-                        alert(data);
+                        if (response.code != 0) {
+                            console.log(data);
+                            toast(method+"错误：" + response.msg);
+                            return;
+                        }
+                        //alert(data);
                         routerRequest.request({
                             path: "/api-third-party/service/datacenter/plugin_control",
                             type: "GET",
                             data: {
                                 appId: appId,
-                                info: JSON.stringify({method: "getStatus"})
+                                info: JSON.stringify({method: "getSSStatus"})
                             },
                             success: function (data) {
                                 // alert(data)
                                 var response = jQuery.parseJSON(data);
                                 if (response.code != 0) {
                                     console.log(data);
-                                    alert("getStatus：" + response.msg);
+                                    alert("获取状态错误：" + response.msg);
                                     return;
                                 }
                                 //alert(data);
 
                                 if (response.data.status != "") {
-                                    router_app.$data.run_status = true;
+                                    router_app.$data.runStatus = true;
                                     router_app.$data.status = response.data.status;
                                     router_app.$data.redir = response.data.redir;
                                     router_app.$data.local = response.data.local;
 
                                 } else {
-                                    router_app.$data.run_status = false;
+                                    router_app.$data.runStatus = false;
                                     router_app.$data.status = "未运行";
                                     router_app.$data.redir = "未运行";
                                     router_app.$data.local = "未运行";
@@ -669,6 +669,7 @@
                 routerRequest.authorize(window.location.href, appId);
             }
         });
+        plugin_enable();
         loadconfig();
 
     });
@@ -745,13 +746,13 @@
                 //alert(data);
 
                 if (response.data.status != "") {
-                    router_app.$data.run_status = true;
+                    router_app.$data.runStatus = true;
                     router_app.$data.status = response.data.status;
                     router_app.$data.redir = response.data.redir;
                     router_app.$data.local = response.data.local;
                 } else {
                     router_app.$data.status = "未运行";
-                    router_app.$data.run_status = false;
+                    router_app.$data.runStatus = false;
                     router_app.$data.redir = "未运行";
                     router_app.$data.local = "未运行";
                 }
@@ -764,6 +765,75 @@
             }
         });
 
+    }
+
+    //开启插件
+    function plugin_enable() {
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/plugin_enable",
+            type: "GET",
+            data: {
+                appId: appId
+            },
+            success: function (data) {
+                var response = jQuery.parseJSON(data);
+                if (response.code != 0) {
+                    console.log(data);
+                    toast("启动插件错误：" + response.msg);
+                    return;
+                }
+                //toast(data)
+            },
+            error: function (data) {
+                alert("plugin_control:" + data);
+            }
+        });
+    }
+
+    //关闭插件
+    function plugin_disable() {
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/plugin_disable",
+            type: "GET",
+            data: {
+                appId: appId
+            },
+            success: function (data) {
+                var response = jQuery.parseJSON(data);
+                if (response.code != 0) {
+                    console.log(data);
+                    toast("关闭插件错误：" + response.msg);
+                    return;
+                }
+                toast(data)
+            },
+            error: function (data) {
+                alert("plugin_control:" + data);
+            }
+        });
+    }
+
+    //获取插件开启关闭状态
+    function get_plugin_status() {
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/get_plugin_status",
+            type: "GET",
+            data: {
+                appId: appId
+            },
+            success: function (data) {
+                var response = jQuery.parseJSON(data);
+                if (response.code != 0) {
+                    console.log(data);
+                    toast("获取插件开启关闭状态错误：" + response.msg);
+                    return;
+                }
+                toast(data)
+            },
+            error: function (data) {
+                alert("plugin_control:" + data);
+            }
+        });
     }
 
     function toast(msg) {

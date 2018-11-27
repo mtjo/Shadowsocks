@@ -1,0 +1,45 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2008-2012 OpenWrt.org
+
+START=96
+STOP=02
+
+APPID="2882303761517844579"
+PLUGINROOT="/userdisk/appdata/$APPID"
+
+#export command line for /usr/sbin/supervisord
+export PROCLINE='$PLUGINROOT/ss/script/SSSupervisor'
+export PROC_USE_CGROUP_PATH="$PLUGINROOT/SSSupervisor"
+
+EXTRA_COMMANDS="status"
+
+
+start() {
+    /usr/sbin/supervisord start
+    #service_start /usr/sbin/smbd -D
+
+    $PLUGINROOT/ss/script/SSSupervisor
+
+    localpid=$(pidof ss-local)
+    redirpid=$(pidof ss-redir)
+    return 0
+}
+
+stop() {
+    /usr/sbin/supervisord stop
+    #	service_stop /usr/sbin/smbd
+    killall SSSupervisor
+}
+
+restart() {
+    stop
+    sleep 3
+    start
+}
+
+status() {
+    /usr/sbin/supervisord status
+    ret=$?
+    echo $ret
+    return $ret
+}

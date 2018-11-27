@@ -1,0 +1,17 @@
+#!/bin/sh
+APPID="2882303761517844579"
+PLUGINROOT="/userdisk/appdata/$APPID"
+while :
+do
+# do something
+
+ON=`cat $PLUGINROOT/ss/config/enableSS`
+echo $ON
+if [ "$ON" == "ON" ]; then
+$PLUGINROOT/ss/script/ss start
+else
+$PLUGINROOT/ss/script/ss start
+fi
+sleep 3
+
+done
