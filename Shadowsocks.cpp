@@ -133,7 +133,7 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         return JSONObject::success();
     } else if (method == "disableSS") {
         Tools::saveData("runStatus", "0");
-        Tools::runCommand("echo 'ON'>/ss/config/enableSS");
+        Tools::runCommand("echo 'OFF'>/ss/config/enableSS");
         return JSONObject::success();
     } else if (method == "restartShadowsocks") {
 
