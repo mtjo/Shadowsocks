@@ -7,27 +7,14 @@ STOP=02
 APPID="2882303761517844579"
 PLUGINROOT="/userdisk/appdata/$APPID"
 
-#export command line for /usr/sbin/supervisord
-export PROCLINE='$PLUGINROOT/ss/script/SSSupervisor'
-export PROC_USE_CGROUP_PATH="$PLUGINROOT/SSSupervisor"
-
 EXTRA_COMMANDS="status"
 
-
 start() {
-    /usr/sbin/supervisord start
-    #service_start /usr/sbin/smbd -D
-
-    $PLUGINROOT/ss/script/SSSupervisor
-
-    localpid=$(pidof ss-local)
-    redirpid=$(pidof ss-redir)
-    return 0
+    $PLUGINROOT/ss/script/SSSupervisor >/dev/null&
 }
 
 stop() {
-    /usr/sbin/supervisord stop
-    #	service_stop /usr/sbin/smbd
+    $PLUGINROOT/ss/script/ss stop
     killall SSSupervisor
 }
 
@@ -38,8 +25,10 @@ restart() {
 }
 
 status() {
-    /usr/sbin/supervisord status
-    ret=$?
-    echo $ret
-    return $ret
+    localpid=$(pidof ss-local)
+    redirpid=$(pidof ss-redir)
+    if [ -n "$localpid" -a -n "$redirpid" ]; then
+        return 1;
+    fi
+    return 0;
 }

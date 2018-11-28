@@ -17,22 +17,22 @@ if [ "$ON" == "ON" ]; then
             echo "SS is runing"
     else
         echo "starting SS"
-        $PLUGINROOT/ss/script/ss start
+        $PLUGINROOT/ss/script/ss start >>  $PLUGINROOT/running.log
     fi
 elif [ "$ON" == "RESTART" ]; then
     if [ -n "$localpid" -a -n "$redirpid" ]; then
-        $PLUGINROOT/ss/script/ss restart
+        $PLUGINROOT/ss/script/ss restart >>  $PLUGINROOT/running.log
         echo "restarting SS"
         echo "ON">$PLUGINROOT/ss/config/enableSS
     fi
 else
     if [ -n "$localpid" -a -n "$redirpid" ]; then
-        $PLUGINROOT/ss/script/ss stop
+        $PLUGINROOT/ss/script/ss stop >>  $PLUGINROOT/running.log
         echo "stopping SS"
     fi
 
 fi
 
-sleep 3
+sleep 1
 
 done
