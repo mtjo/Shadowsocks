@@ -10,9 +10,6 @@ echo $ON
     localpid=$(pidof ss-local)
     redirpid=$(pidof ss-redir)
 
-
-
-
 if [ "$ON" == "ON" ]; then
     if [ -n "$localpid" -a -n "$redirpid" ]; then
             echo $localpid >$PLUGINROOT/ss_local_pid
@@ -22,12 +19,20 @@ if [ "$ON" == "ON" ]; then
         echo "starting SS"
         $PLUGINROOT/ss/script/ss start
     fi
+elif [ "$ON" == "RESTART" ]; then
+    if [ -n "$localpid" -a -n "$redirpid" ]; then
+        $PLUGINROOT/ss/script/ss restart
+        echo "restarting SS"
+        echo "ON">$PLUGINROOT/ss/config/enableSS
+    fi
 else
     if [ -n "$localpid" -a -n "$redirpid" ]; then
-        $PLUGINROOT/ss/script/ss start
+        $PLUGINROOT/ss/script/ss stop
         echo "stopping SS"
     fi
+
 fi
+
 sleep 3
 
 done

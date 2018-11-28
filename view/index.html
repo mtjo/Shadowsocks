@@ -72,8 +72,8 @@
                             <form>
                                 <table align="center" style="width: 90%">
                                     <tr style="width: 30%">
-                                        <td class="text_right">插件版本：</td>
-                                        <td><input v-model="plugin_status.version" type="text" disabled="disabled"
+                                        <td class="text_right">shadowsocks-libev版本：</td>
+                                        <td><input v-model="SSversion" type="text" disabled="disabled"
                                                    placeholder="---">
                                         </td>
                                     </tr>
@@ -85,12 +85,12 @@
                                     </tr>
                                     <tr>
                                         <td class="text_right">SS节点：</td>
-                                        <td><input v-model="plugin_status.node" type="text" disabled="disabled"
+                                        <td><input v-model="node.name" type="text" disabled="disabled"
                                                    placeholder="node"></td>
                                     </tr>
                                     <tr>
                                         <td class="text_right">DNS状态：</td>
-                                        <td><input v-model="plugin_status.dns" disabled="disabled" placeholder="dns"
+                                        <td><input v-model="dns" disabled="disabled" placeholder="dns"
                                                    type="text"></td>
                                     </tr>
                                     <tr>
@@ -126,9 +126,16 @@
                                                         <td>名称:</td>
                                                         <td><input v-model="node.name" type="text" placeholder="名称"/>
                                                         </td>
-                                                        <td width="30"><input type="button" @click="nodeConnect(index)"
-                                                                              :value="nodeConnectText"
-                                                                              class="button bg-green button-fill button-fill">
+                                                        <td width="30">
+
+                                                            <input v-if="index==nodeIndex && runStatus" type="button"
+                                                                   @click="nodeConnect(index)"
+                                                                   value="断开"
+                                                                   class="button bg-green button-fill button-fill">
+                                                            <input v-else type="button"
+                                                                   @click="nodeConnect(index)"
+                                                                   value="联接"
+                                                                   class="button bg-green button-fill button-fill">
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -322,6 +329,7 @@
                         <input type="button" onclick="pluginDisable()" value="disable"/>
                         <input type="button" onclick="getPluginStatus()" value="status"/>
                         <input type="button" onclick="runCommand('pidof frpc')" value="runCommand"/>
+                        <input type="button" onclick="curltest()" value="curltest"/>
                         <p>Shadowsocks
                             是一种基于Socks5代理方式的加密传输协议，也可以指实现这个协议的各种开发包。目前包使用Python、C、C++、C#、Go语言等编程语言开发，大部分主要实现（iOS平台的除外）采用Apache许可证、GPL、MIT许可证等多种自由软件许可协议开放源代码。Shadowsocks分为服务器端和客户端，在使用之前，需要先将服务器端部署到服务器上面，然后通过客户端连接并创建本地代理。</p>
                         <p>*基本配置和自定义配置是分离的，相互不会影响</p>
@@ -373,14 +381,17 @@
             tabsParam: ['基本配置', '局域网控制', "?"],//（这个也可以用对象key，value来实现）
             nowIndex: 0,//默认激活状态
             user_config: "",
-            plugin_status: {},
+            node: {},
+            dns: false,
             nodeList: [],
             lanList: [],
             name: "----",
             type: "----",
             version: "----",
+            SSversion: "----",
             redir: "----",
             local: "----",
+            nodeIndex: 0,
             dns_red_enable: false,
             runStatus: false,
             startX: 0,
@@ -525,7 +536,7 @@
                             SSConfig: SSConfig,
                             DnsConfig: DnsConfig,
                             ss_mode: _mode,
-                            type: "base"
+                            nodeIndex: index
                         })
                     },
                     success: function (data) {
@@ -546,7 +557,6 @@
             },
 
             enableSS: function (item) {
-                method = "";
                 if (item) {
                     method = "enableSS";
                 } else {
@@ -569,41 +579,7 @@
                             return;
                         }
                         //alert(data);
-                        routerRequest.request({
-                            path: "/api-third-party/service/datacenter/plugin_control",
-                            type: "GET",
-                            data: {
-                                appId: appId,
-                                info: JSON.stringify({method: "getSSStatus"})
-                            },
-                            success: function (data) {
-                                // alert(data)
-                                var response = jQuery.parseJSON(data);
-                                if (response.code != 0) {
-                                    console.log(data);
-                                    alert("获取状态错误：" + response.msg);
-                                    return;
-                                }
-                                //alert(data);
-
-                                if (response.data.status != "") {
-                                    router_app.$data.runStatus = true;
-                                    router_app.$data.status = response.data.status;
-                                    router_app.$data.redir = response.data.redir;
-                                    router_app.$data.local = response.data.local;
-
-                                } else {
-                                    router_app.$data.runStatus = false;
-                                    router_app.$data.status = "未运行";
-                                    router_app.$data.redir = "未运行";
-                                    router_app.$data.local = "未运行";
-                                }
-
-                            },
-                            error: function (data) {
-                                alert("getSSStatus:" + data);
-                            }
-                        });
+                        getSSStatus();
 
                     },
                     error: function (data) {
@@ -686,12 +662,13 @@
             }
         });
         pluginEnable();
-        loadconfig();
+        loadConfig();
         getRouterInfo();
+        getSSStatus();
 
     });
 
-    function loadconfig() {
+    function loadConfig() {
         routerRequest.request({
             path: "/api-third-party/service/datacenter/config_info",
             type: "GET",
@@ -711,6 +688,46 @@
                 alert("网络失败");
             }
         });
+
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/config_info",
+            type: "GET",
+            data: {
+                appId: appId,
+                key: "nodeIndex",
+            },
+            success: function (data) {
+                //toast(data);
+                var response = jQuery.parseJSON(data);
+                router_app.$data.nodeIndex = response.value > 0 ? response.value : 0
+                //alert(data);
+
+            },
+            error: function (data) {
+                console.log("set_config:", data);
+                alert("网络失败");
+            }
+        });
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/config_info",
+            type: "GET",
+            data: {
+                appId: appId,
+                key: "SSversion",
+            },
+            success: function (data) {
+                //toast(data);
+                var response = jQuery.parseJSON(data);
+                router_app.$data.SSversion = response.value;
+                //alert(data);
+
+            },
+            error: function (data) {
+                console.log("set_config:", data);
+                alert("网络失败");
+            }
+        });
+
 
         //设置
         routerRequest.request({
@@ -735,6 +752,8 @@
                 if (nodeListStr != "") {
                     nodeList = jQuery.parseJSON(nodeListStr);
                     router_app.$data.nodeList = nodeList;
+                    nodeIndex = router_app.$data.nodeIndex;
+                    router_app.$data.node = nodeList[nodeIndex];
                 }
             },
             error: function (data) {
@@ -744,6 +763,10 @@
         });
 
 
+    }
+
+    //ss 状态
+    function getSSStatus() {
         //插件状态
         routerRequest.request({
             path: "/api-third-party/service/datacenter/plugin_control",
@@ -777,8 +800,8 @@
                 alert("plugin_control:" + data);
             }
         });
-
     }
+
 
     //开启插件
     function pluginEnable() {
@@ -857,7 +880,7 @@
             type: "GET",
             data: {
                 appId: appId,
-                info: JSON.stringify({method: "runCommand", command})
+                info: JSON.stringify({method: "runCommand", command:command})
             },
             success: function (data) {
 
@@ -877,6 +900,36 @@
         });
 
     }
+
+
+    function curltest() {
+        //插件状态
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/plugin_control",
+            type: "GET",
+            data: {
+                appId: appId,
+                info: JSON.stringify({method: "curltest"})
+            },
+            success: function (data) {
+                alert(data)
+                var response = jQuery.parseJSON(data);
+                if (response.code != 0) {
+                    console.log(data);
+                    toast("错误：" + response.msg);
+                    return;
+                }
+                //alert(data)
+
+
+            },
+            error: function (data) {
+                alert("plugin_control:" + data);
+            }
+        });
+
+    }
+
 
     //获取路由器信息
     function getRouterInfo() {

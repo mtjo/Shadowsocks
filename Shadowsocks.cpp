@@ -22,6 +22,8 @@
 #include "PluginTools.h"
 #include "VpnControllor.h"
 #include "Tools.h"
+#include "CommonTools.h"
+#include <curl/curl.h>
 //#include "boost/thread.hpp"
 
 using router::DataTransfer;
@@ -41,7 +43,8 @@ void startShadowsocks() {
 
 void
 Shadowsocks::onLaunched(const std::vector <std::string> &parameters) {
-    std::string model = Tools::runCommand("cat /proc/xiaoqiang/model");
+    std::string SSversion = Tools::runCommand("/ss/bin/ss-local -h|grep shadowsocks-libev|awk '{print $2}'");
+    Tools::saveData("SSversion",SSversion);
 
     //std::thread subthread(startShadowsocks);
     //subthread.detach();
@@ -56,6 +59,10 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
     if (method == "") {
         return JSONObject::error(999, "method can not be null");
     } else if (method == "nodeConnect") {
+
+        //save index
+        std::string nodeIndex = Tools::getParamsByKey(params, "nodeIndex");
+        Tools::saveData("nodeIndex",nodeIndex);
 
         //save ss_model
         std::string ss_mode = Tools::getParamsByKey(params, "ss_mode");
@@ -129,6 +136,29 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         std::string command = Tools::getParamsByKey(params, "command");
 
         return JSONObject::success(Tools::runCommand(command));
+    }
+    else if (method == "curltest") {
+        // get 请求
+        std::string strURL = "http://www.baidu.com";
+        std::string strResponse;
+        CURLcode nRes = CommonTools::HttpGet(strURL, strResponse,300);
+        size_t nSrcLength = strResponse.length();
+
+        //下载文件
+        std::string url = "http://www.baidu.com/aaa.dat";
+        char local_file[50] = {0};
+        //sprintf(local_file,"./pb_%d_%s.dat",1,"aaaa");
+        int iDownlaod_Success = CommonTools::download_file(url.c_str(),local_file);
+        if(iDownlaod_Success<0){
+            char download_failure_info[100] ={0};
+            //sprintf(download_failure_info,"download file :%s ,failure,url:%s",local_file,url);
+            //FATAL(download_failure_info);
+        }
+        data.put("get",strResponse);
+        data.put("size_t",(int)nSrcLength);
+        data.put("download",iDownlaod_Success);
+
+        return JSONObject::success(data);
     }
 
     return JSONObject::error(1, method + " not defined");
