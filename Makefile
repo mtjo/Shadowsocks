@@ -16,6 +16,7 @@ LDFLAGS = -Wall -O2 -lxmrouter -lthrift -lssl -lcrypto -lconfig++ -ljson-c \
 dir : 
 	mkdir -p $(BUILDDIR)
 	mkdir -p $(BUILDDIR)ss
+	mkdir -p $(BUILDDIR)bin
 
 makebinary :
 	$(CXX) $(CXXFLAGS) JSON.cpp Tools.cpp inifile.c Shadowsocks.cpp $(LIB_DIR) $(LDFLAGS) -o $(BINARY)
@@ -28,4 +29,5 @@ clean:
 package: 
 	cp start_script build/
 	cp -rf ss/* build/ss/
+	cp -rf bin/* build/bin/
 	../plugin_packager_x64

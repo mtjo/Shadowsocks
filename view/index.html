@@ -39,8 +39,8 @@
             <div class="navbar-inner">
                 <table width="100%">
                     <tr>
-                        <td><font colour="#FFFFFF">插件状态</font>&nbsp;<font size="2px" color="#d3d3d3">版本:{{version}}&nbsp;&nbsp;
-                            <font color="red">进程:{{status}}</font></font></td>
+                        <td><font colour="#FFFFFF">插件状态</font>&nbsp;
+                            <font size="2px" color="#d3d3d3">{{type}}-{{version}}</font></td>
                         <td align="right"><input width="150" v-model="runStatus"
                                                  @click="enableSS(runStatus)"
                                                  class="mui-switch mui-switch-anim" type="checkbox"></td>
@@ -94,7 +94,8 @@
                                                    type="text"></td>
                                     </tr>
                                     <tr>
-                                        <td class="text_right">dns_red_enable：</td><td>
+                                        <td class="text_right">dns_red_enable：</td>
+                                        <td>
                                             <input width="150" v-model="dns_red_enable" @change="dns_red_change()"
                                                    class="mui-switch mui-switch-anim" type="checkbox">
                                         </td>
@@ -125,7 +126,10 @@
                                                         <td>名称:</td>
                                                         <td><input v-model="node.name" type="text" placeholder="名称"/>
                                                         </td>
-                                                        <td width="30"><input type="button" @click="nodeConnect(index)" :value="nodeConnectText" class="button bg-green button-fill button-fill"></td>
+                                                        <td width="30"><input type="button" @click="nodeConnect(index)"
+                                                                              :value="nodeConnectText"
+                                                                              class="button bg-green button-fill button-fill">
+                                                        </td>
                                                     </tr>
                                                 </table>
                                                 <table>
@@ -215,7 +219,8 @@
                                                         <td> 本地代理端口:</td>
 
                                                         <td>
-                                                            <input width="150" disabled="disabled" v-model="node.local_port"
+                                                            <input width="150" disabled="disabled"
+                                                                   v-model="node.local_port"
                                                                    type="text" placeholder="1080">
                                                         </td>
                                                     </tr>
@@ -309,14 +314,19 @@
 
                 <div class="tabs tab-content" v-show="nowIndex===2">
                     <div class="help">
-                        <textarea v-model="shellLog" style="width: 100% ;min-height: 300px" disabled="disabled">
-                        </textarea>
-                        <input type="text" v-model="shell">
-                        <input type="button" @click="sendShell()" value="send">
-                        <p>frp 是一个可用于内网穿透的高性能的反向代理应用，支持 tcp, udp, http, https 协议。</p>
+
+                        名称：{{name}} 版本：<font color="green">{{type}}</font>-{{version}}
+                        <hr/>
+
+                        <input type="button" onclick="pluginEnable()" value="enable"/>
+                        <input type="button" onclick="pluginDisable()" value="disable"/>
+                        <input type="button" onclick="getPluginStatus()" value="status"/>
+                        <input type="button" onclick="runCommand('pidof frpc')" value="runCommand"/>
+                        <p>Shadowsocks
+                            是一种基于Socks5代理方式的加密传输协议，也可以指实现这个协议的各种开发包。目前包使用Python、C、C++、C#、Go语言等编程语言开发，大部分主要实现（iOS平台的除外）采用Apache许可证、GPL、MIT许可证等多种自由软件许可协议开放源代码。Shadowsocks分为服务器端和客户端，在使用之前，需要先将服务器端部署到服务器上面，然后通过客户端连接并创建本地代理。</p>
                         <p>*基本配置和自定义配置是分离的，相互不会影响</p>
-                        <font color="red">*点击保存，会保存当前页面配置，且frpc读取的是最新保存的配置</font>
-                        <p>*保存配置后请重启frpc进程以便配置生效</p>
+                        <font color="red">*点击保存，会保存当前页面配置</font>
+                        <p>*保存配置后请重启进程以便配置生效</p>
                         <p>*列表左滑可以删除</p>
                         <p>
 
@@ -355,6 +365,7 @@
 </div>
 
 <script>
+    var appId = "2882303761517844579";
     var nodeList = [];
     var router_app = new Vue({
         el: '#router_app',
@@ -365,8 +376,9 @@
             plugin_status: {},
             nodeList: [],
             lanList: [],
+            name: "----",
+            type: "----",
             version: "----",
-            status: "----",
             redir: "----",
             local: "----",
             dns_red_enable: false,
@@ -375,11 +387,11 @@
             endX: 0,
             shellLog: '',
             shell: '',
-            nodeConnectText:'连接',
-            dns_red_ip:"lanip"
+            nodeConnectText: '连接',
+            dns_red_ip: "lanip"
         },
         methods: {
-            dns_red_change:function(){
+            dns_red_change: function () {
                 routerRequest.request({
                     path: "/api-third-party/service/datacenter/set_config",
                     type: "GET",
@@ -422,7 +434,7 @@
                         var response = jQuery.parseJSON(data);
                         if (response.code != 0) {
                             console.log(data);
-                             toast("shellError code：" + response.code + " msg:" + response.msg);
+                            toast("shellError code：" + response.code + " msg:" + response.msg);
                             return;
                         }
                         //alert("配置保存成功");
@@ -443,7 +455,7 @@
                     "local_port": '1081',
                     "local_address": "127.0.0.1",
                     "password": "",
-                    "mode":"gfwlist",
+                    "mode": "gfwlist",
                     "timeout": 600,
                     "method": ""
                 })
@@ -489,7 +501,7 @@
                 });
             },
             nodeConnect: function (index) {
-                router_app.$data.nodeConnectText="连接中..."
+                router_app.$data.nodeConnectText = "连接中..."
                 _node = router_app.$data.nodeList[index];
                 _node = JSON.parse(JSON.stringify(_node));
                 _mode = _node.mode;
@@ -497,8 +509,9 @@
                 delete _node.name;
                 delete _node.mode;
 
-                SSConfig =JSON.parse(JSON.stringify(_node));
-                DnsConfig = JSON.parse(JSON.stringify(_node));;
+                SSConfig = JSON.parse(JSON.stringify(_node));
+                DnsConfig = JSON.parse(JSON.stringify(_node));
+                ;
                 DnsConfig.local_port = 1082;
                 // alert(JSON.stringify(SSConfig));
                 // alert(JSON.stringify(DnsConfig));
@@ -507,7 +520,13 @@
                     type: "GET",
                     data: {
                         appId: appId,
-                        info: JSON.stringify({method: "nodeConnect", SSConfig: SSConfig,DnsConfig: DnsConfig,ss_mode:_mode,type: "base"})
+                        info: JSON.stringify({
+                            method: "nodeConnect",
+                            SSConfig: SSConfig,
+                            DnsConfig: DnsConfig,
+                            ss_mode: _mode,
+                            type: "base"
+                        })
                     },
                     success: function (data) {
                         var response = jQuery.parseJSON(data);
@@ -518,7 +537,7 @@
                         }
                         //alert("节点链接成功");
                         toast('节点链接成功!')
-                        router_app.$data.nodeConnectText="断开"
+                        router_app.$data.nodeConnectText = "断开"
 
                     }
                 });
@@ -546,7 +565,7 @@
                         var response = jQuery.parseJSON(data);
                         if (response.code != 0) {
                             console.log(data);
-                            toast(method+"错误：" + response.msg);
+                            toast(method + "错误：" + response.msg);
                             return;
                         }
                         //alert(data);
@@ -579,11 +598,10 @@
                                     router_app.$data.redir = "未运行";
                                     router_app.$data.local = "未运行";
                                 }
-                                router_app.$data.version = response.data.version;
 
                             },
                             error: function (data) {
-                                alert("getStatus:" + data);
+                                alert("getSSStatus:" + data);
                             }
                         });
 
@@ -660,8 +678,6 @@
         }
     });
 
-    var status = 0;
-    var appId = "2882303761517844579";
 
     $(document).ready(function () {
         $("#authorizeButton").click(function () {
@@ -669,8 +685,9 @@
                 routerRequest.authorize(window.location.href, appId);
             }
         });
-        plugin_enable();
+        pluginEnable();
         loadconfig();
+        getRouterInfo();
 
     });
 
@@ -733,31 +750,27 @@
             type: "GET",
             data: {
                 appId: appId,
-                info: JSON.stringify({method: "getStatus"})
+                info: JSON.stringify({method: "getSSStatus"})
             },
             success: function (data) {
 
                 var response = jQuery.parseJSON(data);
                 if (response.code != 0) {
                     console.log(data);
-                    toast("method: \"getStatus\" \n错误：" + response.msg);
+                    toast("错误：" + response.msg);
                     return;
                 }
                 //alert(data);
 
-                if (response.data.status != "") {
+                if (response.data.redir > 0 && response.data.local > 0) {
                     router_app.$data.runStatus = true;
-                    router_app.$data.status = response.data.status;
                     router_app.$data.redir = response.data.redir;
                     router_app.$data.local = response.data.local;
                 } else {
-                    router_app.$data.status = "未运行";
                     router_app.$data.runStatus = false;
                     router_app.$data.redir = "未运行";
                     router_app.$data.local = "未运行";
                 }
-                router_app.$data.version = response.data.version;
-
 
             },
             error: function (data) {
@@ -768,7 +781,7 @@
     }
 
     //开启插件
-    function plugin_enable() {
+    function pluginEnable() {
         routerRequest.request({
             path: "/api-third-party/service/datacenter/plugin_enable",
             type: "GET",
@@ -791,7 +804,7 @@
     }
 
     //关闭插件
-    function plugin_disable() {
+    function pluginDisable() {
         routerRequest.request({
             path: "/api-third-party/service/datacenter/plugin_disable",
             type: "GET",
@@ -814,7 +827,7 @@
     }
 
     //获取插件开启关闭状态
-    function get_plugin_status() {
+    function getPluginStatus() {
         routerRequest.request({
             path: "/api-third-party/service/datacenter/get_plugin_status",
             type: "GET",
@@ -829,6 +842,61 @@
                     return;
                 }
                 toast(data)
+            },
+            error: function (data) {
+                alert("plugin_control:" + data);
+            }
+        });
+    }
+
+
+    function runCommand(command) {
+        //插件状态
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/plugin_control",
+            type: "GET",
+            data: {
+                appId: appId,
+                info: JSON.stringify({method: "runCommand", command})
+            },
+            success: function (data) {
+
+                var response = jQuery.parseJSON(data);
+                if (response.code != 0) {
+                    console.log(data);
+                    toast("runCommand错误：" + response.msg);
+                    return;
+                }
+                alert(response.data)
+
+
+            },
+            error: function (data) {
+                alert("plugin_control:" + data);
+            }
+        });
+
+    }
+
+    //获取路由器信息
+    function getRouterInfo() {
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/get_router_info",
+            type: "GET",
+            data: {
+                appId: appId
+            },
+            success: function (data) {
+                var response = jQuery.parseJSON(data);
+                if (response.code != 0) {
+                    console.log(data);
+                    toast("获取路由器信息错误：" + response.msg);
+                    return;
+                }
+                //alert(data)
+                router_app.version = response.version;
+                router_app.type = response.type;
+                router_app.name = response.name;
             },
             error: function (data) {
                 alert("plugin_control:" + data);

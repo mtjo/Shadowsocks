@@ -41,6 +41,8 @@ void startShadowsocks() {
 
 void
 Shadowsocks::onLaunched(const std::vector <std::string> &parameters) {
+    std::string model = Tools::runCommand("cat /proc/xiaoqiang/model");
+
     //std::thread subthread(startShadowsocks);
     //subthread.detach();
 
@@ -98,30 +100,15 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
 
 
         return JSONObject::success();
-    } else if (method == "getConfig") {
-        std::string type = Tools::getParamsByKey(params, "type");
-        string config = "";
-        if (type == "base") {
-            config = Tools::runCommand("cat /etc/Shadowsocks_config.ini");
-        } else if (type == "user") {
-            config = Tools::runCommand("cat /etc/Shadowsocks_user_config.ini");
-        }
-        return JSONObject::success(config);
-    } else if (method == "getStatus") {
-        std::string version = Tools::runCommand("cat /proc/xiaoqiang/model");
-        std::string status = Tools::runCommand(
-                "ps |grep 'ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
-//Tools::runCommand("ps |grep 'ss/bin/ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'>pid");
-        data.put("version", version);
-        data.put("status", status);
-        std::string local = Tools::runCommand(
-                "ps |grep 'ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
-        std::string redir = Tools::runCommand(
-                "ps |grep 'ss-redir'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
+    } else if (method == "getSSStatus") {
+        //std::string status = Tools::runCommand("ps |grep 'ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
+        //std::string status = Tools::runCommand("pidof ss/ss-local);
+        //std::string local = Tools::runCommand("ps |grep 'ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
+        std::string local = Tools::runCommand("pidof ss-local");
+        std::string redir = Tools::runCommand("pidof ss-redir");
+
         data.put("local", local);
         data.put("redir", redir);
-
-
         return JSONObject::success(data);
 
 
@@ -138,9 +125,13 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
     } else if (method == "restartShadowsocks") {
 
         return JSONObject::success(data);
+    } else if (method == "runCommand") {
+        std::string command = Tools::getParamsByKey(params, "command");
+
+        return JSONObject::success(Tools::runCommand(command));
     }
 
-    return JSONObject::error(1, "parameter missing");
+    return JSONObject::error(1, method + " not defined");
 
 
 }
