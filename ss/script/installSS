@@ -1,0 +1,16 @@
+#!/bin/sh
+
+APPID="2882303761517844579"
+PLUGINROOT="/userdisk/appdata/$APPID"
+
+echo "添加服务。。。"
+cp $PLUGINROOT/ss/script/SSStart /etc/init.d/SSStart
+
+echo "开启服务。。。"
+
+/etc/init.d/SSStart enable
+/etc/init.d/SSStart start
+
+echo "服务开启成功。"
+
+

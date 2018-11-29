@@ -1,0 +1,11 @@
+#!/bin/sh
+
+APPID="2882303761517844579"
+PLUGINROOT="/userdisk/appdata/$APPID"
+
+echo "停止服务。。。"
+/etc/init.d/SSStart stop
+/etc/init.d/SSStart disable
+
+echo "删除服务。。。"
+rm -f /etc/init.d/SSStart

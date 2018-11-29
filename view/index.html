@@ -71,16 +71,27 @@
                             <hr/>
                             <form>
                                 <table align="center" style="width: 90%">
-                                    <tr style="width: 30%">
-                                        <td class="text_right">shadowsocks-libev版本：</td>
+                                    <tr style="width: 30%" >
+                                        <td class="text_right">shadowsocks-libev：</td>
                                         <td><input v-model="SSversion" type="text" disabled="disabled"
-                                                   placeholder="---">
+                                                   placeholder="---" />
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="text_right">进程状态：</td>
-                                        <td>ss-local:{{local}}<br/>
-                                            ss-redir:{{redir}}
+                                        <td class="text_right">ss-local：</td>
+                                        <td>{{local}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text_right">ss-redir：</td>
+                                        <td>{{redir}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text_right">翻墙状态:</td>
+                                        <td>
+                                            <font v-if="googleStatus =='200'" color="green">正常</font>
+                                            <font v-if="googleStatus =='000'" color="red">异常</font>
+                                            <font v-if="googleStatus =='999'" color="gray">测试中...</font>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="googleTest()" value="重新测试" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -129,9 +140,9 @@
                                                         <td width="30">
 
                                                             <input v-if="index==nodeIndex && runStatus" type="button"
-                                                                   @click="nodeConnect(index)"
+                                                                   @click="enableSS(false)"
                                                                    value="断开"
-                                                                   class="button bg-green button-fill button-fill">
+                                                                   class="button bg-red button-fill button-fill">
                                                             <input v-else type="button"
                                                                    @click="nodeConnect(index)"
                                                                    value="联接"
@@ -147,7 +158,7 @@
                                                                    placeholder="127.0.0.1">
                                                         </td>
                                                         <td width="45">端口:</td>
-                                                        <td width="60"><input v-model="node.server_port" type="text"
+                                                        <td width="60"><input v-model="node.server_port" type="number"
                                                                               placeholder="8989"></td>
 
                                                     </tr>
@@ -182,40 +193,32 @@
 
                                                         <td>
                                                             <select v-model="node.method">
-                                                                <option value="none">none</option>
+
+                                                                <option value="table">table</option>
                                                                 <option value="rc4">rc4</option>
                                                                 <option value="rc4-md5">rc4-md5</option>
-                                                                <option value="rc4-md5-6">rc4-md5-6</option>
-                                                                <option value="aes-128-gcm">AEAD_AES_128_GCM</option>
-                                                                <option value="aes-192-gcm">AEAD_AES_192_GCM</option>
-                                                                <option value="aes-256-gcm">AEAD_AES_256_GCM</option>
                                                                 <option value="aes-128-cfb">aes-128-cfb</option>
                                                                 <option value="aes-192-cfb">aes-192-cfb</option>
-                                                                <option value="aes-256-cfb" selected="">aes-256-cfb
-                                                                </option>
+                                                                <option value="aes-256-cfb">aes-256-cfb</option>
                                                                 <option value="aes-128-ctr">aes-128-ctr</option>
                                                                 <option value="aes-192-ctr">aes-192-ctr</option>
                                                                 <option value="aes-256-ctr">aes-256-ctr</option>
+                                                                <option value="bf-cfb">bf-cfb</option>
                                                                 <option value="camellia-128-cfb">camellia-128-cfb
                                                                 </option>
                                                                 <option value="camellia-192-cfb">camellia-192-cfb
                                                                 </option>
                                                                 <option value="camellia-256-cfb">camellia-256-cfb
                                                                 </option>
-                                                                <option value="bf-cfb">bf-cfb</option>
                                                                 <option value="cast5-cfb">cast5-cfb</option>
+                                                                <option value="des-cfb">des-cfb</option>
                                                                 <option value="idea-cfb">idea-cfb</option>
                                                                 <option value="rc2-cfb">rc2-cfb</option>
                                                                 <option value="seed-cfb">seed-cfb</option>
                                                                 <option value="salsa20">salsa20</option>
                                                                 <option value="chacha20">chacha20</option>
                                                                 <option value="chacha20-ietf">chacha20-ietf</option>
-                                                                <option value="chacha20-ietf-poly1305">
-                                                                    chacha20-ietf-poly1305
-                                                                </option>
-                                                                <option value="xchacha20-ietf-poly1305">
-                                                                    xchacha20-ietf-poly1305
-                                                                </option>
+
                                                             </select>
                                                         </td>
                                                     </tr>
@@ -325,11 +328,11 @@
                         名称：{{name}} 版本：<font color="green">{{type}}</font>-{{version}}
                         <hr/>
 
-                        <input type="button" onclick="pluginEnable()" value="enable"/>
-                        <input type="button" onclick="pluginDisable()" value="disable"/>
-                        <input type="button" onclick="getPluginStatus()" value="status"/>
-                        <input type="button" onclick="runCommand('pidof frpc')" value="runCommand"/>
-                        <input type="button" onclick="curltest()" value="curltest"/>
+                        <!--<input type="button" onclick="pluginEnable()" value="enable"/>-->
+                        <!--<input type="button" onclick="pluginDisable()" value="disable"/>-->
+                        <!--<input type="button" onclick="getPluginStatus()" value="status"/>-->
+                        <!--<input type="button" onclick="runCommand('pidof frpc')" value="runCommand"/>-->
+                        <input type="button" onclick="googleTest()" value="googleTest"/>
                         <p>Shadowsocks
                             是一种基于Socks5代理方式的加密传输协议，也可以指实现这个协议的各种开发包。目前包使用Python、C、C++、C#、Go语言等编程语言开发，大部分主要实现（iOS平台的除外）采用Apache许可证、GPL、MIT许可证等多种自由软件许可协议开放源代码。Shadowsocks分为服务器端和客户端，在使用之前，需要先将服务器端部署到服务器上面，然后通过客户端连接并创建本地代理。</p>
                         <p>*基本配置和自定义配置是分离的，相互不会影响</p>
@@ -339,6 +342,7 @@
                         <p>
 
                             <br/>
+                            如果发现接口报错可以尝试通过<input type="button" onclick="restartService()" value="重启服务进程"/>解决
 
                         <hr/>
                         捐助作者：
@@ -391,6 +395,7 @@
             SSversion: "----",
             redir: "----",
             local: "----",
+            googleStatus: "999",
             nodeIndex: 0,
             dns_red_enable: false,
             runStatus: false,
@@ -398,10 +403,10 @@
             endX: 0,
             shellLog: '',
             shell: '',
-            nodeConnectText: '连接',
             dns_red_ip: "lanip"
         },
         methods: {
+
             dns_red_change: function () {
                 routerRequest.request({
                     path: "/api-third-party/service/datacenter/set_config",
@@ -431,31 +436,6 @@
                 });
 
             },
-            sendShell: function () {
-
-                routerRequest.request({
-                    path: "/api-third-party/service/datacenter/plugin_control",
-                    type: "GET",
-                    data: {
-
-                        appId: appId,
-                        info: JSON.stringify({method: "shell", data: router_app.$data.shell})
-                    },
-                    success: function (data) {
-                        var response = jQuery.parseJSON(data);
-                        if (response.code != 0) {
-                            console.log(data);
-                            toast("shellError code：" + response.code + " msg:" + response.msg);
-                            return;
-                        }
-                        //alert("配置保存成功");
-                        toast(data)
-                        router_app.$data.shellLog = router_app.$data.shellLog + "\n" + router_app.$data.shell + response.data + "\n";
-                    }
-                });
-
-
-            },
             toggleTabs: function (index) {
                 this.nowIndex = index;
             },
@@ -468,7 +448,7 @@
                     "password": "",
                     "mode": "gfwlist",
                     "timeout": 600,
-                    "method": ""
+                    "method": "aes-256-cfb"
                 })
             },
             addLanItem: function () {
@@ -493,7 +473,7 @@
                         value: configData
                     },
                     success: function (data) {
-                        toast(data);
+                        //toast(data);
                         var response = jQuery.parseJSON(data);
                         if (response.code != 0) {
                             console.log(data);
@@ -512,7 +492,7 @@
                 });
             },
             nodeConnect: function (index) {
-                router_app.$data.nodeConnectText = "连接中..."
+                router_app.$data.nodeIndex=index;
                 _node = router_app.$data.nodeList[index];
                 _node = JSON.parse(JSON.stringify(_node));
                 _mode = _node.mode;
@@ -522,7 +502,6 @@
 
                 SSConfig = JSON.parse(JSON.stringify(_node));
                 DnsConfig = JSON.parse(JSON.stringify(_node));
-                ;
                 DnsConfig.local_port = 1082;
                 // alert(JSON.stringify(SSConfig));
                 // alert(JSON.stringify(DnsConfig));
@@ -546,9 +525,10 @@
                             alert("节点链接错误：" + response.msg);
                             return;
                         }
-                        //alert("节点链接成功");
+                        getSSStatusTimeOut();
                         toast('节点链接成功!')
-                        router_app.$data.nodeConnectText = "断开"
+
+
 
                     }
                 });
@@ -582,22 +562,11 @@
                             toast(method + "错误：" + response.msg);
                             return;
                         }
-                        //alert(data);
-                        setTimeout(function () {
-                            getSSStatus();
-                        }, 2000);
-                        setTimeout(function () {
-                            getSSStatus();
-                        }, 2000);
-
-                        setTimeout(function () {
-                            getSSStatus();
-                        }, 5000);
-
+                        getSSStatusTimeOut();
 
                     },
                     error: function (data) {
-                        alert("plugin_control:" + data);
+                        alert(method+":" + data);
                     }
                 });
             },//跳转
@@ -679,6 +648,9 @@
         loadConfig();
         getRouterInfo();
         getSSStatus();
+        setTimeout(function () {
+            googleTest();
+        }, 500);
 
     });
 
@@ -691,7 +663,7 @@
                 key: "dns_red_enable",
             },
             success: function (data) {
-                toast(data);
+                //toast(data);
                 var response = jQuery.parseJSON(data);
                 router_app.$data.dns_red_enable = response.value
                 //alert(data);
@@ -779,6 +751,7 @@
 
     }
 
+
     //ss 状态
     function getSSStatus() {
         //插件状态
@@ -811,9 +784,23 @@
 
             },
             error: function (data) {
-                alert("plugin_control:" + data);
+                alert(method + ":" + data);
             }
         });
+    }
+
+    function getSSStatusTimeOut(){
+
+        setTimeout(function () {
+            getSSStatus();
+        }, 1000);
+        setTimeout(function () {
+            getSSStatus();
+        }, 2000);
+        setTimeout(function () {
+            getSSStatus();
+        }, 5000);
+
     }
 
 
@@ -835,7 +822,7 @@
                 //toast(data)
             },
             error: function (data) {
-                alert("plugin_control:" + data);
+                alert("plugin_enable:" + data);
             }
         });
     }
@@ -855,10 +842,10 @@
                     toast("关闭插件错误：" + response.msg);
                     return;
                 }
-                toast(data)
+                //toast(data)
             },
             error: function (data) {
-                alert("plugin_control:" + data);
+                alert("plugin_disable:" + data);
             }
         });
     }
@@ -878,7 +865,8 @@
                     toast("获取插件开启关闭状态错误：" + response.msg);
                     return;
                 }
-                toast(data)
+                //toast(data)
+                return response.isEnable;
             },
             error: function (data) {
                 alert("plugin_control:" + data);
@@ -916,35 +904,6 @@
     }
 
 
-    function curltest() {
-        //插件状态
-        routerRequest.request({
-            path: "/api-third-party/service/datacenter/plugin_control",
-            type: "GET",
-            data: {
-                appId: appId,
-                info: JSON.stringify({method: "curltest"})
-            },
-            success: function (data) {
-                alert(data)
-                var response = jQuery.parseJSON(data);
-                if (response.code != 0) {
-                    console.log(data);
-                    toast("错误：" + response.msg);
-                    return;
-                }
-                //alert(data)
-
-
-            },
-            error: function (data) {
-                alert("plugin_control:" + data);
-            }
-        });
-
-    }
-
-
     //获取路由器信息
     function getRouterInfo() {
         routerRequest.request({
@@ -971,15 +930,52 @@
         });
     }
 
-    function toast(msg) {
+    function restartService() {
+        pluginDisable();
+        pluginEnable();
+        toast("重启成功，请重新打开插件！");
+        getSSStatus();
         setTimeout(function () {
-            document.getElementsByClassName('toast-wrap')[0].getElementsByClassName('toast-msg')[0].innerHTML = msg;
-            var toastTag = document.getElementsByClassName('toast-wrap')[0];
-            toastTag.className = toastTag.className.replace('toastAnimate', '');
-            setTimeout(function () {
-                toastTag.className = toastTag.className + ' toastAnimate';
-            }, 200);
+            getSSStatus();
         }, 10000);
+    }
+    function googleTest() {
+        router_app.$data.googleStatus = '999';
+
+        //插件状态
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/plugin_control",
+            type: "GET",
+            data: {
+                appId: appId,
+                info: JSON.stringify({method: "googleTest"})
+            },
+            success: function (data) {
+                //alert(data)
+                var response = jQuery.parseJSON(data);
+                if (response.code != 0) {
+                    console.log(data);
+                    toast("错误：" + response.msg);
+                    return;
+                }
+                //alert(data)
+                router_app.$data.googleStatus = response.data;
+            },
+            error: function (data) {
+                alert("plugin_control:" + data);
+            }
+        });
+    }
+
+    function toast(msg) {
+        //setTimeout(function () {
+        document.getElementsByClassName('toast-wrap')[0].getElementsByClassName('toast-msg')[0].innerHTML = msg;
+        var toastTag = document.getElementsByClassName('toast-wrap')[0];
+        toastTag.className = toastTag.className.replace('toastAnimate', '');
+        setTimeout(function () {
+            toastTag.className = toastTag.className + ' toastAnimate';
+        }, 100);
+        //}, 1000);
     }
 </script>
 

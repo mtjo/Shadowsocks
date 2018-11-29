@@ -1,7 +1,7 @@
 #!/bin/sh /etc/rc.common
 # Copyright (C) 2008-2012 OpenWrt.org
 
-START=96
+START=99
 STOP=02
 
 APPID="2882303761517844579"
@@ -10,7 +10,7 @@ PLUGINROOT="/userdisk/appdata/$APPID"
 EXTRA_COMMANDS="status"
 
 start() {
-    $PLUGINROOT/ss/script/SSSupervisor >/dev/null&
+    nohup $PLUGINROOT/ss/script/SSSupervisor >/dev/null 2>&1 &
 }
 
 stop() {
