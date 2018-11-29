@@ -494,6 +494,7 @@
             nodeConnect: function (index) {
                 router_app.$data.nodeIndex=index;
                 _node = router_app.$data.nodeList[index];
+                router_app.$data.node=_node;
                 _node = JSON.parse(JSON.stringify(_node));
                 _mode = _node.mode;
 
