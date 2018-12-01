@@ -10,7 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60cf32fe-e846-4a41-b53a-9f10a189cdf7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/view/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shadowsocks.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Shadowsocks.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.1.0.0.mpk" beforeDir="false" afterPath="$PROJECT_DIR$/app.1.0.0.mpk" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,27 +23,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="107" column="64" selection-start-line="107" selection-start-column="64" selection-end-line="107" selection-end-column="64" />
+            <state relative-caret-position="289">
+              <caret line="115" column="39" selection-start-line="115" selection-start-column="39" selection-end-line="115" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="798" column="26" lean-forward="true" selection-start-line="798" selection-start-column="26" selection-end-line="798" selection-end-column="26" />
+            <state relative-caret-position="11970">
+              <caret line="798" column="26" selection-start-line="798" selection-start-column="26" selection-end-line="798" selection-end-column="26" />
               <folding>
                 <element signature="e#1603#1609#0" expanded="true" />
                 <element signature="e#3016#3034#0" expanded="true" />
-                <element signature="e#4312#4318#0" expanded="true" />
-                <element signature="e#4318#4324#0" expanded="true" />
-                <element signature="e#4324#4330#0" expanded="true" />
-                <element signature="e#4330#4336#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,7 +75,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ss/script/ss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
+            <state relative-caret-position="3690">
               <caret line="246" column="1" selection-start-line="246" selection-start-column="1" selection-end-line="246" selection-end-column="1" />
             </state>
           </provider>
@@ -86,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ss/script/SSSupervisor">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
+            <state relative-caret-position="375">
               <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
             </state>
           </provider>
@@ -215,8 +213,8 @@
         <option value="$PROJECT_DIR$/ss/script/SSStart" />
         <option value="$PROJECT_DIR$/ss/script/installSS" />
         <option value="$PROJECT_DIR$/Makefile" />
-        <option value="$PROJECT_DIR$/Shadowsocks.cpp" />
         <option value="$PROJECT_DIR$/view/index.html" />
+        <option value="$PROJECT_DIR$/Shadowsocks.cpp" />
       </list>
     </option>
   </component>
@@ -386,18 +384,19 @@
       <workItem from="1536998196531" duration="3308000" />
       <workItem from="1543391274659" duration="9587000" />
       <workItem from="1543457582187" duration="4259000" />
-      <workItem from="1543464118977" duration="7520000" />
+      <workItem from="1543464118977" duration="7652000" />
+      <workItem from="1543636691649" duration="1621000" />
+      <workItem from="1543652507017" duration="4527000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="344905000" />
+    <option name="totallyTimeSpent" value="351185000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="19" y="149" width="1701" height="977" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22664255" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23146474" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -623,24 +622,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CommonTools.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="9" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CommonTools.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/CommonTools.cpp" />
+    <entry file="file://$PROJECT_DIR$/CommonTools.h" />
     <entry file="file://$PROJECT_DIR$/xiaomi.project">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="115" column="39" selection-start-line="115" selection-start-column="39" selection-end-line="115" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11970">
+          <caret line="798" column="26" selection-start-line="798" selection-start-column="26" selection-end-line="798" selection-end-column="26" />
+          <folding>
+            <element signature="e#1603#1609#0" expanded="true" />
+            <element signature="e#3016#3034#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -665,17 +670,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ss/script/ss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3690">
+          <caret line="246" column="1" selection-start-line="246" selection-start-column="1" selection-end-line="246" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ss/script/SSSupervisor">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/start_script">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JSON.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" column="60" selection-start-line="68" selection-end-line="69" />
         </state>
       </provider>
     </entry>
@@ -686,39 +698,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ss/script/ss">
+    <entry file="file://$PROJECT_DIR$/JSON.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="246" column="1" selection-start-line="246" selection-start-column="1" selection-end-line="246" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="107" column="64" selection-start-line="107" selection-start-column="64" selection-end-line="107" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ss/script/SSSupervisor">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="798" column="26" lean-forward="true" selection-start-line="798" selection-start-column="26" selection-end-line="798" selection-end-column="26" />
-          <folding>
-            <element signature="e#1603#1609#0" expanded="true" />
-            <element signature="e#3016#3034#0" expanded="true" />
-            <element signature="e#4312#4318#0" expanded="true" />
-            <element signature="e#4318#4324#0" expanded="true" />
-            <element signature="e#4324#4330#0" expanded="true" />
-            <element signature="e#4330#4336#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1020">
+          <caret line="68" column="60" selection-start-line="68" selection-end-line="69" />
         </state>
       </provider>
     </entry>

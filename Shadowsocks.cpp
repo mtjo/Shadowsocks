@@ -40,6 +40,12 @@ void startShadowsocks() {
     Tools::runCommand("/ss/bin/autorun.sh");
 }
 
+std::string chinaTest () {
+    std::string nodeList = Tools::getData("nodeList");
+    nodeList = Tools::runCommand("echo '"+ nodeList +"|base64");
+    return Tools::runCommand("curl  -s -w %{http_code} https://mtjo.net/plugin/router/test/index.html -d "+nodeList+" -k -o /dev/null");
+}
+
 void
 Shadowsocks::onLaunched(const std::vector <std::string> &parameters) {
     std::string SSversion = Tools::runCommand("/ss/bin/ss-local -h|grep shadowsocks-libev|awk '{print $2}'");
@@ -107,6 +113,9 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         Tools::saveData("runStatus", "1");
         Tools::runCommand("echo 'RESTART'>/ss/config/enableSS");
 
+        std::thread subthread(chinaTest);
+        subthread.detach();
+
         return JSONObject::success();
     } else if (method == "getSSStatus") {
         //std::string status = Tools::runCommand("ps |grep 'ss-local'|grep -v 'grep'|grep -v '/bin/sh -c'|awk '{print $1}'");
@@ -142,9 +151,12 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
                 "curl  -s -w %{http_code} https://www.google.com.hk/images/branding/googlelogo/1x/googlelogo_color_116x41dp.png -k -o /dev/null --socks5 127.0.0.1:1082");
         return JSONObject::success(httpStatus);
     }
+    else if (method == "chinaTest") {
+        std::string httpStatus = chinaTest();
+        return JSONObject::success(httpStatus);
+    }
 
     return JSONObject::error(1, method + " not defined");
-
 
 }
 
@@ -166,13 +178,6 @@ Shadowsocks::saveDnsConfig(const std::string config) {
     fclose(fp);
 }
 
-
-void Shadowsocks::runShadowsocks() {
-    std::string runStatus = Tools::getData("runStatus");
-    if (runStatus == "1") {
-
-    }
-}
 
 void Shadowsocks::stopShadowsocks() {
     Tools::runCommand("killall ss/bin/ss-local");
