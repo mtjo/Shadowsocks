@@ -71,10 +71,10 @@
                             <hr/>
                             <form>
                                 <table align="center" style="width: 90%">
-                                    <tr style="width: 30%" >
+                                    <tr style="width: 30%">
                                         <td class="text_right">shadowsocks-libev：</td>
                                         <td><input v-model="SSversion" type="text" disabled="disabled"
-                                                   placeholder="---" />
+                                                   placeholder="---"/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -86,12 +86,23 @@
                                         <td>{{redir}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="text_right">翻墙状态:</td>
+                                        <td class="text_right">谷歌状态：</td>
                                         <td>
                                             <font v-if="googleStatus =='200'" color="green">正常</font>
                                             <font v-if="googleStatus =='000'" color="red">异常</font>
                                             <font v-if="googleStatus =='999'" color="gray">测试中...</font>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="googleTest()" value="重新测试" />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="googleTest()"
+                                                                           value="测试"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text_right">国内状态：</td>
+                                        <td>
+                                            <font v-if="chinaStatus =='200'" color="green">正常</font>
+                                            <font v-if="chinaStatus =='000'" color="red">异常</font>
+                                            <font v-if="chinaStatus =='999'" color="gray">测试中...</font>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="chinaTest()"
+                                                                           value="测试"/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -396,6 +407,7 @@
             redir: "----",
             local: "----",
             googleStatus: "999",
+            chinaStatus: "999",
             nodeIndex: 0,
             dns_red_enable: false,
             runStatus: false,
@@ -492,9 +504,9 @@
                 });
             },
             nodeConnect: function (index) {
-                router_app.$data.nodeIndex=index;
+                router_app.$data.nodeIndex = index;
                 _node = router_app.$data.nodeList[index];
-                router_app.$data.node=_node;
+                router_app.$data.node = _node;
                 _node = JSON.parse(JSON.stringify(_node));
                 _mode = _node.mode;
 
@@ -528,7 +540,6 @@
                         }
                         getSSStatusTimeOut();
                         toast('节点链接成功!')
-
 
 
                     }
@@ -567,7 +578,7 @@
 
                     },
                     error: function (data) {
-                        alert(method+":" + data);
+                        alert(method + ":" + data);
                     }
                 });
             },//跳转
@@ -790,7 +801,7 @@
         });
     }
 
-    function getSSStatusTimeOut(){
+    function getSSStatusTimeOut() {
 
         setTimeout(function () {
             getSSStatus();
@@ -940,6 +951,7 @@
             getSSStatus();
         }, 10000);
     }
+
     function googleTest() {
         router_app.$data.googleStatus = '999';
 
@@ -966,6 +978,35 @@
                 alert("plugin_control:" + data);
             }
         });
+    }
+
+    function chinaTest() {
+        router_app.$data.chinaStatus = '999';
+
+        //插件状态
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/plugin_control",
+            type: "GET",
+            data: {
+                appId: appId,
+                info: JSON.stringify({method: "chinaTest"})
+            },
+            success: function (data) {
+                //alert(data)
+                var response = jQuery.parseJSON(data);
+                if (response.code != 0) {
+                    console.log(data);
+                    toast("错误：" + response.msg);
+                    return;
+                }
+                alert(data)
+                router_app.$data.chinaStatus = response.data;
+            },
+            error: function (data) {
+                alert("plugin_control:" + data);
+            }
+        });
+
     }
 
     function toast(msg) {

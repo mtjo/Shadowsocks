@@ -1,7 +1,6 @@
 #include "Tools.h"
 #include <string>
 #include "PluginTools.h"
-#include <string>
 #include "json/json.h"
 #include "JSON.h"
 

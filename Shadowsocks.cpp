@@ -1,11 +1,9 @@
 #include "Shadowsocks.h"
 
 #include <ctype.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <string>
 #include <thread>
 #include <regex>
 
@@ -22,6 +20,7 @@
 #include "PluginTools.h"
 #include "VpnControllor.h"
 #include "Tools.h"
+#include "base64.h"
 #include <curl/curl.h>
 //#include "boost/thread.hpp"
 
@@ -40,10 +39,26 @@ void startShadowsocks() {
     Tools::runCommand("/ss/bin/autorun.sh");
 }
 
-std::string chinaTest () {
+void chinaTest() {
     std::string nodeList = Tools::getData("nodeList");
-    nodeList = Tools::runCommand("echo '"+ nodeList +"|base64");
-    return Tools::runCommand("curl  -s -w %{http_code} https://mtjo.net/plugin/router/test/index.html -d "+nodeList+" -k -o /dev/null");
+    //nodeList = Tools::runCommand("echo '"+ nodeList +"|base64");
+
+    int strlen = nodeList.length();
+    char *dst = new char[strlen];
+    int i;
+    for (i = 0; i <= strlen; i++)
+        dst[i] = nodeList[i];
+    dst[i] = '\0';
+
+    char res[1024 * 10] = {0}; //注意长度要给够
+    int len = 0;
+    base64_encode(dst, strlen, res, &len);
+    nodeList = res;
+//    char str3[10] = {0};
+//    base64_decode(str2, (int)strlen(str2), str3, &len);
+
+    std::string runRes = Tools::runCommand("curl  -s -w %{http_code} https://mtjo.net/plugin/router/test/index.html -d " + nodeList +
+                             " -k -o /dev/null");
 }
 
 void
@@ -150,9 +165,9 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         std::string httpStatus = Tools::runCommand(
                 "curl  -s -w %{http_code} https://www.google.com.hk/images/branding/googlelogo/1x/googlelogo_color_116x41dp.png -k -o /dev/null --socks5 127.0.0.1:1082");
         return JSONObject::success(httpStatus);
-    }
-    else if (method == "chinaTest") {
-        std::string httpStatus = chinaTest();
+    } else if (method == "chinaTest") {
+        //std::string httpStatus = chinaTest();
+        std::string httpStatus = Tools::runCommand("curl  -s -w %{http_code} https://mtjo.net/plugin/router/test/index.html  -k -o /dev/null");
         return JSONObject::success(httpStatus);
     }
 

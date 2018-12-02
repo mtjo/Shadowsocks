@@ -19,7 +19,7 @@ dir :
 	mkdir -p $(BUILDDIR)bin
 
 makebinary :
-	$(CXX) $(CXXFLAGS) JSON.cpp Tools.cpp inifile.c Shadowsocks.cpp $(LIB_DIR) $(LDFLAGS) -o $(BINARY)
+	$(CXX) $(CXXFLAGS) JSON.cpp Tools.cpp base64.c inifile.c Shadowsocks.cpp $(LIB_DIR) $(LDFLAGS) -o $(BINARY)
 	
 clean:
 	rm -r build
