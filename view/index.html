@@ -86,29 +86,41 @@
                                         <td>{{redir}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="text_right">谷歌状态：</td>
-                                        <td>
-                                            <font v-if="googleStatus =='200'" color="green">正常</font>
-                                            <font v-if="googleStatus =='000'" color="red">异常</font>
-                                            <font v-if="googleStatus =='999'" color="gray">测试中...</font>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="googleTest()"
-                                                                           value="测试"/>
+                                        <td class="text_right">网络状态：</td>
+                                        <td ><div style="vertical-align:middle;float:left;width: auto; height: 100%; display: inline-block">
+                                            国外<font v-if="googleStatus =='200'" color="green">✔</font>
+                                            <font v-if="googleStatus =='000'" color="red">✕</font>
+                                            <font v-if="googleStatus =='999'" color="gray">❂</font>
+
+                                            <br/>
+
+                                            国内<font v-if="chinaStatus =='200'" color="green">✔</font>
+                                            <font v-if="chinaStatus =='000'" color="red">✕</font>
+                                            <font v-if="chinaStatus =='999'" color="gray">❂</font>
+                                        </div><div style="position: relative;left: 10px;top: 10px;float:left;width: auto; margin: auto; height: 100%; display: inline-block">
+                                            <input onclick="chinaTest();googleTest()" type="button" value="测试" />
+                                        </div>
+
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="text_right">国内状态：</td>
-                                        <td>
-                                            <font v-if="chinaStatus =='200'" color="green">正常</font>
-                                            <font v-if="chinaStatus =='000'" color="red">异常</font>
-                                            <font v-if="chinaStatus =='999'" color="gray">测试中...</font>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="chinaTest()"
-                                                                           value="测试"/>
-                                        </td>
-                                    </tr>
+
                                     <tr>
                                         <td class="text_right">SS节点：</td>
                                         <td><input v-model="node.name" type="text" disabled="disabled"
                                                    placeholder="node"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text_right">运行模式：</td>
+                                        <td>
+                                            <select v-model="node.mode" disabled ="disabled">
+                                                <option value="gfwlist">gfwlist模式</option>
+                                                <option value="whitelist">大陆白名单模式</option>
+                                                <option value="gamemode">游戏模式</option>
+                                                <option value="wholemode">全局代理模式</option>
+                                                <option value="6">回国模式</option>
+                                            </select>
+
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="text_right">DNS状态：</td>
@@ -661,6 +673,7 @@
         getRouterInfo();
         getSSStatus();
         setTimeout(function () {
+            chinaTest();
             googleTest();
         }, 500);
 
@@ -999,7 +1012,7 @@
                     toast("错误：" + response.msg);
                     return;
                 }
-                alert(data)
+                //alert(data)
                 router_app.$data.chinaStatus = response.data;
             },
             error: function (data) {
