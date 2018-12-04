@@ -167,7 +167,8 @@ Shadowsocks::onParameterRecieved(const std::string &params) {
         return JSONObject::success(httpStatus);
     } else if (method == "chinaTest") {
         //std::string httpStatus = chinaTest();
-        std::string httpStatus = Tools::runCommand("curl  -s -w %{http_code} https://mtjo.net/plugin/router/test/index.html  -k -o /dev/null");
+        //std::string httpStatus = Tools::runCommand("curl  -s -w %{http_code} https://mtjo.net/plugin/router/test/index.html  -k -o /dev/null");
+        std::string httpStatus = Tools::runCommand("curl  -s -w %{http_code} https://www.baidu.com/img/baidu_jgylogo1.gif  -k -o /dev/null");
         return JSONObject::success(httpStatus);
     }
 

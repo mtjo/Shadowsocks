@@ -87,19 +87,21 @@
                                     </tr>
                                     <tr>
                                         <td class="text_right">网络状态：</td>
-                                        <td ><div style="vertical-align:middle;float:left;width: auto; height: 100%; display: inline-block">
-                                            国外<font v-if="googleStatus =='200'" color="green">✔</font>
-                                            <font v-if="googleStatus =='000'" color="red">✕</font>
-                                            <font v-if="googleStatus =='999'" color="gray">❂</font>
+                                        <td>
+                                            <div style="vertical-align:middle;float:left;width: auto; height: 100%; display: inline-block">
+                                                国外<font v-if="googleStatus =='200'" color="green">✔</font>
+                                                <font v-if="googleStatus =='000'" color="red">X</font>
+                                                <font v-if="googleStatus =='999'" color="gray">❂</font>
 
-                                            <br/>
+                                                <br/>
 
-                                            国内<font v-if="chinaStatus =='200'" color="green">✔</font>
-                                            <font v-if="chinaStatus =='000'" color="red">✕</font>
-                                            <font v-if="chinaStatus =='999'" color="gray">❂</font>
-                                        </div><div style="position: relative;left: 10px;top: 10px;float:left;width: auto; margin: auto; height: 100%; display: inline-block">
-                                            <input onclick="chinaTest();googleTest()" type="button" value="测试" />
-                                        </div>
+                                                国内<font v-if="chinaStatus =='200'" color="green">✔</font>
+                                                <font v-if="chinaStatus =='000'" color="red">X</font>
+                                                <font v-if="chinaStatus =='999'" color="gray">❂</font>
+                                            </div>
+                                            <div style="position: relative;left: 10px;top: 10px;float:left;width: auto; margin: auto; height: 100%; display: inline-block">
+                                                <input onclick="chinaTest();googleTest()" type="button" value="测试"/>
+                                            </div>
 
                                         </td>
                                     </tr>
@@ -112,7 +114,7 @@
                                     <tr>
                                         <td class="text_right">运行模式：</td>
                                         <td>
-                                            <select v-model="node.mode" disabled ="disabled">
+                                            <select v-model="node.mode" disabled="disabled">
                                                 <option value="gfwlist">gfwlist模式</option>
                                                 <option value="whitelist">大陆白名单模式</option>
                                                 <option value="gamemode">游戏模式</option>
@@ -985,7 +987,9 @@
                     return;
                 }
                 //alert(data)
-                router_app.$data.googleStatus = response.data;
+                if (response.data != "") {
+                    router_app.$data.googleStatus = response.data;
+                }
             },
             error: function (data) {
                 alert("plugin_control:" + data);
@@ -1013,7 +1017,10 @@
                     return;
                 }
                 //alert(data)
-                router_app.$data.chinaStatus = response.data;
+
+                if (response.data != "") {
+                    router_app.$data.chinaStatus = response.data;
+                }
             },
             error: function (data) {
                 alert("plugin_control:" + data);
