@@ -146,8 +146,6 @@
                             <br/>
 
                             节点列表
-
-
                             <div style="width: 100%; overflow: hidden">
 
                                 <ul>
@@ -432,35 +430,10 @@
             dns_red_ip: "lanip"
         },
         methods: {
-
             dns_red_change: function () {
-                routerRequest.request({
-                    path: "/api-third-party/service/datacenter/set_config",
-                    type: "GET",
-                    data: {
-                        appId: appId,
-                        key: "dns_red_enable",
-                        value: router_app.$data.dns_red_enable
-                    },
-                    success: function (data) {
-                        //toast(data);
-                        var response = jQuery.parseJSON(data);
-                        if (response.code != 0) {
-                            console.log(data);
-                            toast("保存dns_red_enable错误：" + response.msg);
-                            return;
-                        }
-
-                        //alert("保存配置成功！");
-                        toast("保存成功,要使配置生效请重新连节点！");
-
-                    },
-                    error: function (data) {
-                        console.log("set_config:", data);
-                        alert("网络失败");
-                    }
-                });
-
+                saveConfig("dns_red_enable", router_app.$data.dns_red_enable, function (data) {
+                    toast("保存成功,要使配置生效请重新连节点！");
+                })
             },
             toggleTabs: function (index) {
                 this.nowIndex = index;
@@ -486,35 +459,10 @@
                 })
             },
             saveNodeList: function () {
-
-                configData = encodeURIComponent(JSON.stringify(router_app.$data.nodeList));
-                //alert(configData);
                 //详细列表设置
-                routerRequest.request({
-                    path: "/api-third-party/service/datacenter/set_config",
-                    type: "GET",
-                    data: {
-                        appId: appId,
-                        key: "nodeList",
-                        value: configData
-                    },
-                    success: function (data) {
-                        //toast(data);
-                        var response = jQuery.parseJSON(data);
-                        if (response.code != 0) {
-                            console.log(data);
-                            toast("保存配置错误：" + response.msg);
-                            return;
-                        }
-
-                        //alert("保存配置成功！");
-                        toast("保存配置成功！");
-
-                    },
-                    error: function (data) {
-                        console.log("set_config:", data);
-                        alert("网络失败");
-                    }
+                configData = encodeURIComponent(JSON.stringify(router_app.$data.nodeList));
+                saveConfig("nodeList", configData, function (data) {
+                    toast("保存配置成功！");
                 });
             },
             nodeConnect: function (index) {
@@ -530,36 +478,17 @@
                 SSConfig = JSON.parse(JSON.stringify(_node));
                 DnsConfig = JSON.parse(JSON.stringify(_node));
                 DnsConfig.local_port = 1082;
-                // alert(JSON.stringify(SSConfig));
-                // alert(JSON.stringify(DnsConfig));
-                routerRequest.request({
-                    path: "/api-third-party/service/datacenter/plugin_control",
-                    type: "GET",
-                    data: {
-                        appId: appId,
-                        info: JSON.stringify({
-                            method: "nodeConnect",
-                            SSConfig: SSConfig,
-                            DnsConfig: DnsConfig,
-                            ss_mode: _mode,
-                            nodeIndex: index
-                        })
-                    },
-                    success: function (data) {
-                        var response = jQuery.parseJSON(data);
-                        if (response.code != 0) {
-                            console.log(data);
-                            alert("节点链接错误：" + response.msg);
-                            return;
-                        }
-                        getSSStatusTimeOut();
-                        toast('节点链接成功!')
+                pluginControl({
+                    method: "nodeConnect",
+                    SSConfig: SSConfig,
+                    DnsConfig: DnsConfig,
+                    ss_mode: _mode,
+                    nodeIndex: index
+                }, function (data) {
+                    getSSStatusTimeOut();
+                    toast('节点链接成功!')
 
-
-                    }
                 });
-
-
             },
 
             enableSS: function (item) {
@@ -573,27 +502,8 @@
                     router_app.$data.redir = "关闭中...";
                 }
                 router_app.$data.status = "执行中...";
-                //alert(method);
-                routerRequest.request({
-                    path: "/api-third-party/service/datacenter/plugin_control",
-                    type: "GET",
-                    data: {
-                        appId: appId,
-                        info: JSON.stringify({method: method})
-                    },
-                    success: function (data) {
-                        var response = jQuery.parseJSON(data);
-                        if (response.code != 0) {
-                            console.log(data);
-                            toast(method + "错误：" + response.msg);
-                            return;
-                        }
-                        getSSStatusTimeOut();
-
-                    },
-                    error: function (data) {
-                        alert(method + ":" + data);
-                    }
+                pluginControl({method: method}, function (data) {
+                    getSSStatusTimeOut();
                 });
             },//跳转
             skip() {
@@ -672,7 +582,11 @@
         });
         pluginEnable();
         loadConfig();
-        getRouterInfo();
+        getRouterInfo(function (data) {
+            router_app.$data.version = data.version;
+            router_app.$data.type = data.type;
+            router_app.$data.name = data.name;
+        });
         getSSStatus();
         setTimeout(function () {
             chinaTest();
@@ -682,142 +596,48 @@
     });
 
     function loadConfig() {
-        routerRequest.request({
-            path: "/api-third-party/service/datacenter/config_info",
-            type: "GET",
-            data: {
-                appId: appId,
-                key: "dns_red_enable",
-            },
-            success: function (data) {
-                //toast(data);
-                var response = jQuery.parseJSON(data);
-                router_app.$data.dns_red_enable = response.value
-                //alert(data);
-
-            },
-            error: function (data) {
-                console.log("set_config:", data);
-                alert("网络失败");
-            }
+        getConfig("dns_red_enable", function (data) {
+            router_app.$data.dns_red_enable = data.value
+        });
+        getConfig("nodeIndex", function (data) {
+            router_app.$data.nodeIndex = data.value > 0 ? data.value : 0
         });
 
-        routerRequest.request({
-            path: "/api-third-party/service/datacenter/config_info",
-            type: "GET",
-            data: {
-                appId: appId,
-                key: "nodeIndex",
-            },
-            success: function (data) {
-                //toast(data);
-                var response = jQuery.parseJSON(data);
-                router_app.$data.nodeIndex = response.value > 0 ? response.value : 0
-                //alert(data);
-
-            },
-            error: function (data) {
-                console.log("set_config:", data);
-                alert("网络失败");
-            }
-        });
-        routerRequest.request({
-            path: "/api-third-party/service/datacenter/config_info",
-            type: "GET",
-            data: {
-                appId: appId,
-                key: "SSversion",
-            },
-            success: function (data) {
-                //toast(data);
-                var response = jQuery.parseJSON(data);
-                router_app.$data.SSversion = response.value;
-                //alert(data);
-
-            },
-            error: function (data) {
-                console.log("set_config:", data);
-                alert("网络失败");
-            }
+        getConfig("SSversion", function (data) {
+            router_app.$data.SSversion = data.value;
         });
 
+        //节点列表
+        getConfig("nodeList", function (data) {
+            nodeListStr = decodeURIComponent(data.value);
 
-        //设置
-        routerRequest.request({
-            path: "/api-third-party/service/datacenter/config_info",
-            type: "GET",
-            data: {
-                appId: appId,
-                key: "nodeList"
-            },
-            success: function (data) {
-                //alert(data)
-                var response = jQuery.parseJSON(data);
-                if (response.code != 0) {
-                    console.log(data);
-                    toast("节点列表错误：" + response.msg);
-                    return;
-                }
-                //alert(data);
-
-                nodeListStr = decodeURIComponent(response.value);
-                //alert(nodeListStr);
-                if (nodeListStr != "") {
-                    nodeList = jQuery.parseJSON(nodeListStr);
-                    router_app.$data.nodeList = nodeList;
-                    nodeIndex = router_app.$data.nodeIndex;
-                    router_app.$data.node = nodeList[nodeIndex];
-                }
-            },
-            error: function (data) {
-                console.log("error:", data);
-                alert("网络失败");
+            if (nodeListStr != "") {
+                nodeList = jQuery.parseJSON(nodeListStr);
+                router_app.$data.nodeList = nodeList;
+                nodeIndex = router_app.$data.nodeIndex;
+                router_app.$data.node = nodeList[nodeIndex];
             }
         });
-
-
     }
 
 
     //ss 状态
     function getSSStatus() {
         //插件状态
-        routerRequest.request({
-            path: "/api-third-party/service/datacenter/plugin_control",
-            type: "GET",
-            data: {
-                appId: appId,
-                info: JSON.stringify({method: "getSSStatus"})
-            },
-            success: function (data) {
-
-                var response = jQuery.parseJSON(data);
-                if (response.code != 0) {
-                    console.log(data);
-                    toast("错误：" + response.msg);
-                    return;
-                }
-                //alert(data);
-
-                if (response.data.redir > 0 && response.data.local > 0) {
-                    router_app.$data.runStatus = true;
-                    router_app.$data.redir = response.data.redir;
-                    router_app.$data.local = response.data.local;
-                } else {
-                    router_app.$data.runStatus = false;
-                    router_app.$data.redir = "未运行";
-                    router_app.$data.local = "未运行";
-                }
-
-            },
-            error: function (data) {
-                alert(method + ":" + data);
+        pluginControl({method: "getSSStatus"}, function (data) {
+            if (data.data.redir > 0 && data.data.local > 0) {
+                router_app.$data.runStatus = true;
+                router_app.$data.redir = data.data.redir;
+                router_app.$data.local = data.data.local;
+            } else {
+                router_app.$data.runStatus = false;
+                router_app.$data.redir = "未运行";
+                router_app.$data.local = "未运行";
             }
         });
     }
 
     function getSSStatusTimeOut() {
-
         setTimeout(function () {
             getSSStatus();
         }, 1000);
@@ -831,8 +651,39 @@
     }
 
 
+    function pluginControl(pargams, callback) {
+        method = pargams.method;
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/plugin_control",
+            type: "GET",
+            data: {
+                appId: appId,
+                info: JSON.stringify(pargams)
+            },
+            success: function (data) {
+                var response = jQuery.parseJSON(data);
+                if (response.code != 0) {
+                    console.log(data);
+                    //alert(data)
+                    if (response.code == -1 ||response.code == 6) {
+                        restartService();
+                        return;
+                    }
+                    toast(method + " 错误：" + response.msg);
+                    return;
+                }
+                callback(response);
+
+            },
+            error: function (data) {
+                alert(method + ":" + data);
+            }
+        });
+    }
+
+
     //开启插件
-    function pluginEnable() {
+    function pluginEnable(callback) {
         routerRequest.request({
             path: "/api-third-party/service/datacenter/plugin_enable",
             type: "GET",
@@ -846,16 +697,17 @@
                     toast("启动插件错误：" + response.msg);
                     return;
                 }
+                callback(response);
                 //toast(data)
             },
             error: function (data) {
-                alert("plugin_enable:" + data);
+                alert("plugin_control:" + data);
             }
         });
     }
 
     //关闭插件
-    function pluginDisable() {
+    function pluginDisable(callback) {
         routerRequest.request({
             path: "/api-third-party/service/datacenter/plugin_disable",
             type: "GET",
@@ -869,16 +721,18 @@
                     toast("关闭插件错误：" + response.msg);
                     return;
                 }
+                callback(response);
                 //toast(data)
             },
             error: function (data) {
-                alert("plugin_disable:" + data);
+                alert("plugin_control:" + data);
             }
         });
     }
 
+
     //获取插件开启关闭状态
-    function getPluginStatus() {
+    function getPluginStatus(callback) {
         routerRequest.request({
             path: "/api-third-party/service/datacenter/get_plugin_status",
             type: "GET",
@@ -892,47 +746,69 @@
                     toast("获取插件开启关闭状态错误：" + response.msg);
                     return;
                 }
-                //toast(data)
-                return response.isEnable;
+                callback(response)
             },
             error: function (data) {
-                alert("plugin_control:" + data);
+                alert("get_plugin_status:" + data);
             }
         });
     }
 
-
-    function runCommand(command) {
-        //插件状态
+    //获取配置
+    function getConfig(key, callback) {
+        //取设置
         routerRequest.request({
-            path: "/api-third-party/service/datacenter/plugin_control",
+            path: "/api-third-party/service/datacenter/config_info",
             type: "GET",
             data: {
                 appId: appId,
-                info: JSON.stringify({method: "runCommand", command: command})
+                key: key
             },
             success: function (data) {
-
                 var response = jQuery.parseJSON(data);
                 if (response.code != 0) {
                     console.log(data);
-                    toast("runCommand错误：" + response.msg);
+                    toast(key + " 错误：" + response.msg);
                     return;
                 }
-                alert(response.data)
-
-
+                callback(response);
             },
             error: function (data) {
-                alert("plugin_control:" + data);
+                console.log("error:", data);
+                alert("网络失败");
             }
         });
+    }
 
+    //保存配置
+    function saveConfig(key, value, callback) {
+        //代理设置
+        routerRequest.request({
+            path: "/api-third-party/service/datacenter/set_config",
+            type: "GET",
+            data: {
+                appId: appId,
+                key: key,
+                value: value
+            },
+            success: function (data) {
+                var response = jQuery.parseJSON(data);
+                if (response.code != 0) {
+                    console.log(data);
+                    alert("保存配置错误：" + response.msg);
+                    return;
+                }
+                callback(data);
+            },
+            error: function (data) {
+                alert("网络失败");
+            }
+        });
     }
 
 
     //获取路由器信息
-    function getRouterInfo() {
+    function getRouterInfo(callback) {
         routerRequest.request({
             path: "/api-third-party/service/datacenter/get_router_info",
             type: "GET",
@@ -946,13 +822,10 @@
                     toast("获取路由器信息错误：" + response.msg);
                     return;
                 }
-                //alert(data)
-                router_app.version = response.version;
-                router_app.type = response.type;
-                router_app.name = response.name;
+                callback(response);
             },
             error: function (data) {
-                alert("plugin_control:" + data);
+                alert("getRouterInfo:" + data);
             }
         });
     }
@@ -960,73 +833,31 @@
     function restartService() {
         pluginDisable();
         pluginEnable();
-        toast("重启成功，请重新打开插件！");
+        //toast("重启成功，请重新打开插件！");
         getSSStatus();
         setTimeout(function () {
             getSSStatus();
-        }, 10000);
+        }, 1000);
     }
 
     function googleTest() {
-        router_app.$data.googleStatus = '999';
-
-        //插件状态
-        routerRequest.request({
-            path: "/api-third-party/service/datacenter/plugin_control",
-            type: "GET",
-            data: {
-                appId: appId,
-                info: JSON.stringify({method: "googleTest"})
-            },
-            success: function (data) {
-                //alert(data)
-                var response = jQuery.parseJSON(data);
-                if (response.code != 0) {
-                    console.log(data);
-                    toast("错误：" + response.msg);
-                    return;
-                }
-                //alert(data)
-                if (response.data != "") {
-                    router_app.$data.googleStatus = response.data;
-                }
-            },
-            error: function (data) {
-                alert("plugin_control:" + data);
+        router_app.$data.googleStatus = '999'
+        pluginControl({method: "googleTest"}, function (data) {
+            //alert(JSON.stringify(data))
+            if (data.data != "") {
+                router_app.$data.googleStatus = data.data;
             }
-        });
+        })
     }
 
     function chinaTest() {
         router_app.$data.chinaStatus = '999';
-
-        //插件状态
-        routerRequest.request({
-            path: "/api-third-party/service/datacenter/plugin_control",
-            type: "GET",
-            data: {
-                appId: appId,
-                info: JSON.stringify({method: "chinaTest"})
-            },
-            success: function (data) {
-                //alert(data)
-                var response = jQuery.parseJSON(data);
-                if (response.code != 0) {
-                    console.log(data);
-                    toast("错误：" + response.msg);
-                    return;
-                }
-                //alert(data)
-
-                if (response.data != "") {
-                    router_app.$data.chinaStatus = response.data;
-                }
-            },
-            error: function (data) {
-                alert("plugin_control:" + data);
+        pluginControl({method: "chinaTest"}, function (data) {
+            //alert(JSON.stringify(data))
+            if (data.data != "") {
+                router_app.$data.chinaStatus = data.data;
             }
         });
-
     }
 
     function toast(msg) {
@@ -1036,7 +867,7 @@
         toastTag.className = toastTag.className.replace('toastAnimate', '');
         setTimeout(function () {
             toastTag.className = toastTag.className + ' toastAnimate';
-        }, 100);
+        }, 1000);
         //}, 1000);
     }
 </script>

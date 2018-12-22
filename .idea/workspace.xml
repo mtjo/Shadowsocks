@@ -11,8 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="60cf32fe-e846-4a41-b53a-9f10a189cdf7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shadowsocks.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Shadowsocks.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.1.0.0.mpk" beforeDir="false" afterPath="$PROJECT_DIR$/app.1.0.0.mpk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -25,19 +23,15 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shadowsocks.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="164" column="28" selection-start-line="164" selection-start-column="28" selection-end-line="164" selection-end-column="28" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/build/ss/config/iplist">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/view/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="815" column="11" lean-forward="true" selection-start-line="784" selection-start-column="7" selection-end-line="815" selection-end-column="11" />
+            <state relative-caret-position="128">
+              <caret line="840" column="5" lean-forward="true" selection-start-line="840" selection-start-column="5" selection-end-line="840" selection-end-column="5" />
               <folding>
                 <element signature="e#1603#1609#0" expanded="true" />
                 <element signature="e#3016#3034#0" expanded="true" />
@@ -47,73 +41,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ss/script/SSStart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/build/ss/config/pac.conf">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ss/script/installSS">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/build/ss/config/pac_customize.conf">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ss/script/removeSS">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/build/ss/config/pdnsd.conf">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ss/script/ss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1695">
-              <caret line="113" selection-start-line="113" selection-end-line="113" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/build/ss/bin/SSIptableService">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ss/script/SSSupervisor">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/build/ss/script/SSSupervisor">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/start_script">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/build/ss/config/enableSS">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Makefile">
+        <entry file="file://$PROJECT_DIR$/build/ss/script/ss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JSON.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="68" column="60" selection-start-line="68" selection-end-line="69" />
+            <state relative-caret-position="345">
+              <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -122,12 +83,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dns_red_enable</find>
-      <find>loadConfig</find>
-      <find>status</find>
-      <find>runStatus</find>
-      <find>SSversion</find>
-      <find>plugin_status</find>
       <find>nodelist</find>
       <find>load</find>
       <find>dnsstatus</find>
@@ -142,7 +97,6 @@
       <find>getFrpcPid</find>
       <find>iplist</find>
       <find>getConnectedDeviceList</find>
-      <find>getSSStatus</find>
       <find>enableSS</find>
       <find>ss_mode</find>
       <find>nodecon</find>
@@ -152,6 +106,13 @@
       <find>start_ss_udp</find>
       <find>google</find>
       <find>测试</find>
+      <find>saveConfig</find>
+      <find>config_info</find>
+      <find>set_config</find>
+      <find>getSSStatus</find>
+      <find>plugin_control</find>
+      <find>getrouter</find>
+      <find>chinaTest</find>
     </findStrings>
     <replaceStrings>
       <replace>frpc</replace>
@@ -214,17 +175,17 @@
         <option value="$PROJECT_DIR$/ss/script/SSStart" />
         <option value="$PROJECT_DIR$/ss/script/installSS" />
         <option value="$PROJECT_DIR$/Makefile" />
-        <option value="$PROJECT_DIR$/view/index.html" />
         <option value="$PROJECT_DIR$/Shadowsocks.cpp" />
+        <option value="$PROJECT_DIR$/view/index.html" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1344" />
-    <option name="y" value="229" />
-    <option name="width" value="1344" />
-    <option name="height" value="733" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="137" />
+    <option name="y" value="96" />
+    <option name="width" value="1607" />
+    <option name="height" value="957" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -244,7 +205,17 @@
             <path>
               <item name="Shadowsocks" type="b2602c69:ProjectViewProjectNode" />
               <item name="Shadowsocks" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shadowsocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shadowsocks" type="462c0819:PsiDirectoryNode" />
               <item name="ss" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shadowsocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shadowsocks" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -384,17 +355,18 @@
       <workItem from="1543652507017" duration="13438000" />
       <workItem from="1543890953161" duration="2978000" />
       <workItem from="1543908895565" duration="1532000" />
+      <workItem from="1545305318606" duration="7169000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="364606000" />
+    <option name="totallyTimeSpent" value="371940000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1344" y="229" width="1344" height="733" extended-state="6" />
+    <frame x="137" y="96" width="1607" height="957" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30107528" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23769969" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -412,7 +384,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.34802786" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="CMake" order="11" visible="true" weight="0.46763754" />
+      <window_info anchor="bottom" id="CMake" order="11" visible="true" weight="0.3432304" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -428,42 +400,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/inifile.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TaskWatcher.cpp" />
-    <entry file="file://$PROJECT_DIR$/view/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4892" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/mui-switch.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-209" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/upscroller.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/framework7.ios.colors.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-729" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/framework7.ios.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/framework7.ios.colors.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="37811" selection-start-line="14" selection-start-column="37811" selection-end-line="14" selection-end-column="37811" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SystemState.cpp" />
     <entry file="file://$PROJECT_DIR$/view/css/reset.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -692,10 +628,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build/ss/config/iplist">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/ss/config/pac_customize.conf">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/ss/config/pdnsd.conf">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/ss/bin/SSIptableService">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/ss/script/SSSupervisor">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/ss/config/enableSS">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/ss/script/ss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/ss/config/pac.conf">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/view/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="815" column="11" lean-forward="true" selection-start-line="784" selection-start-column="7" selection-end-line="815" selection-end-column="11" />
+        <state relative-caret-position="128">
+          <caret line="840" column="5" lean-forward="true" selection-start-line="840" selection-start-column="5" selection-end-line="840" selection-end-column="5" />
           <folding>
             <element signature="e#1603#1609#0" expanded="true" />
             <element signature="e#3016#3034#0" expanded="true" />
